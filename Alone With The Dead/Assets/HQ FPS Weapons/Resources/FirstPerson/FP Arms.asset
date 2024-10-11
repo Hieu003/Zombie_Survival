@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba8c758fac6fcc46ae216933eba8936, type: 3}
+  m_Name: FP Arms
+  m_EditorClassIdentifier: Assembly-CSharp:HQWeaponsPack:FirstPersonArmsData
+  m_FirstPersonArms:
+  - LeftArm: {fileID: 5021843314113664036, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    RightArm: {fileID: -7463758917967865720, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    AccesoryModel: {fileID: 0}
+  - LeftArm: {fileID: 7317885280250717657, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    RightArm: {fileID: 8075257260446895321, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    AccesoryModel: {fileID: 0}
+  - LeftArm: {fileID: 4853234047977769700, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    RightArm: {fileID: -4317375949856410957, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    AccesoryModel: {fileID: 0}
+  - LeftArm: {fileID: -1755292639929666503, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    RightArm: {fileID: -8392895935080953482, guid: afd3d430d22650b4795b5159d7dd53d6,
+      type: 3}
+    AccesoryModel: {fileID: 0}
