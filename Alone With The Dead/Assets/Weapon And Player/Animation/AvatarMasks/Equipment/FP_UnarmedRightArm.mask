@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FP_UnarmedRightArm
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Arm_Standard,r
+    m_Weight: 0
+  - m_Path: Arm_Standard.l
+    m_Weight: 0
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Bolt1
+    m_Weight: 0
+  - m_Path: Armature/Bolt2
+    m_Weight: 0
+  - m_Path: Armature/Bullet1
+    m_Weight: 0
+  - m_Path: Armature/Bullet2
+    m_Weight: 0
+  - m_Path: Armature/Bullet3
+    m_Weight: 0
+  - m_Path: Armature/Bullet4
+    m_Weight: 0
+  - m_Path: Armature/Bullet5
+    m_Weight: 0
+  - m_Path: Armature/Bullet6
+    m_Weight: 0
+  - m_Path: Armature/Chamber
+    m_Weight: 0
+  - m_Path: Armature/Hammer
+    m_Weight: 0
+  - m_Path: Armature/Magazine
+    m_Weight: 0
+  - m_Path: Armature/Projectile
+    m_Weight: 0
+  - m_Path: Armature/Pump
+    m_Weight: 0
+  - m_Path: Armature/Rope
+    m_Weight: 0
+  - m_Path: Armature/Safety
+    m_Weight: 0
+  - m_Path: Armature/Trigger
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/ForearmTwist.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/ForearmTwist.1.L/ForearmTwist.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/ForearmTwist.1.L/ForearmTwist.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/ForearmTwist.1.L/ForearmTwist.4.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Index.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Index.1.L/Index.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Index.1.L/Index.2.L/Index.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Middle.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Middle.1.L/Middle.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Middle.1.L/Middle.2.L/Middle.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Pinky.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Pinky.1.L/Pinky.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Pinky.1.L/Pinky.2.L/Pinky.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Ring.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Ring.1.L/Ring.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Ring.1.L/Ring.2.L/Ring.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Thumb.1.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Thumb.1.L/Thumb.2.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.L/Forearm.L/Hand.L/Thumb.1.L/Thumb.2.L/Thumb.3.L
+    m_Weight: 0
+  - m_Path: Armature/UpperArm.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/ForearmTwist.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/ForearmTwist.1.R/ForearmTwist.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/ForearmTwist.1.R/ForearmTwist.3.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/ForearmTwist.1.R/ForearmTwist.4.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Index.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Index.1.R/Index.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Index.1.R/Index.2.R/Index.3.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Middle.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Middle.1.R/Middle.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Middle.1.R/Middle.2.R/Middle.3.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Pinky.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Pinky.1.R/Pinky.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Pinky.1.R/Pinky.2.R/Pinky.3.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Ring.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Ring.1.R/Ring.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Ring.1.R/Ring.2.R/Ring.3.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Thumb.1.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Thumb.1.R/Thumb.2.R
+    m_Weight: 1
+  - m_Path: Armature/UpperArm.R/Forearm.R/Hand.R/Thumb.1.R/Thumb.2.R/Thumb.3.R
+    m_Weight: 1
+  - m_Path: Armature/Weapon
+    m_Weight: 0
+  - m_Path: Item
+    m_Weight: 0

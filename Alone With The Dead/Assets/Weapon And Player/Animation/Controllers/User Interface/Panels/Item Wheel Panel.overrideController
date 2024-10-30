@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Item Wheel Panel
+  m_Controller: {fileID: 9100000, guid: 190f8b24ade8bdb44aac659cc7e5d313, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4fa50060bc7b74b44a8f0b9da6d568b2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 23a67636347f8424ebe2c4ee266a0d41, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 75572ffeb10605d4b82d46cd18c41ad3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 42e2ce992df8bd343aaab7fa749a8bd8, type: 2}
