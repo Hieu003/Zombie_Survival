@@ -1,0 +1,779 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3684428361322880642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3684428361322880643}
+  - component: {fileID: 7862467926773109245}
+  - component: {fileID: 2674778202535282802}
+  - component: {fileID: 7914542667050461268}
+  - component: {fileID: 750268380463974151}
+  - component: {fileID: 4780125776283523300}
+  m_Layer: 9
+  m_Name: FP_Crossbow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3684428361322880643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7862467926773109245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f153ca2cac8e80e4491aee4b5550574c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Clips:
+    m_Controller: {fileID: 9100000, guid: 22f6b0cc64f02e64aac257cf9db333c5, type: 2}
+    m_Clips:
+    - Original: {fileID: 7400000, guid: 6fcd4ef4b0dd5df49a09e341d846c3d2, type: 2}
+      Override: {fileID: 6069264523054936986, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 4966c1d6c082a3d46a96afb0b9716e91, type: 2}
+      Override: {fileID: 5656402293521391965, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 40ac6268f5185674e8efb76cb3242b46, type: 2}
+      Override: {fileID: -8086479246312027859, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: b9bdb7571c978a549aed39a9bf5809cb, type: 2}
+      Override: {fileID: -2490070178333494053, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 196e3d56bfa17d8488292b5cfbd13e94, type: 2}
+      Override: {fileID: 0}
+    - Original: {fileID: 7400000, guid: a1c706a393d038a43bff5b74a05bd474, type: 2}
+      Override: {fileID: 1356278196064050106, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 7e96b7effe8621246b3d57a166c0c7f0, type: 2}
+      Override: {fileID: 0}
+    - Original: {fileID: 7400000, guid: 63aa47c646e95c7489628d5eef2a35e8, type: 2}
+      Override: {fileID: 1356278196064050106, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 9a14336492c80dc458aa7ef450933bfb, type: 2}
+      Override: {fileID: 0}
+    - Original: {fileID: 7400000, guid: 3d62d1c9d9ec9f5458163e03cc42e520, type: 2}
+      Override: {fileID: 2446230087041020592, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: dfb21d525b06b5c4c993856c9f4a42b1, type: 2}
+      Override: {fileID: 7022370571465863642, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 4840586a7b8754540ad3832bd81aa20f, type: 2}
+      Override: {fileID: 2446230087041020592, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: 1cee0a70c42f89f44ba4b62f9490d37d, type: 2}
+      Override: {fileID: 7022370571465863642, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+    - Original: {fileID: 7400000, guid: c874006689ee2234da85bf462fc0ddae, type: 2}
+      Override: {fileID: 0}
+--- !u!114 &2674778202535282802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c70aa94f26d44498d6b8002b40affb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CartridgeCorrector:
+    CartridgeChangeMethod: 1
+    ChangeCartridgeWhileFiring: 1
+    ChangeCartridgeDelay: 0.1
+    CartridgePrefab: {fileID: 2328827528848296349, guid: dbf9b3b37aa1401428532ad7c383d5e8,
+      type: 3}
+    FakeExtraCartridges: 0
+    BulletOffsets:
+    - {x: -0.16, y: 0, z: -0.005}
+    BulletsRotation: {x: 0.5, y: -90, z: 90}
+    CassingDelay: 0
+    CartridgeDelay: 1.8
+    DisableAllCartridgesDelay: 0
+  m_MovingPartsCorrector:
+    MoveToEmptyPosDelay: 0.735
+    MovingParts:
+    - BoneName: Safety
+      EmptyPosition: {x: 0, y: -0.103, z: 0.006}
+      EmptyRotation: {x: 0, y: 0, z: 0}
+      MovingPartBone: {fileID: 0}
+      OriginalPosition: {x: 0, y: 0, z: 0}
+      OriginalRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &7914542667050461268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72d2d081f58bc747a971a08eef46feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GeneralSettings:
+    FieldOfView: 34.5
+    EnableAiming: 1
+    UseAimBlur: 1
+    UseWhileAirborne: 0
+    CanStopReloading: 0
+    StaminaTakePerUse: 0
+  m_BaseAnimation:
+    EquipSpeed: 1.3
+    EquipTime: 0.75
+    UnequipSpeed: 1.05
+    UnequipTime: 0.6
+  m_BaseAudio:
+    EquipSounds:
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 1a4714ae63ff3d048baa6899eea700d9, type: 3}
+        m_VolumeRange: {x: 0.3, y: 0.35}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 1
+      DelayRange: {x: 0.15, y: 0.15}
+    UnequipSounds:
+      m_Clips:
+        m_List:
+        - {fileID: 8300000, guid: 0449fbe5d1232f8488e573b5e380189f, type: 3}
+      m_VolumeRange: {x: 0.9, y: 1}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 0.2
+  m_BaseCamera:
+    AimCamHeadbob:
+      PosAmplitude: {x: 1.6, y: 1.6, z: 1.6}
+      RotationAmplitude: {x: -7, y: 6, z: 0}
+      HeadBobSpeed: 1.5
+    EquipCamForces:
+    - Delay: 0.2
+      Force:
+        Force: {x: 0.8, y: -0.15, z: -0.6}
+        Distribution: 6
+    UnequipCamForces:
+    - Delay: 0.1
+      Force:
+        Force: {x: 0.55, y: -0.3, z: 0.7}
+        Distribution: 6
+  m_Ammo:
+    NeedAmmoToUse: 1
+    Settings:
+      AmmoItem: Arrow
+      MagazineSize: 1
+      StorageSize: 15
+  fireMode:
+    Modes: 2
+    FireRateOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    FireDuration: 0.22
+    BurstLength: 3
+    BurstDuration: 0.3
+    BurstPause: 0.35
+    RoundsPerMinute: 450
+    HasDryFireAnim: 0
+    HasAlternativeFireAnim: 0
+    FireAnimationSpeed: 1
+  m_ReloadSettings:
+    ReloadType: 0
+    ReloadStartDuration: 0
+    ReloadDuration: 2.4
+    ReloadEndDuration: 0
+    HasEmptyReload: 0
+    EmptyReloadDuration: 0
+    ProgressiveEmptyReload: 0
+    ReloadAnimationSpeed: 1.35
+    EmptyReloadAnimationSpeed: 0
+  m_CameraForces:
+    ReloadLoopCamForces:
+    - Delay: 0.2
+      Force:
+        Force: {x: 1, y: 0, z: 0}
+        Distribution: 20
+    - Delay: 1
+      Force:
+        Force: {x: -0.5, y: 0, z: -0.5}
+        Distribution: 5
+    - Delay: 1.5
+      Force:
+        Force: {x: -0.5, y: 0, z: 0}
+        Distribution: 5
+    - Delay: 1.9
+      Force:
+        Force: {x: 0.7, y: 0, z: 0.7}
+        Distribution: 3
+    ReloadStartCamForces: []
+    ReloadEndCamForces: []
+    EmptyReloadLoopCamForces: []
+    HandlingCamForces: []
+  m_GunAudio:
+    FireSounds:
+      m_Clips:
+        m_List:
+        - {fileID: 8300000, guid: fbadec947beb1424e9916a622c88a676, type: 3}
+        - {fileID: 8300000, guid: 914bf3723115dbb4a936c747b3faf3a2, type: 3}
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 0.6
+    FireTailSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    HandlingSounds: []
+    AimSounds:
+      m_Clips:
+        m_List:
+        - {fileID: 8300000, guid: 8621119ba0e1106459419de5ac7e7122, type: 3}
+        - {fileID: 8300000, guid: fa598a1541b963e4b9ffe3fe54cd9ab3, type: 3}
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 0.35
+    ReloadSounds:
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 5935f21e564c6984485383b5ff10402f, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 1
+      DelayRange: {x: 0, y: 0}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 7e00d11b5ad861f4a90639cb2363c56b, type: 3}
+          - {fileID: 8300000, guid: 15e087e0b561f3642a8385a5c402d7f7, type: 3}
+          - {fileID: 8300000, guid: 0f41318b1e893774bb0c539a254dd39e, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.15
+      DelayRange: {x: 0.2, y: 0.2}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 15e087e0b561f3642a8385a5c402d7f7, type: 3}
+          - {fileID: 8300000, guid: 0f41318b1e893774bb0c539a254dd39e, type: 3}
+          - {fileID: 8300000, guid: 7e00d11b5ad861f4a90639cb2363c56b, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.25
+      DelayRange: {x: 0.3, y: 0.3}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 7e00d11b5ad861f4a90639cb2363c56b, type: 3}
+          - {fileID: 8300000, guid: 15e087e0b561f3642a8385a5c402d7f7, type: 3}
+          - {fileID: 8300000, guid: 0f41318b1e893774bb0c539a254dd39e, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.35
+      DelayRange: {x: 0.4, y: 0.4}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 945a7f7de1faa1f4e9bfba3bac36f9d3, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.2
+      DelayRange: {x: 0.9, y: 0.9}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 1a4714ae63ff3d048baa6899eea700d9, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.2
+      DelayRange: {x: 1.1, y: 1.1}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 1a4714ae63ff3d048baa6899eea700d9, type: 3}
+        m_VolumeRange: {x: 0.75, y: 1}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 0.4
+      DelayRange: {x: 1.5, y: 1.5}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: 34f3b24b0f7b70d42b972bd402f6e407, type: 3}
+        m_VolumeRange: {x: 0.3, y: 0.4}
+        m_PitchRange: {x: 1, y: 1}
+        m_VolumeMultiplier: 0.3
+      DelayRange: {x: 1.9, y: 1.9}
+    - Sound:
+        m_Clips:
+          m_List:
+          - {fileID: 8300000, guid: fe6cdb7f31a658f4a8f0a5fc5da73343, type: 3}
+        m_VolumeRange: {x: 0.3, y: 0.4}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 1
+      DelayRange: {x: 1.85, y: 1.85}
+    ReloadStartSounds: []
+    ReloadEndSounds: []
+    EmptyReloadSounds: []
+    EmptyGunSounds:
+      m_Clips:
+        m_List:
+        - {fileID: 8300000, guid: 81fd9e79b0c4de8429890ca05996ac9f, type: 3}
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 0.2
+    ShellDropSounds: []
+    FireModeChangeSounds:
+    - Sound:
+        m_Clips:
+          m_List: []
+        m_VolumeRange: {x: 0.5, y: 0.75}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 1
+      DelayRange: {x: 0, y: 0}
+    - Sound:
+        m_Clips:
+          m_List: []
+        m_VolumeRange: {x: 0.5, y: 0.75}
+        m_PitchRange: {x: 0.9, y: 1.1}
+        m_VolumeMultiplier: 1
+      DelayRange: {x: 0, y: 0}
+  m_Launcher:
+    ProjectileSpread: 1
+    AimSpreadFactor: 0.8
+    CrouchSpreadFactor: 0.95
+    WalkSpreadFactor: 0.95
+    RunSpreadFactor: 0.95
+    JumpSpreadFactor: 0.95
+  m_Projectile:
+    Prefab: {fileID: 114306736182815076, guid: 112ea7236f677b74db20a3a8ba63ff66, type: 3}
+    LaunchSpeed: 45
+    AngularVelocity: {x: 0, y: 15, z: 0}
+    SpawnOffset: {x: 0, y: -0.01, z: 0.56}
+    SpawnDelay: 0.12
+--- !u!114 &750268380463974151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f244729c76a1e84687a02926572d251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GeneralSettings:
+    PivotPosition: {x: 0.105, y: -0.12, z: 0.35}
+    BasePosOffset: {x: -0.02, y: 0.005, z: 0.03}
+    BaseRotOffset: {x: -1, y: 0, z: 1}
+  Input:
+    LookInputMultiplier: 1
+    MaxLookInput: 7
+  Sway:
+    Enabled: 1
+    AimMultiplier: 0.1
+    LookPositionSway: {x: -0.01, y: 0, z: 0}
+    LookRotationSway: {x: 0.7, y: 0.45, z: 0.3}
+    FallSway: {x: 4.5, y: 0, z: 0}
+    StrafePositionSway: {x: 1, y: 0, z: 0}
+    StrafeRotationSway: {x: 0.7, y: 2, z: -0.5}
+    JumpForce:
+      Force: {x: 15, y: 0, z: 15}
+      Distribution: 8
+  FallImpact:
+    Enabled: 1
+    PositionForce:
+      Force: {x: 0, y: -12, z: 0}
+      Distribution: 1
+    RotationForce:
+      Force: {x: 0.05, y: 0, z: 0}
+      Distribution: 1
+  WalkStepForce:
+    Enabled: 1
+    PositionForce:
+      Force: {x: 0, y: -3, z: 0}
+      Distribution: 2
+    RotationForce:
+      Force: {x: 4, y: 0, z: -1}
+      Distribution: 5
+  CrouchStepForce:
+    Enabled: 1
+    PositionForce:
+      Force: {x: 0, y: -2, z: 0}
+      Distribution: 2
+    RotationForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+  RunStepForce:
+    Enabled: 1
+    PositionForce:
+      Force: {x: 0, y: -8, z: 0}
+      Distribution: 2
+    RotationForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+  IdleState:
+    PositionSpring:
+      Stiffness: {x: 0.012, y: 0.012, z: 0.012}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    RotationSpring:
+      Stiffness: {x: 0.015, y: 0.015, z: 0.015}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    HasEntryOffset: 0
+    EntryOffsetDuration: 1
+    LerpToDefaultOffestSpeed: 2
+    EntryOffset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Offset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Bob:
+      Enabled: 1
+      BobSpeedMultiplier: 1
+      PositionAmplitude: {x: 0.35, y: 0.5, z: 0}
+      RotationAmplitude: {x: 0.35, y: 0.5, z: 0}
+    Noise:
+      MaxJitter: 0.1
+      NoiseSpeed: 1.3
+      PosNoiseAmplitude: {x: 0.02, y: 0.04, z: 0.015}
+      RotNoiseAmplitude: {x: 0.08, y: 0.1, z: 0.1}
+    EnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    ExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosEnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+  WalkState:
+    PositionSpring:
+      Stiffness: {x: 0.012, y: 0.012, z: 0.012}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    RotationSpring:
+      Stiffness: {x: 0.015, y: 0.015, z: 0.015}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    HasEntryOffset: 1
+    EntryOffsetDuration: 1
+    LerpToDefaultOffestSpeed: 2
+    EntryOffset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Offset:
+      Enabled: 0
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Bob:
+      Enabled: 1
+      BobSpeedMultiplier: 1
+      PositionAmplitude: {x: 0, y: -4, z: 0}
+      RotationAmplitude: {x: 5.5, y: 2, z: 4.5}
+    Noise:
+      MaxJitter: 0
+      NoiseSpeed: 1
+      PosNoiseAmplitude: {x: 0.02, y: 0.02, z: 0.02}
+      RotNoiseAmplitude: {x: 0.15, y: 0.15, z: 0.15}
+    EnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    ExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosEnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+  RunState:
+    PositionSpring:
+      Stiffness: {x: 0.02, y: 0.02, z: 0.02}
+      Damping: {x: 0.37, y: 0.37, z: 0.37}
+    RotationSpring:
+      Stiffness: {x: 0.02, y: 0.02, z: 0.02}
+      Damping: {x: 0.37, y: 0.37, z: 0.37}
+    HasEntryOffset: 1
+    EntryOffsetDuration: 0.6
+    LerpToDefaultOffestSpeed: 5
+    EntryOffset:
+      Enabled: 1
+      PositionOffset: {x: -2, y: -0.25, z: -6}
+      RotationOffset: {x: 2, y: -2, z: 5}
+    Offset:
+      Enabled: 1
+      PositionOffset: {x: 1.25, y: -2, z: -15}
+      RotationOffset: {x: 12, y: -25, z: 16}
+    Bob:
+      Enabled: 1
+      BobSpeedMultiplier: 1
+      PositionAmplitude: {x: 75, y: -40, z: 5}
+      RotationAmplitude: {x: 45, y: 65, z: 70}
+    Noise:
+      MaxJitter: 0
+      NoiseSpeed: 0.01
+      PosNoiseAmplitude: {x: 0, y: 0, z: 0}
+      RotNoiseAmplitude: {x: 0, y: 0, z: 0}
+    EnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 7
+    ExitForce:
+      Force: {x: 0.35, y: -0.8, z: 1.2}
+      Distribution: 10
+    PosEnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+  AimState:
+    PositionSpring:
+      Stiffness: {x: 0.04, y: 0.04, z: 0.03}
+      Damping: {x: 0.4, y: 0.4, z: 0.4}
+    RotationSpring:
+      Stiffness: {x: 0.02, y: 0.01, z: 0.01}
+      Damping: {x: 0.25, y: 0.25, z: 0.25}
+    HasEntryOffset: 0
+    EntryOffsetDuration: 1
+    LerpToDefaultOffestSpeed: 2
+    EntryOffset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Offset:
+      Enabled: 1
+      PositionOffset: {x: -23.8, y: 12, z: -28}
+      RotationOffset: {x: 1.5, y: 2.1, z: -1.8}
+    Bob:
+      Enabled: 0
+      BobSpeedMultiplier: 1
+      PositionAmplitude: {x: 0, y: 2, z: 0}
+      RotationAmplitude: {x: 1, y: 1, z: 1}
+    Noise:
+      MaxJitter: 0.1
+      NoiseSpeed: 1
+      PosNoiseAmplitude: {x: 0.01, y: 0.02, z: 0.0075}
+      RotNoiseAmplitude: {x: 0.04, y: 0.02, z: 0.05}
+    EnterForce:
+      Force: {x: 0.3, y: 0.22, z: -0.4}
+      Distribution: 5
+    ExitForce:
+      Force: {x: -0.1, y: -0.3, z: 0.8}
+      Distribution: 5
+    PosEnterForce:
+      Force: {x: -0.0005, y: 0, z: 0}
+      Distribution: 3
+    PosExitForce:
+      Force: {x: -0.0006, y: -0.0005, z: 0}
+      Distribution: 3
+  CrouchState:
+    PositionSpring:
+      Stiffness: {x: 0.012, y: 0.012, z: 0.012}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    RotationSpring:
+      Stiffness: {x: 0.015, y: 0.015, z: 0.015}
+      Damping: {x: 0.28, y: 0.28, z: 0.28}
+    HasEntryOffset: 0
+    EntryOffsetDuration: 1
+    LerpToDefaultOffestSpeed: 2
+    EntryOffset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 0, z: 0}
+      RotationOffset: {x: 0, y: 0, z: 0}
+    Offset:
+      Enabled: 1
+      PositionOffset: {x: 0, y: 1.75, z: -7.5}
+      RotationOffset: {x: -1, y: -0.75, z: 4}
+    Bob:
+      Enabled: 1
+      BobSpeedMultiplier: 1
+      PositionAmplitude: {x: 0, y: -5.5, z: 0}
+      RotationAmplitude: {x: -5.5, y: 5.5, z: 0}
+    Noise:
+      MaxJitter: 0.1
+      NoiseSpeed: 1.75
+      PosNoiseAmplitude: {x: 0.02, y: 0.02, z: 0.0075}
+      RotNoiseAmplitude: {x: 0.02, y: 0.07, z: 0.05}
+    EnterForce:
+      Force: {x: -0.1, y: 0, z: 0.15}
+      Distribution: 8
+    ExitForce:
+      Force: {x: 0.3, y: 0, z: 0}
+      Distribution: 10
+    PosEnterForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+    PosExitForce:
+      Force: {x: 0, y: 0, z: 0}
+      Distribution: 0
+--- !u!114 &4780125776283523300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684428361322880642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5163ad246bd5c49419f266f7f7abc03d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponModelRecoil:
+    RecoilOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.00527966
+        value: 0.09973171
+        inSlope: 1.5422992
+        outSlope: 1.5422992
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.175
+      - serializedVersion: 3
+        time: 0.9772186
+        value: 0.89678574
+        inSlope: 0.034449577
+        outSlope: 0.034449577
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.2500099
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    PositionSpring:
+      Stiffness: {x: 0.03, y: 0.03, z: 0.02}
+      Damping: {x: 0.3, y: 0.3, z: 0.3}
+    RotationSpring:
+      Stiffness: {x: 0.03, y: 0.02, z: 0.03}
+      Damping: {x: 0.3, y: 0.3, z: 0.3}
+    ShootForce:
+      RotForce: {x: -0.25, y: -0.3, z: -0.3}
+      PosForce: {x: 0, y: -0.1, z: -0.5}
+      Distribution: 3
+      JitterForce:
+        xJitter: 0.25
+        yJitter: 0.67
+        zJitter: 0.25
+    AimShootForce:
+      RotForce: {x: 0, y: -0.1, z: 0.1}
+      PosForce: {x: 0, y: 0, z: -0.5}
+      Distribution: 3
+      JitterForce:
+        xJitter: 0.2
+        yJitter: 1
+        zJitter: 0.2
+    DryFireForce:
+      RotForce: {x: 0.12, y: 0, z: 0.12}
+      PosForce: {x: -0.01, y: 0.01, z: 0}
+      Distribution: 3
+      JitterForce:
+        xJitter: 0.25
+        yJitter: 0.25
+        zJitter: 0.25
+    ChangeFireModeForce:
+      RotForce: {x: -0.15, y: 0.15, z: 0.75}
+      PosForce: {x: -0.1, y: -0.08, z: -0.1}
+      Distribution: 8
+      JitterForce:
+        xJitter: 0.2
+        yJitter: 0.2
+        zJitter: 0.2
+  m_CameraRecoil:
+    AimMultiplier: 0.95
+    RecoilPatternMultiplier: 1.5
+    RecoilPattern:
+    - {x: 0, y: 0}
+    RecoilControlEasing: 12
+    RecoilControlDelay: 1
+    RecoilControlDuration: 3
+    SpringData:
+      Stiffness: {x: 0.15, y: 0.1, z: 0.1}
+      Damping: {x: 0.4, y: 0.3, z: 0.3}
+    ShootForce:
+      RotForce: {x: -0.95, y: 0, z: -0.25}
+      PosForce: {x: 0, y: 0, z: -1}
+      Distribution: 2
+      JitterForce:
+        xJitter: 0.3
+        yJitter: 0.3
+        zJitter: 0.2
+    ShootShake:
+      PositionAmplitude: {x: 0.001, y: 0.001, z: 0.001}
+      RotationAmplitude: {x: 0.1, y: 0.1, z: 0.1}
+      Decay:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1.00531
+          inSlope: 0.018166041
+          outSlope: 0.018166041
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.24583334
+        - serializedVersion: 3
+          time: 1
+          value: 0.002371734
+          inSlope: -3.7101388
+          outSlope: -3.7101388
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.029166639
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      Duration: 0.5
+      Speed: 22
