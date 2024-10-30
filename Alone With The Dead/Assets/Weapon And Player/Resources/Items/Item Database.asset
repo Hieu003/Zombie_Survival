@@ -1,0 +1,448 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8e328d8f2cf8744b2a9fb9435adf39, type: 3}
+  m_Name: Item Database
+  m_EditorClassIdentifier: 
+  m_Categories:
+  - m_Name: Assault Rifle
+    m_Items:
+    - m_Name: AKM
+      m_Category: Assault Rifle
+      m_Icon: {fileID: 21300000, guid: ba6df4bfa97c98649b1d35258104d543, type: 3}
+      m_WorldObject: {fileID: 7427319033866006036, guid: e359cb2d4842e124d8896a68e69d6cec,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Full-Auto High damage Rfile
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 30
+            m_Default: 30
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 8
+            m_Default: 8
+    - m_Name: F1
+      m_Category: Assault Rifle
+      m_Icon: {fileID: 21300000, guid: d145ca2be3c3fd94698cab15bb7b8f06, type: 3}
+      m_WorldObject: {fileID: 8845945599785134977, guid: 2c3c8dfc85621644a9ae7e52c1dbfd6b,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Medium damage, but fast-firing Rifle
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 24
+            m_Default: 24
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 4
+            m_Default: 4
+    - m_Name: M1A
+      m_Category: Assault Rifle
+      m_Icon: {fileID: 21300000, guid: 1312875495b12a64d9130d9b628bab58, type: 3}
+      m_WorldObject: {fileID: 3181137914584553151, guid: 004f2ca12433c3042ba609043d4472a8,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Semi-Auto High Damage Rifle
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 15
+            m_Default: 15
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: Bow
+    m_Items:
+    - m_Name: Crossbow
+      m_Category: Bow
+      m_Icon: {fileID: 21300000, guid: 7d511686a9a910d45aa6a230244da0a9, type: 3}
+      m_WorldObject: {fileID: 4415854611412878293, guid: 7cd3f38b2fa8b6f44b8437e10f12522f,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Arrow Launching Device
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 1
+            m_Default: 1
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: Handgun
+    m_Items:
+    - m_Name: Revolver
+      m_Category: Handgun
+      m_Icon: {fileID: 21300000, guid: 7bdab2b1f8172dd42940c73ec82a488c, type: 3}
+      m_WorldObject: {fileID: 1017997944346929099, guid: 8b591ad14433851489193c50ea93d39e,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Hi-power Handgun
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 6
+            m_Default: 6
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+    - m_Name: M1911
+      m_Category: Handgun
+      m_Icon: {fileID: 21300000, guid: 343f4ca74d16e4a4bae9aa590e1fb8fa, type: 3}
+      m_WorldObject: {fileID: 4998741051283506877, guid: 7ad6534d4787c644bb65a7d4d63d9114,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Standard .45ACP Handgun
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 7
+            m_Default: 7
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: Healing Item
+    m_Items:
+    - m_Name: Syringe
+      m_Category: Healing Item
+      m_Icon: {fileID: 21300000, guid: cc7ea6eeb061f594687f662a8d37625e, type: 3}
+      m_WorldObject: {fileID: 8505612844008397183, guid: b025cbf0a27c9d04dacfc66ffd47a9b0,
+        type: 3}
+      m_StackSize: 5
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+  - m_Name: Melee Weapon
+    m_Items:
+    - m_Name: Combat Knife
+      m_Category: Melee Weapon
+      m_Icon: {fileID: 21300000, guid: 4f62bbd0c716c60498d24ebf0ef9f5cd, type: 3}
+      m_WorldObject: {fileID: 8586099996222182631, guid: d4e8c6c7d356b7c4a914ca5db3bbdd04,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Sharp & easy to handle Knife
+      m_Properties:
+        m_List: []
+    - m_Name: Fire Axe
+      m_Category: Melee Weapon
+      m_Icon: {fileID: 21300000, guid: 3855a76d5f4e6784d8c267c4750071dd, type: 3}
+      m_WorldObject: {fileID: 565656415996384351, guid: 1becf66bceb90fb418d021567058414e,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Heavy & rusty Fire Axe
+      m_Properties:
+        m_List: []
+    - m_Name: Baseball Bat
+      m_Category: Melee Weapon
+      m_Icon: {fileID: 21300000, guid: 700f064c43c3241409b0536f9cd32137, type: 3}
+      m_WorldObject: {fileID: 1963718291082426385, guid: ffe7eba8c96821a48bf2e02fd6ab8327,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Spiked Baseball Bat
+      m_Properties:
+        m_List: []
+  - m_Name: Shotgun
+    m_Items:
+    - m_Name: Double Barrel Shotgun
+      m_Category: Shotgun
+      m_Icon: {fileID: 21300000, guid: 02a1fea55352de144af0b9ea6add8823, type: 3}
+      m_WorldObject: {fileID: 3927075398073897018, guid: 1abb0c80afa0d8345852e21555b23db9,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Twin-Barreled Shotgun
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+    - m_Name: R870
+      m_Category: Shotgun
+      m_Icon: {fileID: 21300000, guid: 27160cd4043789d45bbd788baea596ad, type: 3}
+      m_WorldObject: {fileID: 8134371035563141481, guid: 7f5507165a5fc0c48a5ecb3f9a182c06,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Pump-action Shotgun
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 7
+            m_Default: 7
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: SMG
+    m_Items:
+    - m_Name: MP5
+      m_Category: SMG
+      m_Icon: {fileID: 21300000, guid: 184d68930b633c84a92498ed0bddc6b3, type: 3}
+      m_WorldObject: {fileID: 9176248324725260122, guid: 7c7089ac428730546bc77d4bfccd9750,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Standard SMG
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 30
+            m_Default: 30
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 8
+            m_Default: 8
+  - m_Name: Sniper Rifle
+    m_Items:
+    - m_Name: Hunting Rifle
+      m_Category: Sniper Rifle
+      m_Icon: {fileID: 21300000, guid: a70eaa6d5d57f7b419ec7a6c028712c6, type: 3}
+      m_WorldObject: {fileID: 2526034126245810020, guid: 3c1a4714817b86e49b18627152fe2d9d,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: High-Damage Sniper Rifle
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 5
+            m_Default: 5
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: Special
+    m_Items:
+    - m_Name: Flare Gun
+      m_Category: Special
+      m_Icon: {fileID: 21300000, guid: c59582cc57072c84093de471935f9013, type: 3}
+      m_WorldObject: {fileID: 8611800649635122117, guid: 9a3918db236de784a9c25a4bea4b97da,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Signal Pistol
+      m_Properties:
+        m_List:
+        - m_Name: Ammo
+          m_Float:
+            m_Current: 1
+            m_Default: 1
+        - m_Name: FireMode
+          m_Float:
+            m_Current: 2
+            m_Default: 2
+  - m_Name: Throwing Weapon
+    m_Items:
+    - m_Name: Frag Grenade
+      m_Category: Throwing Weapon
+      m_Icon: {fileID: 21300000, guid: ac883a87dab662441a656e568ef60c73, type: 3}
+      m_WorldObject: {fileID: 7943916531166735521, guid: 33e8844e277d9d04c9fdeb405c1b7e35,
+        type: 3}
+      m_StackSize: 5
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: A devastating explosive
+      m_Properties:
+        m_List: []
+    - m_Name: Molotov Cocktail
+      m_Category: Throwing Weapon
+      m_Icon: {fileID: 21300000, guid: 2349008656e5211488df9337d780e638, type: 3}
+      m_WorldObject: {fileID: 996539378446055161, guid: 0304e36ee76232245985516dee977f19,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Fire Bomb
+      m_Properties:
+        m_List: []
+  - m_Name: Tool
+    m_Items:
+    - m_Name: Flashlight
+      m_Category: Tool
+      m_Icon: {fileID: 21300000, guid: f367ad88aa929aa408d770a439010f30, type: 3}
+      m_WorldObject: {fileID: 8144553452598729003, guid: 589f3f267d969a04a87d69d855e871c4,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Standard Flashlight
+      m_Properties:
+        m_List: []
+    - m_Name: Compass
+      m_Category: Tool
+      m_Icon: {fileID: 21300000, guid: bba965aa88edbfc4c918f019d0a0b368, type: 3}
+      m_WorldObject: {fileID: 8144553452598729003, guid: 62d6a34ec846b594180458cf6462d7ef,
+        type: 3}
+      m_StackSize: 1
+      m_OnlyOneStackAllowed: 0
+      m_Descriptions:
+        m_List:
+        - Description: Standard Compass
+      m_Properties:
+        m_List: []
+  - m_Name: Ammunition
+    m_Items:
+    - m_Name: Arrow
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 30
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: 357M
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 30
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: 'Flare '
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 5
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: '300WM '
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 50
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: "5.56\xD745mm "
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 120
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: '45ACP '
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 120
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: "7.62\xD751mm "
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 90
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: '7.62x39mm '
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 120
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+    - m_Name: 12 Gauge Shell
+      m_Category: Ammunition
+      m_Icon: {fileID: 0}
+      m_WorldObject: {fileID: 0}
+      m_StackSize: 32
+      m_OnlyOneStackAllowed: 1
+      m_Descriptions:
+        m_List: []
+      m_Properties:
+        m_List: []
+  m_ItemProperties:
+  - m_Name: Durability
+  - m_Name: Ammo
+  - m_Name: FireMode

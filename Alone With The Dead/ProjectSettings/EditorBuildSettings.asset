@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/HQ FPS Weapons/Scenes/FiringRange_New.unity
+    path: Assets/Weapon And Player/Scenes/FiringRange_New.unity
     guid: 14b4d7f2e620ba9499a514c5049ca2c6
   - enabled: 1
-    path: Assets/HQ FPS Weapons/Scenes/Prototype.unity
+    path: Assets/Weapon And Player/Scenes/Prototype.unity
     guid: fca3d1b766b82654382bbad3665b8ad3
   - enabled: 1
-    path: Assets/HQ FPS Weapons/Scenes/FiringRange_Old.unity
+    path: Assets/Weapon And Player/Scenes/FiringRange_Old.unity
     guid: b8d086ddb44d43a4aac388e65f030ece
   m_configObjects: {}

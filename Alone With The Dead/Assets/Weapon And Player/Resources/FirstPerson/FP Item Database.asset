@@ -1,0 +1,255 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729df79805fa41b4a86502438271c96e, type: 3}
+  m_Name: FP Item Database
+  m_EditorClassIdentifier: 
+  m_FPUnarmed:
+    m_Name: AKM
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 6669774649627976758, guid: f46ea636b9a191c47bbb5a7011ce6f79,
+      type: 3}
+    m_EquipmentSkins: []
+  m_FPItems:
+  - m_Name: AKM
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 8797196972322091252, guid: 7650a3086f0aca24daebb65b226a96e9,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -5883083112642402032, guid: aebc5757cb26e464e8a59137dbdc17c8,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 8189322505c28cd418db083434e4b527, type: 2}
+    - FPMesh: {fileID: -5883083112642402032, guid: aebc5757cb26e464e8a59137dbdc17c8,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: fb50a4fa123cf4446beb149800c19eae, type: 2}
+  - m_Name: F1
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 7756738880597668031, guid: 03fae694c379b72488c7d5d68cc58846,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -6507158394415906304, guid: 9399127642cefa443aa91628232cf414,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: b3cd23314a8d3eb468b421387799da4e, type: 2}
+    - FPMesh: {fileID: -6507158394415906304, guid: 9399127642cefa443aa91628232cf414,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 0ea2c81d9a1f170409ac23ee454a272d, type: 2}
+  - m_Name: M1A
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 4496993457703247346, guid: 0418952126483384da911deaf435ead5,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -1898073003214984909, guid: 328bcc8ffdad41a418e975c7ab48d6a2,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: ec8b547f7bff9c842994205fe0cefa5a, type: 2}
+    - FPMesh: {fileID: -1898073003214984909, guid: 328bcc8ffdad41a418e975c7ab48d6a2,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 565c251fa1290444fa83deb0fd2867af, type: 2}
+  - m_Name: Crossbow
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 3684428361322880642, guid: 4e5286fdeef43c14e892ca3d0f8d0ed7,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 2389602830470214216, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 4b438513d3535a04c8f20e2eac922913, type: 2}
+    - FPMesh: {fileID: 2389602830470214216, guid: d9f3a9eff3a71374bae92cf81c5e1db2,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 5ef538919ad9f7346996c533d6ce1003, type: 2}
+  - m_Name: Revolver
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 3131112221294957400, guid: 10a8a28b4e9abdc49896e20c4ce93fd2,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -2595243373771367250, guid: 1ab8ec95073ffdd46ba694a064155185,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 7914f03978014a444b3f6ca97af4cae4, type: 2}
+    - FPMesh: {fileID: -2595243373771367250, guid: 1ab8ec95073ffdd46ba694a064155185,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: c4117623d2d56334fba829feadb13be0, type: 2}
+  - m_Name: M1911
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 8858576666515429848, guid: 3853162032fdc4a41a8c966dc0d305b7,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -5181662129040714180, guid: 31f1551ae3b756a458c9985153fa3658,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: afccb07400673aa48b98b289d7b4b92e, type: 2}
+    - FPMesh: {fileID: -5181662129040714180, guid: 31f1551ae3b756a458c9985153fa3658,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 7299e2fc52d96cc49be236507c17d715, type: 2}
+  - m_Name: Syringe
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 342661878436147773, guid: 0da6230ae097e9545ac2bea2af3d2d97,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 8471484403484272417, guid: e34207f4089994a4abef49b81c8e3367,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: bf9a79213a68e064281d48e9e26173ee, type: 2}
+  - m_Name: Combat Knife
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 1475398270011230313, guid: a95f9045e1d64634ca329f3646ff08b3,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 7842639099687743585, guid: 90c3ebf1db0d18044807db1a59894e45,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: da2aa8372bf40174ea8ff49490da346e, type: 2}
+    - FPMesh: {fileID: 7842639099687743585, guid: 90c3ebf1db0d18044807db1a59894e45,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 3d14a36919c7b764ab629d8264f60ea2, type: 2}
+  - m_Name: Fire Axe
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 4237703580740621223, guid: 49c9aed77031ebb4ab087c24f4572adf,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 8125883109170240378, guid: a6475caca14dc8d4db2d8a9dd85d1515,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 0962b561fb42dcf4584bea91d9cda890, type: 2}
+    - FPMesh: {fileID: 8125883109170240378, guid: a6475caca14dc8d4db2d8a9dd85d1515,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: ee02cd44ba2b1f24d9736c6fa64fc302, type: 2}
+  - m_Name: Baseball Bat
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 1276476607504002183, guid: a12e91ccd72bdc44d97d3efd58b6dc5f,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 5663111860296533220, guid: c8e0809445ed8634fb2b20cae00543b3,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: bcfb0241e30c3c6498a837c934131727, type: 2}
+    - FPMesh: {fileID: 5663111860296533220, guid: c8e0809445ed8634fb2b20cae00543b3,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 3f9325e5d42513045b965cc76aa92dec, type: 2}
+  - m_Name: Double Barrel Shotgun
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 629224571465137488, guid: 9631ac8c975e3664aaab49bbf0ea7ff4,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 4864201155733081704, guid: a11075b344ae57b48a2b204d8bd81084,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: fcb790f26cc2e194d8520febf74660ce, type: 2}
+    - FPMesh: {fileID: 4864201155733081704, guid: a11075b344ae57b48a2b204d8bd81084,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 29cbdff9cec7c5d4c8fed558d7d469c5, type: 2}
+  - m_Name: R870
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 4962025856834319543, guid: e426fd88f34a3eb439a1f2e440b553da,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 6754286939906569368, guid: 59ad94ce1208fc945b663aaa42d8b952,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: c72679bc118bb2c46b1b017675fcaad9, type: 2}
+      - {fileID: 2100000, guid: fcb790f26cc2e194d8520febf74660ce, type: 2}
+    - FPMesh: {fileID: 6754286939906569368, guid: 59ad94ce1208fc945b663aaa42d8b952,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 2db78b06c217594499af9b373f008060, type: 2}
+      - {fileID: 2100000, guid: fcb790f26cc2e194d8520febf74660ce, type: 2}
+  - m_Name: MP5
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 3112186950334809708, guid: 2bde5e6d38d72de4283cdf84408d4b12,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 7332080982558129300, guid: fa828fcde0e292249a2fb9757dca3069,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: c84564790bf3f42488cdb3bd36af0310, type: 2}
+    - FPMesh: {fileID: 7332080982558129300, guid: fa828fcde0e292249a2fb9757dca3069,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: a3f24e317c0c7844cb054c43b99521f7, type: 2}
+  - m_Name: Hunting Rifle
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 8169440059173621108, guid: 6f8cc9c0fb063b040b17407233699aab,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 8465018657786164984, guid: 08ad2f8126144484faf58dfff7294296,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: acef0234630b11a499e535de56240d4d, type: 2}
+      - {fileID: 2100000, guid: 11aeabbeacbc4064eba401240d0de400, type: 2}
+    - FPMesh: {fileID: 8465018657786164984, guid: 08ad2f8126144484faf58dfff7294296,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 29930c7704bb79946ba134ef4edc185d, type: 2}
+      - {fileID: 2100000, guid: 11aeabbeacbc4064eba401240d0de400, type: 2}
+  - m_Name: Flare Gun
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 1451059304218945265, guid: cb527ae77b086d84c8f9bc35800ba2ca,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -3862209238182287547, guid: e27bc121d45205944ac71f45d2b1e17d,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: ccc4d07275e4bd647821cfdc83648b56, type: 2}
+    - FPMesh: {fileID: -3862209238182287547, guid: e27bc121d45205944ac71f45d2b1e17d,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 6b5328d865304464ca37b81d82d6eb8e, type: 2}
+  - m_Name: Frag Grenade
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 2816067337526931281, guid: c77d64a783ef0dc44aa9a6d136f9b71f,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 2672546415842906778, guid: 215647f69270ee64582f0d6856468b50,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: b73b1e8de8c1b3a4d89c5275d017c231, type: 2}
+  - m_Name: Molotov Cocktail
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 3006661709724141186, guid: 1ce8b8d38e5d4344c9825341293f92d1,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 8085988722918774661, guid: b79341a1c00214744863657887951e4a,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: e9705ffb305c7c34299fdfd35ee761d4, type: 2}
+      - {fileID: 2100000, guid: e305d4289a13f8947b2e15fa1744e12c, type: 2}
+  - m_Name: Flashlight
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 7135884061237776239, guid: 226204f720d65994b8b1ae727048d29e,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: 8059204784301321373, guid: 5219189ef8ce67a4698d4230a33983ef,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 43c4c0c0f5544234fbb1809bb6cd1af6, type: 2}
+      - {fileID: 2100000, guid: a2105b3d90344164db36bfa5ec57140d, type: 2}
+  - m_Name: Compass
+    m_SpawnMethod: 0
+    m_FPItemData: {fileID: 7135884061237776239, guid: 0c3ef08d6ddffa343b7614f7ba6cb538,
+      type: 3}
+    m_EquipmentSkins:
+    - FPMesh: {fileID: -4276486437931332989, guid: 3dd6a1019af994b4aa65140cc2e3d32b,
+        type: 3}
+      FPMaterials:
+      - {fileID: 2100000, guid: 04c1799889959fa42aa3a85e5831ae0b, type: 2}
+      - {fileID: 2100000, guid: eba1882704b68a442aaec2cb108d3c12, type: 2}
