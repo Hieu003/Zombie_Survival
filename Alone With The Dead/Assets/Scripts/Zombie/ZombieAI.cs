@@ -1,3 +1,4 @@
+﻿using HQFPSWeapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class ZombieAI : MonoBehaviour
 
     public float attackCooldown = 2f;
 
-    public float attackDelay = 2f;
+    public float attackDelay = 1.5f;
 
     private bool isAttacking;
 
@@ -51,7 +52,13 @@ public class ZombieAI : MonoBehaviour
                 case ZombieState.Attack:
                 //Anim
                 navAgent.SetDestination(transform.position);
-                Debug.Log("Attack player");
+                if(!isAttacking && Time.time - lastAttackTime >= attackCooldown)
+                {
+                    StartCoroutine(AttackWithDelay());
+                    Debug.Log("Attack player");
+                    //Blood Screen effect
+
+                }
                 if (Vector3.Distance(transform.position, player.position) > attackDistance)
                     currentState = ZombieState.Chase;
                 break;
@@ -60,5 +67,27 @@ public class ZombieAI : MonoBehaviour
                 Debug.Log("Dead");
                 break;
         }
+    }
+
+
+    private IEnumerator AttackWithDelay()
+    {
+        isAttacking = true;
+
+        yield return new WaitForSeconds(attackDelay);
+
+        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
+            // Gây sát thương lên nhân vật
+            var playerVitals = player.GetComponent<PlayerVitals>();
+            if (playerVitals != null)
+            {
+                HealthEventData damageData = new HealthEventData(-20f); // Sát thương -20
+                playerVitals.Entity.ChangeHealth.Try(damageData);
+            }
+        }
+
+        isAttacking = false;
+        lastAttackTime = Time.time;
     }
 }

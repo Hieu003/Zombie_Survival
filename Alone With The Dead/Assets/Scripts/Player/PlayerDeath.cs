@@ -82,7 +82,7 @@ namespace HQFPSWeapons
 			}	
 		}
 
-		private void On_Death()
+		public void On_Death()
 		{
 			m_DeathAudio.Play(ItemSelection.Method.Random, m_AudioSource);
 
