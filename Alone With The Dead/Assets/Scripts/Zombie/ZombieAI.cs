@@ -104,7 +104,6 @@ public class ZombieAI : MonoBehaviour
                 if(!isAttacking && Time.time - lastAttackTime >= attackCooldown)
                 {
                     StartCoroutine(AttackWithDelay());
-                    Debug.Log("Attack player");
                     //Blood Screen effect
 
                 }
