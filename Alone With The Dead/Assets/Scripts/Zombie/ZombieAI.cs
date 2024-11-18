@@ -83,11 +83,6 @@ public class ZombieAI : MonoBehaviour
 
         switch (currentState)
         {
-            // Các logic khác như Idle, Chase, Attack
-        }
-
-        switch (currentState)
-        {
 
             case ZombieState.Idle:
                 animator.SetBool("IsWalking", false);
