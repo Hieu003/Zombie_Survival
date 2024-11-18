@@ -42,8 +42,14 @@ namespace HQFPSWeapons
 
 		private bool m_HitboxImpact;
 
+        private ZombieHealth zombieHealth;
 
-		public void TakeDamage(HealthEventData damageData)
+        private void Start()
+        {
+            zombieHealth = GetComponentInParent<ZombieHealth>();
+        }
+
+        public void TakeDamage(HealthEventData damageData)
 		{
 			if(enabled)
 			{
@@ -61,13 +67,19 @@ namespace HQFPSWeapons
 					if (m_ParentEntity.Health.Get() == 0f)
 						m_Rigidbody.AddForceAtPosition(damageData.HitDirection * damageData.HitImpulse, damageData.HitPoint, ForceMode.Impulse);
 				}
-			}
-		}
+                if (zombieHealth != null)
+                {
+                    zombieHealth.TakeDamage(damageData);
+                }
+            }
+        }
+		
 
 		public LivingEntity GetEntity()
 		{
 			return m_ParentEntity;
-		}
+            return zombieHealth != null ? zombieHealth.GetEntity() : null;
+        }
 
 		private void OnCollisionEnter(Collision collision)
 		{

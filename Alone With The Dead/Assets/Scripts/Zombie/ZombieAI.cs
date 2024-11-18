@@ -6,13 +6,20 @@ using UnityEngine.AI;
 
 public class ZombieAI : MonoBehaviour
 {
+
+
+
     public NavMeshAgent navAgent;
 
     public enum ZombieState { Idle, Chase, Attack, Dead};
 
+    public Animator animator;
+ 
     public ZombieState currentState = ZombieState.Idle;
 
     public Transform player;
+
+    public float zombieSpeed = 3.5f;
 
     public float chaseDistance = 10f;
 
@@ -26,31 +33,78 @@ public class ZombieAI : MonoBehaviour
 
     private float lastAttackTime;
 
-     void Start()
+    private ZombieHealth zombieHealth;
+
+
+    void Start()
     {
+        zombieHealth = GetComponent<ZombieHealth>();
+        zombieHealth.OnZombieDeath += HandleZombieDeath;
         navAgent = GetComponent<NavMeshAgent>();
+        navAgent.speed = zombieSpeed;
         lastAttackTime = -attackCooldown;
+        animator = GetComponent<Animator>();
     }
 
 
+    private void HandleZombieDeath()
+    {
+        // Chuyển sang trạng thái Dead
+        currentState = ZombieState.Dead;
+
+        // Tắt NavMeshAgent để zombie không di chuyển
+        navAgent.isStopped = true;
+
+        // Kích hoạt animation chết
+        animator.SetBool("IsDead", true);
+
+        // Tắt collider để ngăn chặn va chạm nếu cần
+        var colliders = GetComponentsInChildren<Collider>();
+        foreach (var col in colliders)
+            col.enabled = false;
+
+        // Ngăn Update logic khác
+        enabled = false;
+
+        StartCoroutine(RemoveZombieAfterDelay(5f));
+    }
+
+    private IEnumerator RemoveZombieAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
-        switch(currentState)
+        if (currentState == ZombieState.Dead)
+            return;
+        animator.SetFloat("MoveSpeed", navAgent.velocity.magnitude);
+
+        switch (currentState)
+        {
+            // Các logic khác như Idle, Chase, Attack
+        }
+
+        switch (currentState)
         {
 
             case ZombieState.Idle:
-                //Anim
-                if(Vector3.Distance(transform.position, player.position) <= chaseDistance)
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("IsAttacking", false);
+                if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
                     currentState = ZombieState.Chase;
                 break;
                 case ZombieState.Chase:
-                //Anim
+                animator.SetBool("IsWalking", true);
+                animator.SetBool("IsAttacking", false);
                 navAgent.SetDestination(player.position);
                 if(Vector3.Distance(transform.position, player.position) <= attackDistance)
                     currentState = ZombieState.Attack;
                 break;
                 case ZombieState.Attack:
-                //Anim
+                animator.SetBool("IsAttacking", true);
+
                 navAgent.SetDestination(transform.position);
                 if(!isAttacking && Time.time - lastAttackTime >= attackCooldown)
                 {
@@ -69,6 +123,12 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
+   
+
+    public void TakeDamage()
+    {
+
+    }
 
     private IEnumerator AttackWithDelay()
     {

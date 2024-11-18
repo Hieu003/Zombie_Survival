@@ -217,12 +217,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navAgent: {fileID: 315783265}
+  animator: {fileID: 0}
   currentState: 0
   player: {fileID: 615373691}
+  zombieSpeed: 1
   chaseDistance: 8
   attackDistance: 1
-  attackCooldown: 2
-  attackDelay: 1.5
+  attackCooldown: 0.5
+  attackDelay: 0.5
 --- !u!195 &315783265
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -268,6 +270,27 @@ CapsuleCollider:
   m_Height: 1.8213878
   m_Direction: 1
   m_Center: {x: 0, y: 0.8852004, z: 0}
+--- !u!114 &315783269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315783261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dade200d190fb8e40837c3cf35609630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 100
+  damageResistance:
+    m_GenericResistance: 0.1
+    m_CutResistance: 0.1
+    m_HitResistance: 0.1
+    m_StabResistance: 0.1
+    m_BulletResistance: 0.1
+  ragdollPrefab: {fileID: 0}
+  ragdollForceOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &363270012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -332,6 +355,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4ec5dc592544fec488fe31f7eedac59e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -348,6 +375,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 315783264}
+    - targetCorrespondingSourceObject: {fileID: 100184, guid: 85d3b565abb071445a6cfbedc477ac94,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 315783269}
   m_SourcePrefab: {fileID: 100100000, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
 --- !u!1001 &423810223
 PrefabInstance:
