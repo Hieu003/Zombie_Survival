@@ -159,8 +159,8 @@ namespace HQFPSWeapons
 		public virtual bool IsDoneReloading() { return false; }
 		public virtual void OnReloadEnd() { }
 		public virtual bool CanAim() { return true; }
-		public virtual void OnAimStart() { m_EHandler.Animator.SetInteger("Idle Index", 0); }
-		public virtual void OnAimEnd() { m_EHandler.Animator.SetInteger("Idle Index", 1); }
+		public virtual void OnAimStart() { m_EHandler.Animator.SetInteger("Patrol Index", 0); }
+		public virtual void OnAimEnd() { m_EHandler.Animator.SetInteger("Patrol Index", 1); }
 		public virtual bool ChangeFireMode() { return false; }
 		public virtual float GetTimeBetweenUses() { return m_UseThreshold; }
 		public virtual void OnUseStart() { }
