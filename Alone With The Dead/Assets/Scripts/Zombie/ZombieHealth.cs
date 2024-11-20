@@ -64,5 +64,15 @@ namespace HQFPSWeapons
         {
             return null;
         }
+
+        /// <summary>
+        /// Thiết lập giá trị máu ban đầu.
+        /// </summary>
+        /// <param name="health">Giá trị máu mới.</param>
+        public void SetInitialHealth(float health)
+        {
+            initialHealth = Mathf.Max(1f, health); // Đảm bảo giá trị >= 1
+            currentHealth = initialHealth; // Reset lại máu hiện tại
+        }
     }
 }
