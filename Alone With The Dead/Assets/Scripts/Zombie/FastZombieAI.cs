@@ -7,11 +7,11 @@ public class FastZombieAI : BaseZombieAI
     protected override void Start()
     {
         // Cấu hình các chỉ số riêng cho FastZombie
-        speed = 5.0f; // Tốc độ nhanh hơn
+        speed = 3f; // Tốc độ nhanh hơn
         chaseDistance = 12f; // Khoảng cách phát hiện xa hơn
-        attackDistance = 1.5f; // Khoảng cách tấn công gần hơn
-        attackCooldown = 1.5f; // Thời gian hồi chiêu nhanh hơn
-        attackDelay = 1.0f; // Đánh nhanh hơn
+        attackDistance = 1f; // Khoảng cách tấn công gần hơn
+        attackCooldown = .5f; // Thời gian hồi chiêu nhanh hơn
+        attackDelay = .5f; // Đánh nhanh hơn
 
         // Gọi hàm Start của BaseZombieAI
         base.Start();
@@ -23,7 +23,6 @@ public class FastZombieAI : BaseZombieAI
 
     protected override void PerformAttack()
     {
-        Debug.Log("FastZombie tấn công!");
 
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
