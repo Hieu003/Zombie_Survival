@@ -106,8 +106,8 @@ NavMeshSettings:
     serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.2
-    agentHeight: 2
-    agentSlope: 37
+    agentHeight: 0.8
+    agentSlope: 45
     agentClimb: 0.3
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -344,10 +344,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.33207548
   m_Height: 2.3461657
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6346205, z: 0}
+  m_Center: {x: -0.027009571, y: 0.6346205, z: -0.030059604}
 --- !u!1001 &861967545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,6 +356,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2067054150, guid: 20ce86f0ddf7cd1438b1f6d3006b3862, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067054150, guid: 20ce86f0ddf7cd1438b1f6d3006b3862, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067054150, guid: 20ce86f0ddf7cd1438b1f6d3006b3862, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1716186300373558, guid: 20ce86f0ddf7cd1438b1f6d3006b3862, type: 3}
       propertyPath: m_Name
       value: Player
@@ -408,6 +420,16 @@ PrefabInstance:
     - target: {fileID: 114328331397534462, guid: 20ce86f0ddf7cd1438b1f6d3006b3862,
         type: 3}
       propertyPath: m_RestartSceneOnRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114812762699140276, guid: 20ce86f0ddf7cd1438b1f6d3006b3862,
+        type: 3}
+      propertyPath: m_MaxHealth
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 143999630235366348, guid: 20ce86f0ddf7cd1438b1f6d3006b3862,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -763,10 +785,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.34717846
   m_Height: 2.423998
   m_Direction: 1
-  m_Center: {x: 0, y: 0.71199936, z: 0}
+  m_Center: {x: 0.04916332, y: 0.71199936, z: -0.10365816}
 --- !u!1001 &1579009841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,6 +964,26 @@ PrefabInstance:
       propertyPath: navAgent
       value: 
       objectReference: {fileID: 1283552525}
+    - target: {fileID: 2908919236006180806, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.8213879
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908919236006180806, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.364081
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908919236006180806, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.075381935
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908919236006180806, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.06053702
+      objectReference: {fileID: 0}
     - target: {fileID: 3945216851820727623, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1,
         type: 3}
       propertyPath: m_LocalPosition.x

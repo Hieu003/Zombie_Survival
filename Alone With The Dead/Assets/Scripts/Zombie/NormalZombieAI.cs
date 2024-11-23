@@ -11,8 +11,8 @@ public class NormalZombieAI : BaseZombieAI
         speed = 1f;
         chaseDistance = 10f;
         attackDistance = 1f;
-        attackCooldown = 1f;
-        attackDelay = 1f;
+        attackCooldown = .8f;
+        attackDelay = .8f;
 
         base.Start(); // Gọi hàm Start của BaseZombieAI
     }
