@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 19.65
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
       propertyPath: m_LocalPosition.y
@@ -114,10 +114,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.8213878
+  m_Radius: 0.364081
+  m_Height: 1.8213879
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8852004, z: 0}
+  m_Center: {x: 0.075381935, y: 0.8852004, z: -0.06053702}
 --- !u!195 &3928992822903540061
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -173,3 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb6b8b8af4902445868c91a68dc4916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  navAgent: {fileID: 3928992822903540061}
+  player: {fileID: 0}

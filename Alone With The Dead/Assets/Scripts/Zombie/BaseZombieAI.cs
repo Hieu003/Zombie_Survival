@@ -19,7 +19,6 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected float attackCooldown;
     protected float attackDelay;
     protected float lastAttackTime;
-    protected float bufferZone = 1f; // Vùng đệm giữa Chase và Attack
 
     protected bool isAttacking;
     protected ZombieHealth zombieHealth;
@@ -43,7 +42,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         if (currentState == ZombieState.Dead)
             return;
 
-  
+
         HandleState();
     }
 
@@ -66,7 +65,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected virtual void IdleBehavior()
     {
         animator.SetBool("IsWalking", false);
-        animator.SetBool("IsAttacking", false);
+       // animator.SetBool("IsAttacking", false);
 
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
             currentState = ZombieState.Chase;
@@ -75,25 +74,30 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected virtual void ChaseBehavior()
     {
         animator.SetBool("IsWalking", true);
-        animator.SetBool("IsAttacking", false);
+ 
 
         if (navAgent != null)
         {
             navAgent.SetDestination(player.position);
-            navAgent.stoppingDistance = attackDistance; // Đồng bộ khoảng cách dừng
+            navAgent.stoppingDistance = attackDistance;
         }
 
         // Chuyển sang Attack nếu trong khoảng cách Attack
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
             currentState = ZombieState.Attack;
+            
+        }
+       
     }
 
 
     protected virtual void AttackBehavior()
     {
+
         animator.SetBool("IsAttacking", true);
 
-        // Dừng tại vị trí hiện tại
+        // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)
             navAgent.SetDestination(transform.position);
 
@@ -101,29 +105,25 @@ public abstract class BaseZombieAI : MonoBehaviour
         if (!isAttacking && Time.time - lastAttackTime >= attackCooldown)
             StartCoroutine(AttackWithDelay());
 
-        // Quay lại Chase nếu người chơi vượt ngoài vùng đệm
-        if (Vector3.Distance(transform.position, player.position) > attackDistance + bufferZone)
+        // Quay lại Chase nếu người chơi thoát khỏi attackDistance
+        if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
-            currentState = ZombieState.Chase;
             navAgent.stoppingDistance = 0f; // Reset khoảng cách dừng
+            currentState = ZombieState.Chase;
+
         }
     }
-
 
     private IEnumerator AttackWithDelay()
     {
         isAttacking = true;
+
+        // Chờ thời gian delay trước khi gây sát thương
         yield return new WaitForSeconds(attackDelay);
 
-        // Kiểm tra va chạm trong khoảng attackDistance
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackDistance);
-        foreach (var hitCollider in hitColliders)
+        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
-            if (hitCollider.transform == player)
-            {
-                PerformAttack(); // Gây sát thương nếu phát hiện người chơi
-                break;
-            }
+            PerformAttack(); // Gây sát thương
         }
 
         isAttacking = false;
@@ -152,5 +152,14 @@ public abstract class BaseZombieAI : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackDistance); // Phạm vi tấn công
+    }
+
     protected abstract void PerformAttack();
 }
+
+
+

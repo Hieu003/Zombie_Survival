@@ -9,8 +9,8 @@ public class NormalZombieAI : BaseZombieAI
     {
         // Thiết lập các chỉ số giống với ZombieAI
         speed = 1f;
-        chaseDistance = 10f;
-        attackDistance = 1f;
+        chaseDistance = 8f;
+        attackDistance = .9f;
         attackCooldown = .8f;
         attackDelay = .8f;
 
@@ -19,9 +19,9 @@ public class NormalZombieAI : BaseZombieAI
 
     protected override void PerformAttack()
     {
+        // Gây sát thương chỉ khi người chơi còn trong phạm vi tấn công
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
-            // Gây sát thương lên người chơi
             var playerVitals = player.GetComponent<PlayerVitals>();
             if (playerVitals != null)
             {
