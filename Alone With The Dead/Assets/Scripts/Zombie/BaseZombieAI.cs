@@ -65,7 +65,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected virtual void IdleBehavior()
     {
         animator.SetBool("IsWalking", false);
-       // animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsAttacking", false);
 
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
             currentState = ZombieState.Chase;
@@ -73,6 +73,7 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     protected virtual void ChaseBehavior()
     {
+        animator.SetBool("IsAttacking", false);
         animator.SetBool("IsWalking", true);
  
 
@@ -86,7 +87,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
             currentState = ZombieState.Attack;
-            
+             
         }
        
     }
@@ -96,17 +97,18 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
 
         animator.SetBool("IsAttacking", true);
+        animator.SetBool("IsWalking", false);
 
         // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)
-            navAgent.SetDestination(transform.position);
+            navAgent.SetDestination(player.position);
 
         // Chỉ gây sát thương nếu không đang tấn công
         if (!isAttacking && Time.time - lastAttackTime >= attackCooldown)
             StartCoroutine(AttackWithDelay());
 
         // Quay lại Chase nếu người chơi thoát khỏi attackDistance
-        if (Vector3.Distance(transform.position, player.position) > attackDistance)
+        if (Vector3.Distance(transform.position, player.position) > attackDistance + 0.1)
         {
             navAgent.stoppingDistance = 0f; // Reset khoảng cách dừng
             currentState = ZombieState.Chase;

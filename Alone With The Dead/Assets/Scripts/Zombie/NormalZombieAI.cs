@@ -10,7 +10,7 @@ public class NormalZombieAI : BaseZombieAI
         // Thiết lập các chỉ số giống với ZombieAI
         speed = 1f;
         chaseDistance = 8f;
-        attackDistance = .9f;
+        attackDistance = 1;
         attackCooldown = .8f;
         attackDelay = .8f;
 

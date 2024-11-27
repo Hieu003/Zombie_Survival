@@ -8,8 +8,8 @@ public class TankZombieAI : BaseZombieAI
     // Các thông số riêng của TankZombie
     private const float TankSpeed = .5f; // Tốc độ chậm hơn
     private const float TankChaseDistance = 12f; // Khoảng cách truy đuổi
-    private const float TankAttackDistance = 2f; // Khoảng cách tấn công gần hơn
-    private const float TankAttackCooldown = 3f; // Thời gian hồi chiêu lâu hơn
+    private const float TankAttackDistance = 1f; 
+    private const float TankAttackCooldown = 3f; 
     private const float TankAttackDelay = 2f; // Thời gian chờ tấn công lâu hơn
     private const float TankDamage = 50f; // Sát thương cao hơn
 
