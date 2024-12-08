@@ -5,7 +5,7 @@ using HQFPSWeapons;
 
 public abstract class BaseZombieAI : MonoBehaviour
 {
-    public enum ZombieState { Idle, Chase, Attack, Dead }
+    public enum ZombieState { Idle, Walk, Chase, Attack, Dead }
     public ZombieState currentState = ZombieState.Idle;
 
     public NavMeshAgent navAgent;
@@ -19,9 +19,14 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected float attackCooldown;
     protected float attackDelay;
     protected float lastAttackTime;
+    [SerializeField] protected float idleDuration = 5f; 
+    [SerializeField] protected float walkDuration = 10f; 
+    [SerializeField] protected float walkSpeedMultiplier = 0.5f;
+    protected float stateStartTime;
 
     protected bool isAttacking;
     protected ZombieHealth zombieHealth;
+    
 
 
     protected virtual void Start()
@@ -36,6 +41,10 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         if (navAgent != null)
             navAgent.speed = speed;
+
+        // Bắt đầu với trạng thái Idle
+        currentState = ZombieState.Idle;
+        stateStartTime = Time.time;
     }
 
     private void Update()
@@ -54,6 +63,9 @@ public abstract class BaseZombieAI : MonoBehaviour
             case ZombieState.Idle:
                 IdleBehavior();
                 break;
+            case ZombieState.Walk: // Thêm case Walk
+                WalkBehavior();
+                break;
             case ZombieState.Chase:
                 ChaseBehavior();
                 break;
@@ -67,16 +79,60 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsPatrolling", false);
 
+        // Chuyển sang Chase nếu thấy người chơi
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
+        {
             currentState = ZombieState.Chase;
+            stateStartTime = Time.time;
+        }
+        // Chuyển sang Walk nếu hết thời gian Idle
+        else if (Time.time - stateStartTime >= idleDuration)
+        {
+            currentState = ZombieState.Walk;
+            stateStartTime = Time.time;
+        }
+    }
+    protected virtual void WalkBehavior()
+    {
+        animator.SetBool("IsPatrolling", true);
+        animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsWalking", false);
+
+        // Thiết lập tốc độ Walk
+        if (navAgent != null)
+            navAgent.speed = speed * walkSpeedMultiplier;
+
+        if (!navAgent.hasPath)
+        {
+            navAgent.SetDestination(GetRandomNavMeshLocation());
+        }
+
+        // Chuyển sang Chase nếu thấy người chơi
+        if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
+        {
+            currentState = ZombieState.Chase;
+            stateStartTime = Time.time;
+        }
+        // Chuyển sang Idle nếu hết thời gian Walk
+        else if (Time.time - stateStartTime >= walkDuration)
+        {
+            currentState = ZombieState.Idle;
+            stateStartTime = Time.time;
+            navAgent.ResetPath();
+        }
     }
 
     protected virtual void ChaseBehavior()
     {
         animator.SetBool("IsAttacking", false);
         animator.SetBool("IsWalking", true);
- 
+        animator.SetBool("IsPatrolling", false);
+
+        // Thiết lập lại tốc độ bình thường
+        if (navAgent != null)
+            navAgent.speed = speed;
 
         if (navAgent != null)
         {
@@ -88,9 +144,9 @@ public abstract class BaseZombieAI : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
             currentState = ZombieState.Attack;
-             
+            stateStartTime = Time.time;
         }
-       
+
     }
 
 
@@ -99,6 +155,7 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         animator.SetBool("IsAttacking", true);
         animator.SetBool("IsWalking", false);
+        animator.SetBool("IsPatrolling", false);
 
         // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)
@@ -116,6 +173,30 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         }
     }
+
+    public Vector3 GetRandomNavMeshLocation()
+    {
+        // Lấy NavMesh triangulation
+        NavMeshTriangulation navMeshData = NavMesh.CalculateTriangulation();
+
+        // Chọn một tam giác ngẫu nhiên từ NavMesh
+        int randomIndex = Random.Range(0, navMeshData.indices.Length / 3);
+
+        // Lấy ba đỉnh của tam giác được chọn
+        Vector3 vertex1 = navMeshData.vertices[navMeshData.indices[randomIndex * 3]];
+        Vector3 vertex2 = navMeshData.vertices[navMeshData.indices[randomIndex * 3 + 1]];
+        Vector3 vertex3 = navMeshData.vertices[navMeshData.indices[randomIndex * 3 + 2]];
+
+        // Tính toán điểm ngẫu nhiên trong tam giác
+        Vector3 randomPointInTriangle = (vertex1 + vertex2 + vertex3) / 3f; // Điểm trọng tâm
+        randomPointInTriangle += new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); // Thêm offset ngẫu nhiên
+
+        // Đặt lại vị trí y để phù hợp với mặt đất
+        randomPointInTriangle.y = transform.position.y;
+
+        return randomPointInTriangle;
+    }
+
 
     private IEnumerator AttackWithDelay()
     {

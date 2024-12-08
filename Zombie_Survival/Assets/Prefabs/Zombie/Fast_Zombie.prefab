@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100178, guid: 9ad7b697717f1604b849133d9771d6c6, type: 3}
       propertyPath: m_Name
-      value: ZombieAC_A
+      value: Fast_Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 400178, guid: 9ad7b697717f1604b849133d9771d6c6, type: 3}
       propertyPath: m_LocalScale.x
@@ -133,6 +133,9 @@ MonoBehaviour:
   currentState: 0
   navAgent: {fileID: 110771855528108845}
   player: {fileID: 0}
+  idleDuration: 5
+  walkDuration: 10
+  walkSpeedMultiplier: 0.15
 --- !u!195 &110771855528108845
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100184, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
       propertyPath: m_Name
-      value: ZombieAA
+      value: Normal_Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 400184, guid: 85d3b565abb071445a6cfbedc477ac94, type: 3}
       propertyPath: m_LocalScale.x
@@ -178,3 +178,6 @@ MonoBehaviour:
   currentState: 0
   navAgent: {fileID: 3928992822903540061}
   player: {fileID: 0}
+  idleDuration: 8
+  walkDuration: 20
+  walkSpeedMultiplier: 0.25
