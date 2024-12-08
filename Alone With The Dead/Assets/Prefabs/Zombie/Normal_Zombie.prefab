@@ -161,6 +161,8 @@ MonoBehaviour:
     m_BulletResistance: 0.1
   ragdollPrefab: {fileID: 0}
   ragdollForceOffset: {x: 0, y: 0, z: 0}
+  bloodEffectPrefab: {fileID: 7802891490945899429, guid: 0ad848a40e1ba5c428eb5b70698948f1,
+    type: 3}
 --- !u!114 &-2707848089843846476
 MonoBehaviour:
   m_ObjectHideFlags: 0

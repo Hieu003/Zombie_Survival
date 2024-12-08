@@ -19,6 +19,10 @@ namespace HQFPSWeapons
         [SerializeField]
         private Vector3 ragdollForceOffset = Vector3.zero;
 
+        [Header("Blood Effect Settings")] // Thêm header cho máu
+        [SerializeField]
+        private ParticleSystem bloodEffectPrefab; // Prefab Particle System máu
+
         private float currentHealth;
 
         public event Action OnZombieDeath; // Sự kiện khi zombie chết
@@ -37,6 +41,9 @@ namespace HQFPSWeapons
 
             // Trừ máu
             currentHealth = Mathf.Clamp(currentHealth + damage, 0f, initialHealth);
+
+            // Tạo hiệu ứng máu tại vị trí trúng đạn
+            SpawnBloodEffect(damageData.HitPoint, damageData.HitNormal);
 
             if (currentHealth <= 0)
                 Die(damageData);
@@ -60,15 +67,20 @@ namespace HQFPSWeapons
             }
         }
 
+        private void SpawnBloodEffect(Vector3 position, Vector3 normal)
+        {
+            if (bloodEffectPrefab != null)
+            {
+                ParticleSystem bloodEffect = Instantiate(bloodEffectPrefab, position, Quaternion.LookRotation(normal));
+                Destroy(bloodEffect.gameObject, bloodEffect.main.duration); // Hủy hiệu ứng sau khi chạy xong
+            }
+        }
+
         public LivingEntity GetEntity()
         {
             return null;
         }
 
-        /// <summary>
-        /// Thiết lập giá trị máu ban đầu.
-        /// </summary>
-        /// <param name="health">Giá trị máu mới.</param>
         public void SetInitialHealth(float health)
         {
             initialHealth = Mathf.Max(1f, health); // Đảm bảo giá trị >= 1

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100182, guid: f4d535afef9f8b642bc188233e309d79, type: 3}
       propertyPath: m_Name
-      value: ZombieABv1
+      value: Phat
       objectReference: {fileID: 0}
     - target: {fileID: 400182, guid: f4d535afef9f8b642bc188233e309d79, type: 3}
       propertyPath: m_LocalScale.x
@@ -131,6 +131,8 @@ MonoBehaviour:
     m_BulletResistance: 0.1
   ragdollPrefab: {fileID: 0}
   ragdollForceOffset: {x: 0, y: 0, z: 0}
+  bloodEffectPrefab: {fileID: 7802891490945899429, guid: 0ad848a40e1ba5c428eb5b70698948f1,
+    type: 3}
 --- !u!195 &1490721299802928715
 NavMeshAgent:
   m_ObjectHideFlags: 0

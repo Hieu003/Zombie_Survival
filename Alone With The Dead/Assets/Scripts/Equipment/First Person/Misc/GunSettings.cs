@@ -47,9 +47,12 @@ namespace HQFPSWeapons
 
 			[Range(0f, 3f)]
 			public float JumpSpreadFactor = 1.5f;
-		}
 
-		[Serializable]
+            
+
+        }
+
+        [Serializable]
 		public class HitscanImpact
 		{
 			[Range(0f, 1000f)]

@@ -7,7 +7,7 @@ namespace HQFPSWeapons
 {
 	public class Gun : ProjectileBasedWeapon
 	{
-		[BHeader("GUN SETTINGS", true)]
+        [BHeader("GUN SETTINGS", true)]
 
 		[SerializeField]
 		[Group]
@@ -18,9 +18,10 @@ namespace HQFPSWeapons
 
 		// Cache some properties of the item
 		protected ItemProperty.Value m_FireModes;
+       
 
 
-		public override void Wield(SaveableItem correspondingItem)
+        public override void Wield(SaveableItem correspondingItem)
 		{
 			base.Wield(correspondingItem);
 
@@ -155,7 +156,8 @@ namespace HQFPSWeapons
 				{
 					var damageData = new HealthEventData(-damage, DamageType.Bullet, hitInfo.point, ray.direction, impulse * m_Shooting.RayCount, hitInfo.normal, Player);
 					damageable.TakeDamage(damageData);
-				}
+                    
+                }
 
 				SurfaceManager.SpawnEffect(hitInfo, SurfaceEffects.BulletHit, 1f);
 			}
@@ -171,7 +173,7 @@ namespace HQFPSWeapons
 			int loopIndex = 0;
 			int fireModeIndex = currentIndex;
 
-			if (fireModeIndex == lastEnumVal)
+			if (fireModeIndex == lastEnumVal)	
 				i = 1;
 			else
 				i = fireModeIndex * 2;

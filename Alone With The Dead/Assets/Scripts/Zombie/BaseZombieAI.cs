@@ -23,6 +23,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected bool isAttacking;
     protected ZombieHealth zombieHealth;
 
+
     protected virtual void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
