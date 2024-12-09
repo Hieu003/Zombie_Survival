@@ -123,7 +123,7 @@ namespace HQFPSWeapons
 			{
 				SurfaceManager.SpawnEffect(hitInfo, SurfaceEffects.Stab, 1f);
 
-				float currentSpeed = m_Rigidbody.velocity.magnitude;
+				float currentSpeed = m_Rigidbody.linearVelocity.magnitude;
 
 				float impulse = m_ImpactForce;
 				var damageable = hitInfo.collider.GetComponent<IDamageable>();

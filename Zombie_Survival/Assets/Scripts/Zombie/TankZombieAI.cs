@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using UnityEngine;
 using HQFPSWeapons;
 
@@ -55,7 +55,7 @@ public class TankZombieAI : BaseZombieAI
     {
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsAttacking", false);
-        animator.SetBool("IsPatrolling", false);
+        
 
         // Chuyển sang Chase nếu thấy người chơi
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)

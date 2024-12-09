@@ -90,7 +90,7 @@ namespace HQFPSWeapons
 			Projectile projectile = Instantiate(m_ThrowingWeaponSettings.Projectile, position, rotation);
 
 			Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
-			projectileRB.velocity = projectile.transform.forward * throwSettings.ThrowVelocity;
+			projectileRB.linearVelocity = projectile.transform.forward * throwSettings.ThrowVelocity;
 			projectileRB.angularVelocity = UnityEngine.Random.onUnitSphere * throwSettings.AngularSpeed;
 
 			projectile.Launch(Player);

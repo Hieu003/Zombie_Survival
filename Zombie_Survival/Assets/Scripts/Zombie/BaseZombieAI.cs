@@ -79,8 +79,11 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsAttacking", false);
-        animator.SetBool("IsPatrolling", false);
-
+       
+        if (!(this is TankZombieAI))
+        {
+            animator.SetBool("IsPatrolling", false);
+        }
         // Chuyển sang Chase nếu thấy người chơi
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
         {
@@ -96,7 +99,10 @@ public abstract class BaseZombieAI : MonoBehaviour
     }
     protected virtual void WalkBehavior()
     {
-        animator.SetBool("IsPatrolling", true);
+        if (!(this is TankZombieAI))
+        {
+            animator.SetBool("IsPatrolling", true);
+        }
         animator.SetBool("IsAttacking", false);
         animator.SetBool("IsWalking", false);
 
@@ -128,7 +134,10 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         animator.SetBool("IsAttacking", false);
         animator.SetBool("IsWalking", true);
-        animator.SetBool("IsPatrolling", false);
+        if (!(this is TankZombieAI))
+        {
+            animator.SetBool("IsPatrolling", false);
+        }
 
         // Thiết lập lại tốc độ bình thường
         if (navAgent != null)
@@ -155,7 +164,10 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         animator.SetBool("IsAttacking", true);
         animator.SetBool("IsWalking", false);
-        animator.SetBool("IsPatrolling", false);
+        if (!(this is TankZombieAI))
+        {
+            animator.SetBool("IsPatrolling", false);
+        }
 
         // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)

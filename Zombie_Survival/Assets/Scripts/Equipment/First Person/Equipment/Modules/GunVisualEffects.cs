@@ -236,7 +236,7 @@ namespace HQFPSWeapons
 
 			cassingRB.maxAngularVelocity = 10000f;
 
-			cassingRB.velocity = transform.TransformVector(new Vector3(
+			cassingRB.linearVelocity = transform.TransformVector(new Vector3(
 				m_CasingEjection.SpawnVelocity.x * Random.Range(0.75f, 1.15f),
 				m_CasingEjection.SpawnVelocity.y * Random.Range(0.9f, 1.1f),
 				m_CasingEjection.SpawnVelocity.z * Random.Range(0.85f, 1.15f))) + Player.Velocity.Get();

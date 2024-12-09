@@ -109,7 +109,7 @@ namespace HQFPSWeapons
 			Quaternion rotation = Quaternion.LookRotation(ray.direction);
 
 			ShaftedProjectile projectileObject = Instantiate(m_Projectile.Prefab, position, rotation);
-			projectileObject.GetComponent<Rigidbody>().velocity = projectileObject.transform.forward * m_Projectile.LaunchSpeed;
+			projectileObject.GetComponent<Rigidbody>().linearVelocity = projectileObject.transform.forward * m_Projectile.LaunchSpeed;
 			projectileObject.GetComponent<ShaftedProjectile>().Launch(Player);
 			projectileObject.GetComponent<ShaftedProjectile>().CheckForSurfaces(camera.transform.position, camera.transform.forward);
 

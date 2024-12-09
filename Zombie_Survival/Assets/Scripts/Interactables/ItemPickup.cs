@@ -129,7 +129,7 @@ namespace HQFPSWeapons
 			{
 				float collideVolume = Mathf.Clamp(collision.relativeVelocity.sqrMagnitude / 5f, 0.1f, 0.3f);
 
-				if (m_RigidB.velocity.sqrMagnitude > m_PlayCollideSoundThresshold)
+				if (m_RigidB.linearVelocity.sqrMagnitude > m_PlayCollideSoundThresshold)
 					m_CollideSounds.PlayAtPosition(ItemSelection.Method.Random, transform.position, collideVolume);
 
 				m_NextTimePlayCollideSound = Time.time + 0.5f;
