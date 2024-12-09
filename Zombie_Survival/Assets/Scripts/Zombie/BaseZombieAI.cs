@@ -167,7 +167,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         if (!(this is TankZombieAI))
         {
             animator.SetBool("IsPatrolling", false);
-        }
+        }   
 
         // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)

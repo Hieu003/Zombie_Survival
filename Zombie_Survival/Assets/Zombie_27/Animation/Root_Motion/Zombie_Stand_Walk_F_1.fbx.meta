@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 88e49fbd6bade3d44a9bba326334ec80
-timeCreated: 1560906495
+guid: 48d9c09e1434fa248999a54a0410ca77
+timeCreated: 1560560346
 licenseType: Store
 ModelImporter:
   serializedVersion: 21
@@ -175,7 +175,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5

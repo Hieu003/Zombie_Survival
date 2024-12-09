@@ -29,43 +29,11 @@ public class TankZombieAI : BaseZombieAI
             zombieHealth.SetInitialHealth(200f); // Máu của TankZombie là 200
         }
 
-        // Bỏ qua trạng thái Walk, bắt đầu bằng Idle
-        currentState = ZombieState.Idle;
-        stateStartTime = Time.time;
+  
     }
-    protected override void HandleState()
-    {
-        switch (currentState)
-        {
-            case ZombieState.Idle:
-                IdleBehavior();
-                break;
-            case ZombieState.Chase:
-                ChaseBehavior();
-                break;
-            case ZombieState.Attack:
-                AttackBehavior();
-                break;
-        }
-    }
+ 
 
-    // Loại bỏ WalkBehavior()
-
-    protected override void IdleBehavior()
-    {
-        animator.SetBool("IsWalking", false);
-        animator.SetBool("IsAttacking", false);
-        
-
-        // Chuyển sang Chase nếu thấy người chơi
-        if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
-        {
-            currentState = ZombieState.Chase;
-            stateStartTime = Time.time;
-        }
-    }
-
-    // Cụ thể hóa hành vi tấn công cho TankZombie
+   
     protected override void PerformAttack()
     {
         if (player == null)
