@@ -248,7 +248,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         foreach (var col in colliders)
             col.enabled = false;
 
-        StartCoroutine(RemoveZombieAfterDelay(30f));
+        StartCoroutine(RemoveZombieAfterDelay(5f));
     }
 
     private IEnumerator RemoveZombieAfterDelay(float delay)
@@ -264,6 +264,27 @@ public abstract class BaseZombieAI : MonoBehaviour
     }
 
     protected abstract void PerformAttack();
+
+    public void ResetState()
+    {
+        currentState = ZombieState.Idle;
+        stateStartTime = Time.time;
+        isAttacking = false;
+        lastAttackTime = -attackCooldown;
+        if (navAgent != null)
+        {
+            navAgent.isStopped = false;
+            navAgent.speed = speed;
+            navAgent.ResetPath();
+        }
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("IsPatrolling", false);
+            animator.SetBool("IsDead", false);
+        }
+    }
 }
 
 

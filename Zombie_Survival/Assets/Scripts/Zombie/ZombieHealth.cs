@@ -86,5 +86,11 @@ namespace HQFPSWeapons
             initialHealth = Mathf.Max(1f, health); // Đảm bảo giá trị >= 1
             currentHealth = initialHealth; // Reset lại máu hiện tại
         }
+        public void ResetHealth()
+        {
+            currentHealth = initialHealth;
+        }
     }
+
+    
 }
