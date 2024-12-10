@@ -31,6 +31,15 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     protected virtual void Start()
     {
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.Log("Khong thay nguoi choi");
+        }
         navAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         zombieHealth = GetComponent<ZombieHealth>();
