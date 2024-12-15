@@ -229,7 +229,7 @@ namespace HQFPSWeapons
 
             if (m_EnableSliding)
             {
-                // Sliding...
+                // Sliding
                 if (surfaceAngle > m_SlideTreeshold && Player.MoveInput.Get().sqrMagnitude == 0f)
                 {
                     Vector3 slideDirection = (SurfaceNormal + Vector3.down);
