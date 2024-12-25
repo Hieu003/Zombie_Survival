@@ -8,6 +8,12 @@ namespace HQFPSWeapons
 {
 	public class GameManager : Singleton<GameManager>
 	{
+		public static GameManager instance;
+
+		public int highScore;
+
+		public int currentScore;
+
 		public Material[] PreloadedMaterials { get { return m_PreloadedMaterials; } set { m_PreloadedMaterials = value; } }
 		public Player CurrentPlayer { get; private set; }
 		public UIManager CurrentInterface { get; private set; }
@@ -155,8 +161,17 @@ namespace HQFPSWeapons
 
 		private void Start()
 		{
+			instance = this;
 			Shader.WarmupAllShaders();
 			GC.Collect();
 		}
-	}
+
+        private void Update()
+        {
+            if(currentScore > highScore)
+			{
+				highScore = currentScore;
+			}
+        }
+    }
 }

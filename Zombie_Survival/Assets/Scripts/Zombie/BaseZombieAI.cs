@@ -247,7 +247,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         Collider[] colliders = GetComponentsInChildren<Collider>();
         foreach (var col in colliders)
             col.enabled = false;
-
+        GameManager.instance.currentScore += 1;
         StartCoroutine(RemoveZombieAfterDelay(5f));
     }
 
