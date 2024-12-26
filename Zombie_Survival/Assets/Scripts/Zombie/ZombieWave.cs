@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using HQFPSWeapons;
 
+using UnityEngine.UI;
+
 public class ZombieWave : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public float timeBetweenWave = 10f;
     private float waveTimer = 0f;
-    private int waveNumber = 1;
+    private int waveNumber = 0;
     public int zombiePerWave = 4;
     protected ZombieHealth zombieHealth;
-    public float timeBetweenSpawns = 0.5f; // Thời gian giữa mỗi lần spawn nhỏ
+    public float timeBetweenSpawns = 2f; // Thời gian giữa mỗi lần spawn nhỏ
+
+    public Text WaveNumber;
+    public Text WaveTimer;
 
 
     private void Update()
@@ -20,6 +25,8 @@ public class ZombieWave : MonoBehaviour
             return;
 
         waveTimer += Time.deltaTime;
+        int intValue = Mathf.RoundToInt(waveTimer);
+        WaveTimer.text = intValue.ToString();
 
         if (waveTimer >= timeBetweenWave)
         {
@@ -33,11 +40,12 @@ public class ZombieWave : MonoBehaviour
         zombiePerWave += 2;
         StartCoroutine(SpawnZombies());
         waveNumber++;
+        WaveNumber.text = waveNumber.ToString();
     }
 
     IEnumerator SpawnZombies()
     {
-        float minDistance = 4f;
+        float minDistance = 10f;
 
         for (int i = 0; i < zombiePerWave; i++)
         {

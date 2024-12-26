@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using HQFPSWeapons.UserInterface;
+using UnityEngine.UI;
 
 namespace HQFPSWeapons
 {
@@ -13,6 +14,8 @@ namespace HQFPSWeapons
 		public int highScore;
 
 		public int currentScore;
+
+		public Text currentScoreText;
 
 		public Material[] PreloadedMaterials { get { return m_PreloadedMaterials; } set { m_PreloadedMaterials = value; } }
 		public Player CurrentPlayer { get; private set; }
@@ -172,6 +175,8 @@ namespace HQFPSWeapons
 			{
 				highScore = currentScore;
 			}
+
+			currentScoreText.text = currentScore.ToString();
         }
     }
 }
