@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System;
 
 namespace HQFPSWeapons
 {
@@ -36,13 +37,7 @@ namespace HQFPSWeapons
 		[SerializeField]
 		private Rigidbody m_HeadRigidbody = null;
 
-		[BHeader("Respawn")]
-
-		[SerializeField]
-		private float m_RespawnDuration = 5f;
-
-		[SerializeField]
-		private bool m_RestartSceneOnRespawn = false;
+		
 
 		private Transform m_CameraStartParent;
 		private Quaternion m_CameraStartRotation;
@@ -52,8 +47,12 @@ namespace HQFPSWeapons
 		private Vector3 m_HeadHitboxStartPosition;
 		private Quaternion m_HeadHitboxStartRotation;
 
+        public event Action OnPlayerDeath;
+        private bool m_IsDead = false;
 
-		public void OnLoad()
+
+
+        public void OnLoad()
 		{
 			Player.Health.AddChangeListener(OnChanged_Health);
 		}
@@ -74,7 +73,7 @@ namespace HQFPSWeapons
 
 		private void OnChanged_Health(float health)
 		{
-			if(health == 0f)
+			if(health == 0f && !m_IsDead)
 			{
 				On_Death();
 
@@ -84,6 +83,7 @@ namespace HQFPSWeapons
 
 		public void On_Death()
 		{
+			m_IsDead = true;
 			m_DeathAudio.Play(ItemSelection.Method.Random, m_AudioSource);
 
 			//Disable
@@ -123,10 +123,19 @@ namespace HQFPSWeapons
 			PostProcessingManager.Instance.DoDeathAnim();
 			Player.Death.Send();
 
-			StartCoroutine(C_Respawn());
+            OnPlayerDeath?.Invoke();
+
+			GameOver();
+
+         
 		}
 
-		private IEnumerator C_Respawn()
+		private void GameOver()
+		{
+			Debug.Log("Game over");
+		}
+
+		/*private IEnumerator C_Respawn()
 		{
 			yield return new WaitForSeconds(m_RespawnDuration);
 
@@ -161,6 +170,6 @@ namespace HQFPSWeapons
 
 				Player.Respawn.Send();
 			}
-		}
+		}*/
 	}
 }

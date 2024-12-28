@@ -47,6 +47,6 @@ public class TankZombieAI : BaseZombieAI
             playerVitals.Entity.ChangeHealth.Try(damageData);
         }
 
-        Debug.Log("TankZombie tấn công người chơi!");
+      
     }
 }
