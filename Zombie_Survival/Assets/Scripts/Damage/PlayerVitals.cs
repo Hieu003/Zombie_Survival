@@ -94,15 +94,7 @@ namespace HQFPSWeapons
 		{
             bool success = base.Try_ChangeHealth(healthEventData);
 
-            // Kiểm tra nếu máu = 0
-            if (Player.Health.Get() <= 0f)
-            {
-                var playerDeath = GetComponent<PlayerDeath>();
-                if (playerDeath != null)
-                {
-                    playerDeath.On_Death(); // Gọi logic chết từ PlayerDeath
-                }
-            }
+           
 
             return success;
         }

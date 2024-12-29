@@ -48,7 +48,7 @@ namespace HQFPSWeapons
 		private Quaternion m_HeadHitboxStartRotation;
 
         public event Action OnPlayerDeath;
-        private bool m_IsDead = false;
+        private bool m_GameOverTriggered = false;
 
 
 
@@ -73,9 +73,11 @@ namespace HQFPSWeapons
 
 		private void OnChanged_Health(float health)
 		{
-			if(health == 0f && !m_IsDead)
+         
+            if (health == 0f)
 			{
-				On_Death();
+                Player.Health.RemoveChangeListener(OnChanged_Health);
+                On_Death();
 
 				m_Camera.transform.parent = m_HeadCollider.transform;
 			}	
@@ -83,8 +85,10 @@ namespace HQFPSWeapons
 
 		public void On_Death()
 		{
-			m_IsDead = true;
-			m_DeathAudio.Play(ItemSelection.Method.Random, m_AudioSource);
+           
+
+            m_DeathAudio.Play(ItemSelection.Method.Random, m_AudioSource);
+            m_DeathAudio.Play(ItemSelection.Method.Random, m_AudioSource);
 
 			//Disable
 			foreach (var obj in m_ObjectsToDisable)
@@ -126,16 +130,22 @@ namespace HQFPSWeapons
             OnPlayerDeath?.Invoke();
 
 			GameOver();
+        
 
-         
-		}
+        }
 
 		private void GameOver()
 		{
-			Debug.Log("Game over");
+			if(!m_GameOverTriggered)
+			{
+                m_GameOverTriggered = true;
+                Debug.Log("Game over");
+            }
 		}
 
-		/*private IEnumerator C_Respawn()
+       
+
+        /*private IEnumerator C_Respawn()
 		{
 			yield return new WaitForSeconds(m_RespawnDuration);
 
@@ -171,5 +181,5 @@ namespace HQFPSWeapons
 				Player.Respawn.Send();
 			}
 		}*/
-	}
+    }
 }
