@@ -178,5 +178,7 @@ namespace HQFPSWeapons
 
 			currentScoreText.text = currentScore.ToString();
         }
+
+
     }
 }

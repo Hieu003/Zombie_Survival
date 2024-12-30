@@ -6,12 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Weapon And Player/Scenes/FiringRange_New.unity
-    guid: 14b4d7f2e620ba9499a514c5049ca2c6
+    path: Assets/SlimUI/Modern Menu 1/Scenes/Demos/MainMenu.unity
+    guid: 829a86ba161cdd840842063447f41aab
   - enabled: 1
-    path: Assets/Weapon And Player/Scenes/Prototype.unity
-    guid: fca3d1b766b82654382bbad3665b8ad3
-  - enabled: 1
-    path: Assets/Weapon And Player/Scenes/FiringRange_Old.unity
-    guid: b8d086ddb44d43a4aac388e65f030ece
+    path: Assets/Scenes/ScenesAPO/Map1.unity
+    guid: 9dd46b493c1396a42b3cf2aa11fde485
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
