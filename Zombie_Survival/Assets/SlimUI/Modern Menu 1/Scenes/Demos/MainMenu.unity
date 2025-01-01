@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 685041815}
   - component: {fileID: 685041810}
   m_Layer: 5
-  m_Name: Btn_CCP
+  m_Name: Btn_Map1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,10 +410,10 @@ RectTransform:
   - {fileID: 691704601}
   m_Father: {fileID: 1220484231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -130}
-  m_SizeDelta: {x: 400, y: 260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685041810
 MonoBehaviour:
@@ -517,9 +517,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2076510855}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: CCP
+      - m_Target: {fileID: 4029689810951200}
+        m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
+        m_MethodName: LoadSelectedMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a1235d87f41399c419b03cc17336dc72, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d6a601fdacc49b409e2c8907c9e6489, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 1246689602}
   - component: {fileID: 1246689597}
   m_Layer: 5
-  m_Name: Btn_Essence
+  m_Name: Btn_Map3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1288,10 +1288,10 @@ RectTransform:
   - {fileID: 1504576810}
   m_Father: {fileID: 1220484231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1050, y: -130}
-  m_SizeDelta: {x: 400, y: 260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246689597
 MonoBehaviour:
@@ -1394,19 +1394,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1246689600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2076510855}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Essence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1246689600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2159,7 +2147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 984e70a599004344482d05492c6acca7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 299e9f7c9985bf5409d2358f673f7cb7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2193,7 +2181,7 @@ GameObject:
   - component: {fileID: 1582342768}
   - component: {fileID: 1582342763}
   m_Layer: 5
-  m_Name: Btn_Clean1
+  m_Name: Btn_Map2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2214,10 +2202,10 @@ RectTransform:
   - {fileID: 921062178}
   m_Father: {fileID: 1220484231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 625, y: -130}
-  m_SizeDelta: {x: 400, y: 260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582342763
 MonoBehaviour:
@@ -2319,19 +2307,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1582342766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2076510855}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Clean1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1582342766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,12 +2589,12 @@ GameObject:
   - component: {fileID: 2076510854}
   - component: {fileID: 2076510855}
   m_Layer: 5
-  m_Name: EXTRAS
+  m_Name: Maps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2076510853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4001,7 +3977,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224969160833915155}
-  - component: {fileID: 33655155378290041}
   - component: {fileID: 23316400093632889}
   - component: {fileID: 114693035575566015}
   - component: {fileID: 1245468607712016}
@@ -8426,12 +8401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d601cfe6a1041547855e41d8d6f683e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalDifficultyButton: {fileID: 114290480438037893}
-  hardDifficultyButton: {fileID: 114259745605002283}
-  saveButton: {fileID: 980342341}
-  newGameButton: {fileID: 4735907911106152571}
-  timeBetweenWaves: 0
-  zombiePerWave: 0
+  map1Button: {fileID: 685041812}
 --- !u!4 &4113673330039485
 Transform:
   m_ObjectHideFlags: 0
@@ -12436,14 +12406,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177828590651399}
-  m_Mesh: {fileID: 0}
---- !u!33 &33655155378290041
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245468607712015}
   m_Mesh: {fileID: 0}
 --- !u!33 &33660034805267871
 MeshFilter:
@@ -23843,7 +23805,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -23855,9 +23817,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 514
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -23870,7 +23832,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -24768,7 +24730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.68602705, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6862745, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35057,14 +35019,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &4085723404071441991
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4093006183863683605}
-  m_Mesh: {fileID: 0}
 --- !u!114 &4092950405804616512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35110,7 +35064,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4312029846234124723}
-  - component: {fileID: 4085723404071441991}
   - component: {fileID: 4078417674637060427}
   - component: {fileID: 4133913501843142705}
   - component: {fileID: 4093006183863683606}
@@ -35295,7 +35248,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -35307,9 +35260,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -35322,7 +35275,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -35772,7 +35725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261, y: -173.15}
+  m_AnchoredPosition: {x: 261, y: -217.98334}
   m_SizeDelta: {x: 522, y: 77.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &5036005528209529049
@@ -35882,7 +35835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5114210542341571452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37023,14 +36976,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &8839072203173823145
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8850859627344371451}
-  m_Mesh: {fileID: 0}
 --- !u!114 &8850859627344371448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37055,7 +37000,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8777162537871590749}
-  - component: {fileID: 8839072203173823145}
   - component: {fileID: 8827237633663155621}
   - component: {fileID: 8883151196904500447}
   - component: {fileID: 8850859627344371448}
@@ -37145,7 +37089,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -37157,9 +37101,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -37172,7 +37116,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1

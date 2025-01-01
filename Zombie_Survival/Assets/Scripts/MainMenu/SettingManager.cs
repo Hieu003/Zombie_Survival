@@ -1,66 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using HQFPSWeapons;
-
 
 public class SettingManager : MonoBehaviour
 {
-    public Button normalDifficultyButton;
+    public Button map1Button;
 
-    public Button hardDifficultyButton;
-
-    public Button saveButton;
-
-    public Button newGameButton;
-
-    [SerializeField] private float timeBetweenWaves;
-
-    [SerializeField] private int zombiePerWave;
-
-    private void Start()
+    void Start()
     {
-        LoadSetting();
-
-        normalDifficultyButton.onClick.AddListener(SetNormalDifficulty);
-        hardDifficultyButton.onClick.AddListener(SetHardDifficulty);
-
-        saveButton.onClick.AddListener(SaveSetting);
- 
-    }
-
-    public void LoadSetting()
-    {
-        if(PlayerPrefs.HasKey("TimeBetweenWaves"))
+        if (map1Button != null)
         {
-            timeBetweenWaves = PlayerPrefs.GetFloat("TimeBetweenWaves");
+            map1Button.onClick.AddListener(() => LoadScene("Map1"));
         }
-        if (PlayerPrefs.HasKey("ZombiePerWave"))
+        else
         {
-            timeBetweenWaves = PlayerPrefs.GetInt("ZombiePerWave");
+            Debug.LogError("Map1 Button is not assigned in the Inspector!");
         }
-
-
     }
 
-    public void SaveSetting()
+    // Phương thức chung để load Scene
+    public void LoadScene(string sceneName)
     {
-        PlayerPrefs.SetFloat("TimeBetweenWaves", timeBetweenWaves);
-        PlayerPrefs.SetInt("ZombiePerWave", zombiePerWave);
-
-        PlayerPrefs.Save();
+        SceneManager.LoadScene(sceneName);
     }
-
-    private void SetNormalDifficulty()
-    {
-        timeBetweenWaves = 10f;
-        zombiePerWave = 4;
-    }
-
-    private void SetHardDifficulty()
-    {
-        timeBetweenWaves = 7f;
-        zombiePerWave = 8;
-    }
-
-    
 }
