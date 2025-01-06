@@ -568,6 +568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8587767804040076525, guid: 87d5ddac1bd7e844092028f81f698431,
         type: 3}
+      propertyPath: spawnRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587767804040076525, guid: 87d5ddac1bd7e844092028f81f698431,
+        type: 3}
       propertyPath: WaveTimerText
       value: 
       objectReference: {fileID: 887226051}
@@ -581,6 +586,11 @@ PrefabInstance:
       propertyPath: ZombieCountText
       value: 
       objectReference: {fileID: 961663726}
+    - target: {fileID: 8587767804040076525, guid: 87d5ddac1bd7e844092028f81f698431,
+        type: 3}
+      propertyPath: initialZombiePerWave
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8587767804040076525, guid: 87d5ddac1bd7e844092028f81f698431,
         type: 3}
       propertyPath: 'spawnPoints.Array.data[0]'
@@ -935,7 +945,7 @@ PrefabInstance:
     - target: {fileID: 224278618387929204, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -58.00061
+      value: -58.000427
       objectReference: {fileID: 0}
     - target: {fileID: 224925160001347238, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
@@ -1025,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 5206685839297647287, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25.999878
+      value: 25.999939
       objectReference: {fileID: 0}
     - target: {fileID: 6344663295651349444, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
@@ -1222,21 +1232,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
         type: 3}
       propertyPath: m_LocalPosition.x
