@@ -249,6 +249,7 @@ public abstract class BaseZombieAI : MonoBehaviour
             col.enabled = false;
         GameManager.instance.currentScore += 1;
         StartCoroutine(RemoveZombieAfterDelay(5f));
+        OnZombieDeath?.Invoke();
     }
 
     private IEnumerator RemoveZombieAfterDelay(float delay)
@@ -285,6 +286,11 @@ public abstract class BaseZombieAI : MonoBehaviour
             animator.SetBool("IsDead", false);
         }
     }
+
+
+    public event System.Action OnZombieDeath;
+
+   
 }
 
 

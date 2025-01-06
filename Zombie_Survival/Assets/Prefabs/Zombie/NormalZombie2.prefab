@@ -2579,6 +2579,8 @@ GameObject:
   - component: {fileID: 8544786062585313123}
   - component: {fileID: 1053771827946694021}
   - component: {fileID: 2897044759956411542}
+  - component: {fileID: 3262019620179292221}
+  - component: {fileID: -1362581252266177002}
   m_Layer: 0
   m_Name: NormalZombie2
   m_TagString: Untagged
@@ -2596,7 +2598,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.7931385, y: 1.7388057, z: 17.784}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3753165618968506702}
@@ -2668,7 +2670,8 @@ MonoBehaviour:
     m_BulletResistance: 0.1
   ragdollPrefab: {fileID: 0}
   ragdollForceOffset: {x: 0, y: 0, z: 0}
-  bloodEffectPrefab: {fileID: 0}
+  bloodEffectPrefab: {fileID: 7802891490945899429, guid: 0ad848a40e1ba5c428eb5b70698948f1,
+    type: 3}
 --- !u!114 &2897044759956411542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2687,6 +2690,47 @@ MonoBehaviour:
   idleDuration: 5
   walkDuration: 10
   walkSpeedMultiplier: 0.5
+--- !u!136 &3262019620179292221
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8639635707324416274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1362581252266177002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8639635707324416274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f232d25db074cc4ba887924930510a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReleasedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUseEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8777394228260810152
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100182, guid: f4d535afef9f8b642bc188233e309d79, type: 3}
       propertyPath: m_Name
-      value: Phat
+      value: TankZombie
       objectReference: {fileID: 0}
     - target: {fileID: 400182, guid: f4d535afef9f8b642bc188233e309d79, type: 3}
       propertyPath: m_LocalScale.x
@@ -88,6 +88,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6776146083919482705}
+    - targetCorrespondingSourceObject: {fileID: 100182, guid: f4d535afef9f8b642bc188233e309d79,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6386603338647321129}
   m_SourcePrefab: {fileID: 100100000, guid: f4d535afef9f8b642bc188233e309d79, type: 3}
 --- !u!1 &7705857780288883745 stripped
 GameObject:
@@ -110,6 +114,9 @@ MonoBehaviour:
   currentState: 0
   navAgent: {fileID: 1490721299802928715}
   player: {fileID: 0}
+  idleDuration: 5
+  walkDuration: 10
+  walkSpeedMultiplier: 0.5
 --- !u!114 &4605928588852852171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +185,21 @@ CapsuleCollider:
   m_Height: 2.3461657
   m_Direction: 1
   m_Center: {x: -0.027009571, y: 0.6346205, z: -0.030059604}
+--- !u!114 &6386603338647321129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7705857780288883745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f232d25db074cc4ba887924930510a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReleasedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUseEvent:
+    m_PersistentCalls:
+      m_Calls: []

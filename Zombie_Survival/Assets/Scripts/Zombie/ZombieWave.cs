@@ -7,93 +7,145 @@ using UnityEngine.UI;
 public class ZombieWave : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    public float timeBetweenWaves = 10f; // Giá trị mặc định cho Easy
+    public GameObject[] zombiePrefabs;
+    public float timeBetweenWaves = 10f;
     private float waveTimer = 0f;
     private int waveNumber = 0;
-    public int zombiePerWave = 4; // Giá trị mặc định cho Easy
-    protected ZombieHealth zombieHealth;
-    public float timeBetweenSpawns = 2f; // Thời gian giữa mỗi lần spawn nhỏ
+    public int initialZombiePerWave = 4; // Số lượng zombie khởi đầu
+    public int maxZombies = 100; // Giới hạn số lượng zombie tối đa
+    public float spawnRadius = 50f; // Bán kính spawn
+    public float timeBetweenSpawns = 0.5f;
 
-    public Text WaveNumber;
-    public Text WaveTimer;
+    public Text WaveNumberText;
+    public Text WaveTimerText;
+    public Text ZombieCountText; // Thêm Text để hiển thị số lượng zombie còn lại
+
+    private string difficulty;
+    private int currentZombieCount = 0; // Số lượng zombie hiện tại
+    private bool waveSpawning = false;
+    private int zombieIncrement; // Số lượng zombie tăng thêm mỗi wave
+    private int zombiePerWave;
+
+    private bool isFirstWave = true;
 
     private void Start()
     {
-        // Lấy độ khó từ PlayerPrefs
-        string difficulty = PlayerPrefs.GetString("Difficulty", "Easy"); // "Easy" là giá trị mặc định nếu không tìm thấy
+        difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
 
-        // Thiết lập các giá trị dựa trên độ khó
         if (difficulty == "Hard")
         {
             timeBetweenWaves = 5f;
-            zombiePerWave = 7;
+            zombieIncrement = 5;
+            zombiePerWave = initialZombiePerWave + 3;
             Debug.Log("Hard difficulty loaded");
         }
         else
         {
-            // Mặc định là Easy, đã được gán giá trị ở trên
+            zombieIncrement = 3;
+            zombiePerWave = initialZombiePerWave;
             Debug.Log("Easy difficulty loaded");
         }
+
+        foreach (GameObject prefab in zombiePrefabs)
+        {
+            PoolingManager.Instance.CreatePool(prefab, 10, 30, true, prefab.GetInstanceID().ToString());
+        }
+        WaveTimerText.gameObject.SetActive(true);
+        waveTimer = 0f;
     }
 
     private void Update()
     {
-        if (waveNumber == 10)
-            return;
-
-        waveTimer += Time.deltaTime;
-        int intValue = Mathf.RoundToInt(waveTimer);
-        WaveTimer.text = intValue.ToString();
-
-        if (waveTimer >= timeBetweenWaves)
+        if (isFirstWave)
         {
-            StartNewWave();
+            // Nếu là wave đầu tiên, hiển thị thông báo và đếm thời gian
+            waveTimer += Time.deltaTime;
+            int intValue = Mathf.RoundToInt(waveTimer);
+            WaveTimerText.text = "A new wave will arrive in " + (timeBetweenWaves - intValue).ToString() + " s";
+
+            if (waveTimer >= timeBetweenWaves)
+            {
+                // Bắt đầu wave 1 sau khi đếm xong thời gian
+                StartNewWave();
+                isFirstWave = false; // Không còn là wave đầu tiên nữa
+                WaveTimerText.gameObject.SetActive(false); // Ẩn WaveTimerText
+            }
         }
+        else
+        {
+            // Các wave sau đó
+            if (waveSpawning)
+            {
+                WaveTimerText.gameObject.SetActive(false);
+                return;
+            }
+
+            if (currentZombieCount == 0)
+            {
+                waveTimer += Time.deltaTime;
+                int intValue = Mathf.RoundToInt(waveTimer);
+
+                WaveTimerText.gameObject.SetActive(true);
+                WaveTimerText.text = "A new wave will arrive in " + (timeBetweenWaves - intValue).ToString() + " s";
+
+                if (waveTimer >= timeBetweenWaves)
+                {
+                    StartNewWave();
+                }
+            }
+            else
+            {
+                waveTimer = 0f;
+                WaveTimerText.gameObject.SetActive(false);
+            }
+        }
+
+        ZombieCountText.text = "Zombie: " + currentZombieCount.ToString();
     }
 
     void StartNewWave()
     {
         waveTimer = 0f;
-        // zombiePerWave += 2; //Cái này sẽ thay đổi liên tục sau mỗi đợt nên bỏ ra ngoài vòng if
-        StartCoroutine(SpawnZombies());
         waveNumber++;
-        WaveNumber.text = waveNumber.ToString();
-        // Di chuyển zombiePerWave += 2; ra ngoài if để nó tăng sau mỗi wave, bất kể độ khó
-        if (difficulty == "Hard")
-        {
-            zombiePerWave += 3;
-        }
-        else
-        {
-            zombiePerWave += 2;
-        }
+        WaveNumberText.text = "Wave: " + waveNumber.ToString();
+
+        // Tăng số lượng zombie mỗi wave dựa vào độ khó, nhưng không vượt quá maxZombies
+        zombiePerWave = Mathf.Min(zombiePerWave + zombieIncrement, maxZombies);
+
+        currentZombieCount = zombiePerWave;
+        waveSpawning = true;
+        StartCoroutine(SpawnZombies());
     }
 
     IEnumerator SpawnZombies()
     {
-        float minDistance = 10f;
-
         for (int i = 0; i < zombiePerWave; i++)
         {
-            int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
-            Transform spawnPoint = spawnPoints[randomSpawnIndex];
+            // Chọn ngẫu nhiên một spawn point
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            GameObject randomZombiePrefab = ZombiePool.Instance.zombiePrefabs[Random.Range(0, ZombiePool.Instance.zombiePrefabs.Length)];
+            // Lấy ngẫu nhiên một prefab zombie từ mảng
+            GameObject randomZombiePrefab = zombiePrefabs[Random.Range(0, zombiePrefabs.Length)];
 
-            GameObject zombie = ZombiePool.Instance.GetZombieFromPool(randomZombiePrefab.name);
+            // Tạo vị trí spawn ngẫu nhiên trong bán kính spawnRadius
+            Vector3 spawnPosition = spawnPoint.position + Random.insideUnitSphere * spawnRadius;
+            spawnPosition.y = spawnPoint.position.y; // Giữ nguyên độ cao
+
+            // Lấy zombie từ pool
+            PoolableObject zombie = PoolingManager.Instance.GetObject(randomZombiePrefab.GetInstanceID().ToString(), spawnPosition, Quaternion.identity);
 
             if (zombie != null)
             {
-                Vector3 spawnPosition = spawnPoint.position + Random.insideUnitSphere * minDistance;
-                spawnPosition.y = spawnPoint.position.y;
                 zombie.transform.position = spawnPosition;
-                zombie.transform.rotation = spawnPoint.rotation;
+                zombie.transform.rotation = Quaternion.identity;
 
                 BaseZombieAI zombieAI = zombie.GetComponent<BaseZombieAI>();
                 if (zombieAI != null)
                 {
                     zombieAI.ResetState();
+                    zombieAI.OnZombieDeath += OnZombieDied; // Đăng ký sự kiện zombie chết
                 }
+
                 ZombieHealth zombieHealth = zombie.GetComponent<ZombieHealth>();
                 if (zombieHealth != null)
                 {
@@ -103,7 +155,10 @@ public class ZombieWave : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
+        waveSpawning = false;
     }
-    private string difficulty;
-
+    private void OnZombieDied()
+    {
+        currentZombieCount--;
+    }
 }

@@ -2541,6 +2541,8 @@ GameObject:
   - component: {fileID: 8341008098859683808}
   - component: {fileID: 1297904546522462119}
   - component: {fileID: 998615662332320499}
+  - component: {fileID: -5582291057179132406}
+  - component: {fileID: 7127095572073384460}
   m_Layer: 0
   m_Name: Normal_Zombie1
   m_TagString: Untagged
@@ -2558,7 +2560,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 36.99148, y: -0.145, z: -2.8600755}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7904805172102119211}
@@ -2653,7 +2655,8 @@ MonoBehaviour:
     m_BulletResistance: 0.1
   ragdollPrefab: {fileID: 0}
   ragdollForceOffset: {x: 0, y: 0, z: 0}
-  bloodEffectPrefab: {fileID: 0}
+  bloodEffectPrefab: {fileID: 7802891490945899429, guid: 0ad848a40e1ba5c428eb5b70698948f1,
+    type: 3}
 --- !u!114 &998615662332320499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,6 +2675,47 @@ MonoBehaviour:
   idleDuration: 5
   walkDuration: 10
   walkSpeedMultiplier: 0.5
+--- !u!136 &-5582291057179132406
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822268125159563480}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.224737
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.612369, z: 0}
+--- !u!114 &7127095572073384460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822268125159563480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f232d25db074cc4ba887924930510a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReleasedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUseEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9064715065481767315
 GameObject:
   m_ObjectHideFlags: 0
