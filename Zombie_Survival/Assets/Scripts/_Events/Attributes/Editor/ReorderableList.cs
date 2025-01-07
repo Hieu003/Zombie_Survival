@@ -1472,7 +1472,7 @@ namespace HQFPSWeapons.ReorderableLists {
 				boxBackground = new GUIStyle("RL Background");
 				boxBackground.border = new RectOffset(6, 3, 3, 6);
 				preButton = new GUIStyle("RL FooterButton");
-				expandButton = EditorGUIUtility.IconContent("winbtn_win_max");
+			//	expandButton = EditorGUIUtility.IconContent("winbtn_win_max");
 				collapseButton = EditorGUIUtility.IconContent("winbtn_win_min");
 			}
 		}

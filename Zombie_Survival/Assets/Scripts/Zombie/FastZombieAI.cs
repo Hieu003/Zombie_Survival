@@ -40,7 +40,7 @@ public class FastZombieAI : BaseZombieAI
     {
         base.HandleZombieDeath(); // Gọi logic chết từ BaseZombieAI
 
-        Debug.Log("FastZombie đã chết!");
+        
         // Thêm hiệu ứng nếu cần, ví dụ: rơi vật phẩm.
     }
 }

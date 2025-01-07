@@ -134,6 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &241588324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716186300373558, guid: 20ce86f0ddf7cd1438b1f6d3006b3862,
+    type: 3}
+  m_PrefabInstance: {fileID: 1239271600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &310044946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,12 +257,25 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1239271600}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 241588324}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb543a3a6cf82e04d86702984651c9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &947092039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241588324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6748ea1d8722a5f47b37a02ab632ab37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearingRadius: 10000
 --- !u!114 &961663726 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6372164401080116300, guid: 46b2d3193ac373e49b24121a3e853cdb,
@@ -428,21 +447,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2031875454335421278, guid: 99521bc25a8ae8f44aac3a4a84e5aab2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -661,7 +665,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1716186300373558, guid: 20ce86f0ddf7cd1438b1f6d3006b3862,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 947092039}
   m_SourcePrefab: {fileID: 100100000, guid: 20ce86f0ddf7cd1438b1f6d3006b3862, type: 3}
 --- !u!1001 &1259275572
 PrefabInstance:
@@ -732,21 +740,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5261274065726033225, guid: 7c7089ac428730546bc77d4bfccd9750,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5261274065726033225, guid: 7c7089ac428730546bc77d4bfccd9750,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5261274065726033225, guid: 7c7089ac428730546bc77d4bfccd9750,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5261274065726033225, guid: 7c7089ac428730546bc77d4bfccd9750,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -945,7 +938,7 @@ PrefabInstance:
     - target: {fileID: 224278618387929204, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -58.000427
+      value: -58.00067
       objectReference: {fileID: 0}
     - target: {fileID: 224925160001347238, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
@@ -1035,7 +1028,7 @@ PrefabInstance:
     - target: {fileID: 5206685839297647287, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25.999939
+      value: 26.000061
       objectReference: {fileID: 0}
     - target: {fileID: 6344663295651349444, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}

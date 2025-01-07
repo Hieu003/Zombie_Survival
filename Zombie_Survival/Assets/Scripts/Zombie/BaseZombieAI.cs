@@ -26,7 +26,8 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     protected bool isAttacking;
     protected ZombieHealth zombieHealth;
-    
+    [SerializeField] protected float hearingDistance = 1000f;
+
 
 
     protected virtual void Start()
@@ -148,23 +149,18 @@ public abstract class BaseZombieAI : MonoBehaviour
             animator.SetBool("IsPatrolling", false);
         }
 
-        // Thiết lập lại tốc độ bình thường
-        if (navAgent != null)
-            navAgent.speed = speed;
-
         if (navAgent != null)
         {
+            navAgent.speed = speed;
             navAgent.SetDestination(player.position);
             navAgent.stoppingDistance = attackDistance;
         }
 
-        // Chuyển sang Attack nếu trong khoảng cách Attack
         if (Vector3.Distance(transform.position, player.position) <= attackDistance)
         {
             currentState = ZombieState.Attack;
             stateStartTime = Time.time;
         }
-
     }
 
 
@@ -287,6 +283,26 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
     }
 
+
+    public virtual void HearSound(Vector3 soundPosition, float loudness)
+    {
+        if (currentState == ZombieState.Dead) return;
+
+        float distanceToSound = Vector3.Distance(transform.position, soundPosition);
+
+        if (distanceToSound <= hearingDistance * loudness)
+        {
+            // Kích hoạt trạng thái Chase khi nghe thấy âm thanh
+            if (currentState != ZombieState.Attack)
+            {
+                currentState = ZombieState.Chase;
+                stateStartTime = Time.time;
+            }
+
+            // Chạy ChaseBehavior() ngay lập tức để phản ứng nhanh hơn
+            ChaseBehavior();
+        }
+    }
 
     public event System.Action OnZombieDeath;
 

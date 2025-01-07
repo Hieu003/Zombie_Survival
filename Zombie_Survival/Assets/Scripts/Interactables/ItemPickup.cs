@@ -6,7 +6,7 @@ namespace HQFPSWeapons
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ItemPickup : InteractiveObject
+	public class ItemPickup : InteractiveObject 
 	{
 		/// <summary> </summary>
 		public SaveableItem ItemInstance { get { return m_ItemInstance; } }
@@ -199,59 +199,65 @@ namespace HQFPSWeapons
 			m_TriggerRadius = Mathf.Clamp(m_TriggerRadius, 0f, 2f);
 		}
 
-		private void OnPickUp(Player player)
-		{
-			if(m_ItemInstance != null)
-			{
-				bool destroy = false;
-				bool swappedItems = false;
+        private void OnPickUp(Player player)
+        {
+            if (m_ItemInstance != null)
+            {
+                bool destroy = false;
+                bool swappedItems = false;
 
-				if (player.Inventory.GetContainerWithFlags(m_TargetContainers).ContainerIsFull())
-				{
-					if (player.EquippedItem.Get() != null && player.SwapItems.Try(ItemInstance))
-						swappedItems = true;
-				}
+                if (player.Inventory.GetContainerWithFlags(m_TargetContainers).ContainerIsFull())
+                {
+                    if (player.EquippedItem.Get() != null && player.SwapItems.Try(ItemInstance))
+                        swappedItems = true;
+                }
 
-				if(!swappedItems)
-				{
-					bool addedItem = player.Inventory.AddItem(m_ItemInstance, m_TargetContainers);
+                if (!swappedItems)
+                {
+                    bool addedItem = player.Inventory.AddItem(m_ItemInstance, m_TargetContainers);
 
-					// Item added to inventory
-					if (addedItem)
-					{
-						if (m_ItemInstance.Data.StackSize > 1)
-							MessageDisplayer.Instance.PushMessage(string.Format("Picked up <color={0}>{1}</color> x {2}", ColorUtils.ColorToHex(m_ItemCountColor), m_ItemInstance.Name, m_ItemInstance.CurrentStackSize), m_BaseMessageColor);
-						else
-							MessageDisplayer.Instance.PushMessage(string.Format("Picked up <color={0}>{1}</color>", ColorUtils.ColorToHex(m_ItemCountColor), m_ItemInstance.Name), m_BaseMessageColor);
+                    if (addedItem)
+                    {
+                        if (m_ItemInstance.Data.StackSize > 1)
+                            MessageDisplayer.Instance.PushMessage(string.Format("Picked up <color={0}>{1}</color> x {2}", ColorUtils.ColorToHex(m_ItemCountColor), m_ItemInstance.Name, m_ItemInstance.CurrentStackSize), m_BaseMessageColor);
+                        else
+                            MessageDisplayer.Instance.PushMessage(string.Format("Picked up <color={0}>{1}</color>", ColorUtils.ColorToHex(m_ItemCountColor), m_ItemInstance.Name), m_BaseMessageColor);
 
-						destroy = true;
+                        destroy = true;
 
-						//Play pickup sound
-						m_PickupSounds.Play2D(ItemSelection.Method.RandomExcludeLast);
-					}
-					// Item not added to inventory
-					else
-					{
-						MessageDisplayer.Instance.PushMessage(string.Format("<color={0}>Inventory Full</color>", ColorUtils.ColorToHex(m_InventoryFullColor)), m_BaseMessageColor);
-					}
-				}
-				// Item swapped
-				else
-				{
-					destroy = true;
-				}
+                        m_PickupSounds.Play2D(ItemSelection.Method.RandomExcludeLast);
+                    }
+                    else
+                    {
+                        MessageDisplayer.Instance.PushMessage(string.Format("<color={0}>Inventory Full</color>", ColorUtils.ColorToHex(m_InventoryFullColor)), m_BaseMessageColor);
+                    }
+                }
+                else
+                {
+                    destroy = true;
+                }
 
-				if(destroy)
-					Destroy(gameObject);
-			}
-			else
-			{
-				Debug.LogError("Item Instance is null, can't pick up anything.");
-				return;
-			}
-		}
+                // Tìm SoundRelay và đăng ký sự kiện
+                if (destroy)
+                {
+                    SoundRelay soundRelay = player.GetComponent<SoundRelay>();
+                    if (soundRelay != null)
+                    {
+                        soundRelay.RegisterGunEvents();
+                    }
+                }
 
-		public IEnumerator C_DelayedDestroy(float lifeTime) 
+                if (destroy)
+                    Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("Item Instance is null, can't pick up anything.");
+                return;
+            }
+        }
+
+        public IEnumerator C_DelayedDestroy(float lifeTime) 
 		{
 			yield return new WaitForSeconds(lifeTime);
 

@@ -2,6 +2,7 @@
 using Random = UnityEngine.Random;
 using System.Linq;
 using System;
+using UnityEditor.PackageManager;
 
 namespace HQFPSWeapons
 {
@@ -18,7 +19,9 @@ namespace HQFPSWeapons
 
 		// Cache some properties of the item
 		protected ItemProperty.Value m_FireModes;
-       
+
+        public event System.Action<Vector3, float> OnShoot;
+
 
 
         public override void Wield(SaveableItem correspondingItem)
@@ -83,10 +86,16 @@ namespace HQFPSWeapons
 			if (Player.IsGrounded.Get() == true && m_GunAudio.ShellDropSounds.Length > 0)
 				m_EHandler.PlayDelayedSound(m_GunAudio.ShellDropSounds[Random.Range(0, m_GunAudio.ShellDropSounds.Length)]);
 
-			//Raycast Shooting
-			for (int i = 0; i < m_Shooting.RayCount; i++)
-				DoHitscan(camera);
-		}
+            RaycastHit hitInfo = new RaycastHit();
+
+            //Raycast Shooting
+            for (int i = 0; i < m_Shooting.RayCount; i++)
+				DoHitscan(camera, out hitInfo);
+
+            OnShoot?.Invoke(camera.transform.position, 1000f); // Thêm dòng này, 1f là độ lớn âm thanh (tùy chỉnh)
+            WeaponShoot.Send(hitInfo);
+
+        }
 
 		private void SelectFireMode(int selectedMode) 
 		{
@@ -118,54 +127,54 @@ namespace HQFPSWeapons
 			m_FireModes.SetValue(fireModeRange);
 		}
 
-		private void DoHitscan(Camera camera)
-		{
-			float spread = m_Shooting.SpreadOverTime.Evaluate(continuouslyUsedTimes / (float)m_Ammo.Settings.MagazineSize);
-			
-			if (Player.Jump.Active)
-				spread *= m_Shooting.JumpSpreadFactor;
-			else if (Player.Run.Active)
-				spread *= m_Shooting.RunSpreadFactor;
-			else if (Player.Crouch.Active)
-				spread *= m_Shooting.CrouchSpreadFactor;
-			else if (Player.Walk.Active)
-				spread *= m_Shooting.WalkSpreadFactor;
+        private void DoHitscan(Camera camera, out RaycastHit hitInfo)
+        {
+            float spread = m_Shooting.SpreadOverTime.Evaluate(continuouslyUsedTimes / (float)m_Ammo.Settings.MagazineSize);
 
-			if (Player.Aim.Active)
-				spread *= m_Shooting.AimSpreadFactor;
+            if (Player.Jump.Active)
+                spread *= m_Shooting.JumpSpreadFactor;
+            else if (Player.Run.Active)
+                spread *= m_Shooting.RunSpreadFactor;
+            else if (Player.Crouch.Active)
+                spread *= m_Shooting.CrouchSpreadFactor;
+            else if (Player.Walk.Active)
+                spread *= m_Shooting.WalkSpreadFactor;
 
-			RaycastHit hitInfo;
+            if (Player.Aim.Active)
+                spread *= m_Shooting.AimSpreadFactor;
 
-			Ray ray = camera.ViewportPointToRay(Vector2.one * 0.5f);
-			Vector3 spreadVector = camera.transform.TransformVector(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), 0f));
-			ray.direction = Quaternion.Euler(spreadVector) * ray.direction;
+            Ray ray = camera.ViewportPointToRay(Vector2.one * 0.5f);
+            Vector3 spreadVector = camera.transform.TransformVector(new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), 0f));
+            ray.direction = Quaternion.Euler(spreadVector) * ray.direction;
 
-			if (Physics.Raycast(ray, out hitInfo, m_Shooting.MaxDistance, m_Shooting.Mask, QueryTriggerInteraction.Ignore))
-			{
-				float impulse = m_Shooting.RayImpact.GetImpulseAtDistance(hitInfo.distance, m_Shooting.MaxDistance);
+            if (Physics.Raycast(ray, out hitInfo, m_Shooting.MaxDistance, m_Shooting.Mask, QueryTriggerInteraction.Ignore))
+            {
+                float impulse = m_Shooting.RayImpact.GetImpulseAtDistance(hitInfo.distance, m_Shooting.MaxDistance);
 
-				// Apply an impact impulse
-				if (hitInfo.rigidbody != null)
-					hitInfo.rigidbody.AddForceAtPosition(ray.direction * impulse, hitInfo.point, ForceMode.Impulse);
+                // Apply an impact impulse
+                if (hitInfo.rigidbody != null)
+                    hitInfo.rigidbody.AddForceAtPosition(ray.direction * impulse, hitInfo.point, ForceMode.Impulse);
 
-				// Do damage
-				float damage = m_Shooting.RayImpact.GetDamageAtDistance(hitInfo.distance, m_Shooting.MaxDistance);
-				var damageable = hitInfo.collider.GetComponent<IDamageable>();
+                // Do damage
+                float damage = m_Shooting.RayImpact.GetDamageAtDistance(hitInfo.distance, m_Shooting.MaxDistance);
+                var damageable = hitInfo.collider.GetComponent<IDamageable>();
 
-				if (damageable != null)
-				{
-					var damageData = new HealthEventData(-damage, DamageType.Bullet, hitInfo.point, ray.direction, impulse * m_Shooting.RayCount, hitInfo.normal, Player);
-					damageable.TakeDamage(damageData);
-                    
+                if (damageable != null)
+                {
+                    var damageData = new HealthEventData(-damage, DamageType.Bullet, hitInfo.point, ray.direction, impulse * m_Shooting.RayCount, hitInfo.normal, Player);
+                    damageable.TakeDamage(damageData);
                 }
 
-				SurfaceManager.SpawnEffect(hitInfo, SurfaceEffects.BulletHit, 1f);
-			}
+                SurfaceManager.SpawnEffect(hitInfo, SurfaceEffects.BulletHit, 1000f);
+            }
+            else
+            {
+                // Nếu không raycast trúng gì, đặt hitInfo bằng default
+                hitInfo = default;
+            }
+        }
 
-			WeaponShoot.Send(hitInfo);
-		}
-
-		private int GetNextFireModeIndex(int currentIndex) 
+        private int GetNextFireModeIndex(int currentIndex) 
 		{
 			int lastEnumVal = (int)Enum.GetValues(typeof(FireMode)).Cast<FireMode>().Max();
 

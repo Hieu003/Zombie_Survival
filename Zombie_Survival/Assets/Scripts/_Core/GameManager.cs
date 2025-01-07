@@ -62,14 +62,14 @@ namespace HQFPSWeapons
 		public void SetPlayerPosition()
 		{
 			//Set the position and rotation with the random spawn point transform
-			CurrentPlayer.transform.position = GetSpawnPoint();
-			CurrentPlayer.transform.rotation = GetSpawnRotation();
+		//	CurrentPlayer.transform.position = GetSpawnPoint();
+		//	CurrentPlayer.transform.rotation = GetSpawnRotation();
 		}
 
-		private Vector3 GetSpawnPoint()
+		 /*private Vector3 GetSpawnPoint()
 		{
 			//get a random spawn point
-			var spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
+		//	var spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
 			Vector3 spawnPoint = CurrentPlayer.transform.position;
 
 			if (spawnPoints != null)
@@ -81,9 +81,9 @@ namespace HQFPSWeapons
 			}
 
 			return spawnPoint;
-		}
+		} */
 
-		private Quaternion GetSpawnRotation()
+		/* private Quaternion GetSpawnRotation()
 		{
 			var spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
 			Quaternion spawnRotation = CurrentPlayer.transform.rotation;
@@ -92,7 +92,7 @@ namespace HQFPSWeapons
 				spawnRotation = spawnPoints.GetRandomRotation();
 
 			return spawnRotation;
-		}
+		} */
 
 		private void OnEnable()
 		{
@@ -156,8 +156,8 @@ namespace HQFPSWeapons
 
 		private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
-			CurrentPlayer = FindObjectOfType<Player>();
-			CurrentInterface = FindObjectOfType<UIManager>();
+			CurrentPlayer = FindFirstObjectByType<Player>();
+			CurrentInterface = FindFirstObjectByType<UIManager>();
 
 			CurrentInterface.AttachToPlayer(CurrentPlayer);
 		}
