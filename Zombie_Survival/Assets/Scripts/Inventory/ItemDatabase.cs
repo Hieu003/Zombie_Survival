@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace HQFPSWeapons
@@ -126,7 +127,9 @@ namespace HQFPSWeapons
 			return null;
 		}
 
-		public ItemCategory GetRandomCategory()
+   
+
+        public ItemCategory GetRandomCategory()
 		{
 			return m_Categories[Random.Range(0, m_Categories.Length)];
 		}

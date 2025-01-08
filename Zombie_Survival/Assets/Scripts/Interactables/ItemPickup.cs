@@ -203,7 +203,7 @@ namespace HQFPSWeapons
         {
             if (m_ItemInstance != null)
             {
-                bool destroy = false;
+                bool addedToInventory = false;
                 bool swappedItems = false;
 
                 if (player.Inventory.GetContainerWithFlags(m_TargetContainers).ContainerIsFull())
@@ -223,7 +223,7 @@ namespace HQFPSWeapons
                         else
                             MessageDisplayer.Instance.PushMessage(string.Format("Picked up <color={0}>{1}</color>", ColorUtils.ColorToHex(m_ItemCountColor), m_ItemInstance.Name), m_BaseMessageColor);
 
-                        destroy = true;
+                        addedToInventory = true;
 
                         m_PickupSounds.Play2D(ItemSelection.Method.RandomExcludeLast);
                     }
@@ -234,11 +234,11 @@ namespace HQFPSWeapons
                 }
                 else
                 {
-                    destroy = true;
+                    addedToInventory = true;
                 }
 
                 // Tìm SoundRelay và đăng ký sự kiện
-                if (destroy)
+                if (addedToInventory)
                 {
                     SoundRelay soundRelay = player.GetComponent<SoundRelay>();
                     if (soundRelay != null)
@@ -247,8 +247,15 @@ namespace HQFPSWeapons
                     }
                 }
 
-                if (destroy)
-                    Destroy(gameObject);
+                if (addedToInventory)
+                {
+                    // Lấy PoolableObject và trả về pool
+                    PoolableObject poolableObject = GetComponent<PoolableObject>();
+                    if (poolableObject != null)
+                    {
+                        PoolingManager.Instance.ReleaseObject(poolableObject);
+                    }
+                }
             }
             else
             {

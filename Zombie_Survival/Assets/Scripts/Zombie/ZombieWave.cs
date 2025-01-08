@@ -8,22 +8,22 @@ public class ZombieWave : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject[] zombiePrefabs;
+    public GameObject[] itemPickupPrefabs;
     public float timeBetweenWaves = 10f;
     private float waveTimer = 0f;
     private int waveNumber = 0;
     public int initialZombiePerWave = 4; // Số lượng zombie khởi đầu
     public int maxZombies = 100; // Giới hạn số lượng zombie tối đa
-    public float spawnRadius = 50f; // Bán kính spawn
-    public float timeBetweenSpawns = 0.5f;
+    private float spawnRadius = 0.1f; // Bán kính spawn
 
     public Text WaveNumberText;
     public Text WaveTimerText;
-    public Text ZombieCountText; // Thêm Text để hiển thị số lượng zombie còn lại
+    public Text ZombieCountText;
 
     private string difficulty;
-    private int currentZombieCount = 0; // Số lượng zombie hiện tại
+    private int currentZombieCount = 0;
     private bool waveSpawning = false;
-    private int zombieIncrement; // Số lượng zombie tăng thêm mỗi wave
+    private int zombieIncrement;
     private int zombiePerWave;
 
     private bool isFirstWave = true;
@@ -32,11 +32,12 @@ public class ZombieWave : MonoBehaviour
     {
         difficulty = PlayerPrefs.GetString("Difficulty", "Easy");
 
+        // Khác biệt chính giữa Easy và Hard: số lượng zombie tăng thêm mỗi wave
         if (difficulty == "Hard")
         {
             timeBetweenWaves = 5f;
             zombieIncrement = 5;
-            zombiePerWave = initialZombiePerWave + 3;
+            zombiePerWave = initialZombiePerWave;
             Debug.Log("Hard difficulty loaded");
         }
         else
@@ -46,10 +47,17 @@ public class ZombieWave : MonoBehaviour
             Debug.Log("Easy difficulty loaded");
         }
 
+        // Tạo pool cho zombie và item pickup
         foreach (GameObject prefab in zombiePrefabs)
         {
             PoolingManager.Instance.CreatePool(prefab, 10, 30, true, prefab.GetInstanceID().ToString());
         }
+
+        foreach (GameObject itemPrefab in itemPickupPrefabs)
+        {
+            PoolingManager.Instance.CreatePool(itemPrefab, 5, 10, true, itemPrefab.GetInstanceID().ToString());
+        }
+
         WaveTimerText.gameObject.SetActive(true);
         waveTimer = 0f;
     }
@@ -58,22 +66,19 @@ public class ZombieWave : MonoBehaviour
     {
         if (isFirstWave)
         {
-            // Nếu là wave đầu tiên, hiển thị thông báo và đếm thời gian
             waveTimer += Time.deltaTime;
             int intValue = Mathf.RoundToInt(waveTimer);
             WaveTimerText.text = "A new wave will arrive in " + (timeBetweenWaves - intValue).ToString() + " s";
 
             if (waveTimer >= timeBetweenWaves)
             {
-                // Bắt đầu wave 1 sau khi đếm xong thời gian
                 StartNewWave();
-                isFirstWave = false; // Không còn là wave đầu tiên nữa
-                WaveTimerText.gameObject.SetActive(false); // Ẩn WaveTimerText
+                isFirstWave = false;
+                WaveTimerText.gameObject.SetActive(false);
             }
         }
         else
         {
-            // Các wave sau đó
             if (waveSpawning)
             {
                 WaveTimerText.gameObject.SetActive(false);
@@ -110,14 +115,21 @@ public class ZombieWave : MonoBehaviour
         WaveNumberText.text = "Wave: " + waveNumber.ToString();
 
         // Tăng số lượng zombie mỗi wave dựa vào độ khó, nhưng không vượt quá maxZombies
-        zombiePerWave = Mathf.Min(zombiePerWave + zombieIncrement, maxZombies);
+        if (waveNumber > 1)
+        {
+            zombiePerWave = Mathf.Min(zombiePerWave + zombieIncrement, maxZombies);
+        }
 
-        currentZombieCount = zombiePerWave;
+        currentZombieCount = 0;
         waveSpawning = true;
-        StartCoroutine(SpawnZombies());
+
+        // Spawn tất cả zombie cùng lúc
+        SpawnZombies();
+
+        waveSpawning = false; // Đặt waveSpawning = false ngay sau khi spawn xong
     }
 
-    IEnumerator SpawnZombies()
+    void SpawnZombies()
     {
         for (int i = 0; i < zombiePerWave; i++)
         {
@@ -136,6 +148,7 @@ public class ZombieWave : MonoBehaviour
 
             if (zombie != null)
             {
+                currentZombieCount++;
                 zombie.transform.position = spawnPosition;
                 zombie.transform.rotation = Quaternion.identity;
 
@@ -152,13 +165,15 @@ public class ZombieWave : MonoBehaviour
                     zombieHealth.ResetHealth();
                 }
             }
-
-            yield return new WaitForSeconds(timeBetweenSpawns);
         }
-        waveSpawning = false;
     }
+
     private void OnZombieDied()
     {
         currentZombieCount--;
+        if (currentZombieCount < 0)
+        {
+            currentZombieCount = 0;
+        }
     }
 }

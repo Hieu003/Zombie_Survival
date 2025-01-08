@@ -812,9 +812,14 @@ MonoBehaviour:
   currentState: 0
   navAgent: {fileID: 6170744151780030430}
   player: {fileID: 0}
+  itemPrefabs:
+  - {fileID: 3328120415746168360, guid: 9a54f820d4d926a47ad07ce5a9d36905, type: 3}
+  - {fileID: 7427319033866006036, guid: e359cb2d4842e124d8896a68e69d6cec, type: 3}
+  dropChance: 0.5
   idleDuration: 5
   walkDuration: 10
   walkSpeedMultiplier: 0.5
+  hearingDistance: 1000
 --- !u!195 &6170744151780030430
 NavMeshAgent:
   m_ObjectHideFlags: 0

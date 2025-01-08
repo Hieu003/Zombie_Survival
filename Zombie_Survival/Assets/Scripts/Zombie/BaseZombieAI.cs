@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using HQFPSWeapons;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public abstract class BaseZombieAI : MonoBehaviour
 {
@@ -11,6 +13,13 @@ public abstract class BaseZombieAI : MonoBehaviour
     public NavMeshAgent navAgent;
     protected Animator animator;
     public Transform player;
+
+
+    [Header("Item Drop")]
+    [SerializeField] private GameObject[] itemPrefabs; // Mảng chứa các prefab item có thể rơi ra
+    [SerializeField] private float dropChance = 0.5f;
+
+    private static HashSet<string> droppedGunPrefabs = new HashSet<string>();
 
     // Các thông số chung
     protected float speed;
@@ -240,19 +249,32 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         animator.SetBool("IsDead", true);
 
+        // Vô hiệu hóa collider ngay lập tức
         Collider[] colliders = GetComponentsInChildren<Collider>();
         foreach (var col in colliders)
             col.enabled = false;
         GameManager.instance.currentScore += 1;
-        StartCoroutine(RemoveZombieAfterDelay(5f));
+
+        TryDropItem();
+        
         OnZombieDeath?.Invoke();
+        StartCoroutine(ReleaseWithDelay(5f));
     }
 
-    private IEnumerator RemoveZombieAfterDelay(float delay)
+
+    private IEnumerator ReleaseWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+
+        // Trả object về pool thay vì hủy
+        PoolableObject poolableObject = GetComponent<PoolableObject>();
+        if (poolableObject != null)
+        {
+            PoolingManager.Instance.ReleaseObject(poolableObject);
+        }
     }
+
+ 
 
     private void OnDrawGizmosSelected()
     {
@@ -303,6 +325,65 @@ public abstract class BaseZombieAI : MonoBehaviour
             ChaseBehavior();
         }
     }
+
+
+    private void TryDropItem()
+    {
+        if (Random.value <= dropChance)
+        {
+            // Lọc danh sách itemPrefabs chỉ lấy các item chưa rơi (nếu là súng)
+            List<GameObject> availableItems = new List<GameObject>();
+            foreach (GameObject itemPrefab in itemPrefabs)
+            {
+                if (itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(itemPrefab.name))
+                {
+                    availableItems.Add(itemPrefab);
+                }
+            }
+
+            if (availableItems.Count > 0)
+            {
+                // Chọn ngẫu nhiên một item từ danh sách các item có thể rơi
+                GameObject itemPrefab = availableItems[Random.Range(0, availableItems.Count)];
+
+                if (itemPrefab != null)
+                {
+                    // Lấy item từ pool
+                    PoolableObject item = PoolingManager.Instance.GetObject(itemPrefab.GetInstanceID().ToString(), transform.position, Quaternion.identity);
+
+                    // Nếu là súng, đánh dấu đã rơi
+                    if (itemPrefab.GetComponent<Gun>() != null)
+                    {
+                        droppedGunPrefabs.Add(itemPrefab.name);
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (var col in colliders)
+        {
+            col.enabled = true;
+        }
+    }
+
+
+   
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        droppedGunPrefabs.Clear();
+    }
+
 
     public event System.Action OnZombieDeath;
 

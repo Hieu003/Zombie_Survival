@@ -55,10 +55,13 @@ MonoBehaviour:
   - {fileID: 8822268125159563480, guid: f002b6329b4558a40b3da477d5924046, type: 3}
   - {fileID: 2665115668252344620, guid: 8fed98c1528cee9418af65aeed40eb29, type: 3}
   - {fileID: 8639635707324416274, guid: 7c39b9af35cf99b4c9f81f7dbebc95ed, type: 3}
+  itemPickupPrefabs:
+  - {fileID: 3328120415746168360, guid: 9a54f820d4d926a47ad07ce5a9d36905, type: 3}
+  - {fileID: 7427319033866006036, guid: e359cb2d4842e124d8896a68e69d6cec, type: 3}
   timeBetweenWaves: 10
-  initialZombiePerWave: 4
+  initialZombiePerWave: 20
   maxZombies: 100
-  spawnRadius: 50
+  spawnRadius: 30
   timeBetweenSpawns: 0.5
   WaveNumberText: {fileID: 0}
   WaveTimerText: {fileID: 0}

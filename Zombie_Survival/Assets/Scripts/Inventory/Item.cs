@@ -16,12 +16,12 @@ namespace HQFPSWeapons
 
 		[SerializeField]
 		private ItemData[] m_Items = null;
+
+
 	}
-		
-	/// <summary>
-	/// The data / definition for an item.
-	/// </summary>
-	[Serializable]
+   
+
+    [Serializable]
 	public class ItemData
 	{
 		public string Name { get { return m_Name; } }
@@ -39,8 +39,9 @@ namespace HQFPSWeapons
 		public ItemDescriptionList Descriptions { get { return m_Descriptions; } }
 
 		public ItemPropertyList Properties { get { return m_Properties; } }
+       
 
-		[SerializeField]
+        [SerializeField]
 		private string m_Name = string.Empty;
 
 		[SerializeField]
@@ -68,5 +69,7 @@ namespace HQFPSWeapons
 		[SerializeField]
 		[Reorderable]
 		private ItemPropertyList m_Properties = null;
-	}
+
+       
+    }
 }
