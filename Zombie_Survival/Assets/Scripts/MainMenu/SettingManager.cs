@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SettingManager : MonoBehaviour
 {
     public Button map1Button;
+    public Button map2Button;
     public Button easyButton; // Nút Easy
     public Button hardButton;
 
@@ -13,6 +14,11 @@ public class SettingManager : MonoBehaviour
         if (map1Button != null)
         {
             map1Button.onClick.AddListener(() => LoadScene("Map1"));
+        }
+
+        if (map2Button != null)
+        {
+            map2Button.onClick.AddListener(() => LoadScene("Map2"));
         }
 
         if (easyButton != null)

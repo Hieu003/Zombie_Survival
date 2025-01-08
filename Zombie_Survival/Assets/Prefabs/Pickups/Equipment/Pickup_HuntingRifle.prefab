@@ -25,12 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503299164769387150}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2901890509365908958}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2888341274701022364
 MeshFilter:
@@ -51,10 +52,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2526034126245810020
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +101,7 @@ GameObject:
   - component: {fileID: 7967473269065702539}
   - component: {fileID: 3398862348447326583}
   - component: {fileID: 417804435123169343}
+  - component: {fileID: 7181260872902246101}
   m_Layer: 10
   m_Name: Pickup_HuntingRifle
   m_TagString: Untagged
@@ -108,16 +116,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526034126245810020}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4137411666692013195}
   - {fileID: 5953610498915824161}
   - {fileID: 1130434005304313112}
   - {fileID: 8335269518556937461}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2299735902300805755
 MeshFilter:
@@ -138,10 +147,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -166,6 +180,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &3445024425515708976
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,10 +188,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526034126245810020}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -289,12 +315,219 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2526034126245810020}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: -1
   m_Mesh: {fileID: 3715788619181789638, guid: f38d14cc10c48b648ba5f9945fe4007f, type: 3}
+--- !u!114 &7181260872902246101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526034126245810020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91dba47d648e2d438e73c603da2ca6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GeneralSettings:
+    FieldOfView: 45
+    EnableAiming: 0
+    UseAimBlur: 0
+    UseWhileAirborne: 0
+    CanStopReloading: 0
+    StaminaTakePerUse: 0
+  m_BaseAnimation:
+    EquipSpeed: 1
+    EquipTime: 0.6
+    UnequipSpeed: 1
+    UnequipTime: 0.5
+  m_BaseAudio:
+    EquipSounds: []
+    UnequipSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+  m_BaseCamera:
+    AimCamHeadbob:
+      PosAmplitude: {x: 0.35, y: 0.5, z: 0}
+      RotationAmplitude: {x: 0.35, y: 0.5, z: 0}
+      HeadBobSpeed: 1
+    EquipCamForces: []
+    UnequipCamForces: []
+  m_Ammo:
+    NeedAmmoToUse: 0
+    Settings:
+      AmmoItem: 
+      MagazineSize: 0
+      StorageSize: 0
+  fireMode:
+    Modes: 2
+    FireRateOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    FireDuration: 0.22
+    BurstLength: 3
+    BurstDuration: 0.3
+    BurstPause: 0.35
+    RoundsPerMinute: 450
+    HasDryFireAnim: 0
+    HasAlternativeFireAnim: 0
+    FireAnimationSpeed: 1
+  m_ReloadSettings:
+    ReloadType: 0
+    ReloadStartDuration: 0
+    ReloadDuration: 0
+    ReloadEndDuration: 0
+    HasEmptyReload: 0
+    EmptyReloadDuration: 0
+    ProgressiveEmptyReload: 0
+    ReloadAnimationSpeed: 0
+    EmptyReloadAnimationSpeed: 0
+  m_CameraForces:
+    ReloadLoopCamForces: []
+    ReloadStartCamForces: []
+    ReloadEndCamForces: []
+    EmptyReloadLoopCamForces: []
+    HandlingCamForces: []
+  m_GunAudio:
+    FireSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    FireTailSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    HandlingSounds: []
+    AimSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    ReloadSounds: []
+    ReloadStartSounds: []
+    ReloadEndSounds: []
+    EmptyReloadSounds: []
+    EmptyGunSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    ShellDropSounds: []
+    FireModeChangeSounds: []
+  m_Shooting:
+    Mask:
+      serializedVersion: 2
+      m_Bits: 0
+    MaxDistance: 150
+    RayCount: 1
+    RayImpact:
+      m_MaxDamage: 15
+      m_MaxImpulse: 15
+      m_DistanceCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.8
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    AimThreeshold: 0.35
+    SpreadOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AimSpreadFactor: 0.8
+    CrouchSpreadFactor: 0.95
+    WalkSpreadFactor: 0.95
+    RunSpreadFactor: 0.95
+    JumpSpreadFactor: 1.5
 --- !u!1 &2830658953924488589
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,12 +553,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2830658953924488589}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.21401107, y: -0.026447488, z: -0.000000051863907}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2901890509365908958}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9166354680230812803
 MeshFilter:
@@ -346,10 +580,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -374,6 +613,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2888424557268418922
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,12 +639,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2888424557268418922}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.26308814, y: 0.029616622, z: 0.000051970794}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2901890509365908958}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4504943240096239742
 MeshFilter:
@@ -425,10 +666,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -453,6 +699,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8755115127485671141
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,12 +725,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8755115127485671141}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2901890509365908958}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1635379684223297246
 MeshFilter:
@@ -504,10 +752,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -532,3 +785,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

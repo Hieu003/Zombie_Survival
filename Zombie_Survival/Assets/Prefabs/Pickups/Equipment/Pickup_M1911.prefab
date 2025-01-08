@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -141,6 +144,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -224,6 +230,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -307,6 +316,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -390,6 +402,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -430,6 +445,7 @@ GameObject:
   - component: {fileID: 2846508613545325263}
   - component: {fileID: 9013342173028171522}
   - component: {fileID: 2064450394842215672}
+  - component: {fileID: 457403407552579142}
   m_Layer: 10
   m_Name: Pickup_M1911
   m_TagString: Untagged
@@ -486,6 +502,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -663,6 +682,205 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.21854869, y: 0.12985441, z: 0.030096438}
   m_Center: {x: 0.08033283, y: 0.062827185, z: 0}
+--- !u!114 &457403407552579142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998741051283506877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91dba47d648e2d438e73c603da2ca6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GeneralSettings:
+    FieldOfView: 45
+    EnableAiming: 0
+    UseAimBlur: 0
+    UseWhileAirborne: 0
+    CanStopReloading: 0
+    StaminaTakePerUse: 0
+  m_BaseAnimation:
+    EquipSpeed: 1
+    EquipTime: 0.6
+    UnequipSpeed: 1
+    UnequipTime: 0.5
+  m_BaseAudio:
+    EquipSounds: []
+    UnequipSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+  m_BaseCamera:
+    AimCamHeadbob:
+      PosAmplitude: {x: 0.35, y: 0.5, z: 0}
+      RotationAmplitude: {x: 0.35, y: 0.5, z: 0}
+      HeadBobSpeed: 1
+    EquipCamForces: []
+    UnequipCamForces: []
+  m_Ammo:
+    NeedAmmoToUse: 0
+    Settings:
+      AmmoItem: 
+      MagazineSize: 0
+      StorageSize: 0
+  fireMode:
+    Modes: 2
+    FireRateOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    FireDuration: 0.22
+    BurstLength: 3
+    BurstDuration: 0.3
+    BurstPause: 0.35
+    RoundsPerMinute: 450
+    HasDryFireAnim: 0
+    HasAlternativeFireAnim: 0
+    FireAnimationSpeed: 1
+  m_ReloadSettings:
+    ReloadType: 0
+    ReloadStartDuration: 0
+    ReloadDuration: 0
+    ReloadEndDuration: 0
+    HasEmptyReload: 0
+    EmptyReloadDuration: 0
+    ProgressiveEmptyReload: 0
+    ReloadAnimationSpeed: 0
+    EmptyReloadAnimationSpeed: 0
+  m_CameraForces:
+    ReloadLoopCamForces: []
+    ReloadStartCamForces: []
+    ReloadEndCamForces: []
+    EmptyReloadLoopCamForces: []
+    HandlingCamForces: []
+  m_GunAudio:
+    FireSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    FireTailSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    HandlingSounds: []
+    AimSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    ReloadSounds: []
+    ReloadStartSounds: []
+    ReloadEndSounds: []
+    EmptyReloadSounds: []
+    EmptyGunSounds:
+      m_Clips:
+        m_List: []
+      m_VolumeRange: {x: 0.5, y: 0.75}
+      m_PitchRange: {x: 0.9, y: 1.1}
+      m_VolumeMultiplier: 1
+    ShellDropSounds: []
+    FireModeChangeSounds: []
+  m_Shooting:
+    Mask:
+      serializedVersion: 2
+      m_Bits: 0
+    MaxDistance: 150
+    RayCount: 1
+    RayImpact:
+      m_MaxDamage: 15
+      m_MaxImpulse: 15
+      m_DistanceCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.8
+          value: 0.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    AimThreeshold: 0.35
+    SpreadOverTime:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    AimSpreadFactor: 0.8
+    CrouchSpreadFactor: 0.95
+    WalkSpreadFactor: 0.95
+    RunSpreadFactor: 0.95
+    JumpSpreadFactor: 1.5
 --- !u!1 &5072766468727979779
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +939,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -804,6 +1025,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -887,6 +1111,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -970,6 +1197,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

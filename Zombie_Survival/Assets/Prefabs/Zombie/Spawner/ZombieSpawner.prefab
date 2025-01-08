@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   zombiePrefabs:
   - {fileID: 3945216851821154599, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1, type: 3}
   - {fileID: 2454138244780928217, guid: 511797a52f58d5e4eb366d3efc327099, type: 3}
@@ -57,12 +60,14 @@ MonoBehaviour:
   - {fileID: 8639635707324416274, guid: 7c39b9af35cf99b4c9f81f7dbebc95ed, type: 3}
   itemPickupPrefabs:
   - {fileID: 3328120415746168360, guid: 9a54f820d4d926a47ad07ce5a9d36905, type: 3}
+  - {fileID: 36740786862257034, guid: f71b632ac7718904ba41a4661b931598, type: 3}
+  - {fileID: 5501260718264316448, guid: 4d9827378e01fbf4db836cbaa8f8f9b0, type: 3}
+  - {fileID: 8187976217818320107, guid: d1e846af18bfd18499b441dd8d5c9788, type: 3}
+  - {fileID: 2537516386621482725, guid: d6ddebf84561ecf438743fead283951a, type: 3}
   - {fileID: 7427319033866006036, guid: e359cb2d4842e124d8896a68e69d6cec, type: 3}
-  timeBetweenWaves: 10
-  initialZombiePerWave: 20
-  maxZombies: 100
-  spawnRadius: 30
-  timeBetweenSpawns: 0.5
+  timeBetweenWaves: 20
+  initialZombiePerWave: 4
+  maxZombies: 1000
   WaveNumberText: {fileID: 0}
   WaveTimerText: {fileID: 0}
   ZombieCountText: {fileID: 0}

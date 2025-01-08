@@ -9,7 +9,7 @@ public class ZombieWave : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject[] zombiePrefabs;
     public GameObject[] itemPickupPrefabs;
-    public float timeBetweenWaves = 10f;
+    private float timeBetweenWaves = 15f;
     private float waveTimer = 0f;
     private int waveNumber = 0;
     public int initialZombiePerWave = 4; // Số lượng zombie khởi đầu
@@ -35,7 +35,7 @@ public class ZombieWave : MonoBehaviour
         // Khác biệt chính giữa Easy và Hard: số lượng zombie tăng thêm mỗi wave
         if (difficulty == "Hard")
         {
-            timeBetweenWaves = 5f;
+            timeBetweenWaves = 10f;
             zombieIncrement = 5;
             zombiePerWave = initialZombiePerWave;
             Debug.Log("Hard difficulty loaded");
