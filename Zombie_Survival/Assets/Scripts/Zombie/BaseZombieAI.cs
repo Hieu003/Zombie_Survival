@@ -17,7 +17,7 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     [Header("Item Drop")]
     [SerializeField] private GameObject[] itemPrefabs; // Mảng chứa các prefab item có thể rơi ra
-    [SerializeField] private float dropChance = 0.5f;
+    [SerializeField] private float dropChance = 100f;
 
     private static HashSet<string> droppedGunPrefabs = new HashSet<string>();
 
