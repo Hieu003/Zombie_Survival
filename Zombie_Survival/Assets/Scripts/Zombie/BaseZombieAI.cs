@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using HQFPSWeapons;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public abstract class BaseZombieAI : MonoBehaviour
 {
@@ -14,11 +15,16 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected Animator animator;
     public Transform player;
 
+    [Header("Audio")]
+    public AudioClip[] idleSounds;
+    public AudioClip[] attackSounds;
+    public AudioClip[] hurtSound;
+    public AudioClip[] dieSound;
+    private AudioSource audioSource;
 
     [Header("Item Drop")]
-    [SerializeField] private GameObject[] itemPrefabs; // Mảng chứa các prefab item có thể rơi ra
-    [SerializeField] private float dropChance = 100f;
-
+    [SerializeField] private ItemDropRates itemDropRates; // Tham chiếu đến scriptable object ItemDropRates
+    [SerializeField][Range(0f, 100f)] private float dropChance = 100f;
     private static HashSet<string> droppedGunPrefabs = new HashSet<string>();
 
     // Các thông số chung
@@ -28,8 +34,8 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected float attackCooldown;
     protected float attackDelay;
     protected float lastAttackTime;
-    [SerializeField] protected float idleDuration = 5f; 
-    [SerializeField] protected float walkDuration = 10f; 
+    [SerializeField] protected float idleDuration = 5f;
+    [SerializeField] protected float walkDuration = 10f;
     [SerializeField] protected float walkSpeedMultiplier = 0.5f;
     protected float stateStartTime;
 
@@ -37,10 +43,15 @@ public abstract class BaseZombieAI : MonoBehaviour
     protected ZombieHealth zombieHealth;
     [SerializeField] protected float hearingDistance = 1000f;
 
-
-
     protected virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        // Đảm bảo Audio Source có Spatial Blend = 3D
+        if (audioSource != null)
+        {
+            audioSource.spatialBlend = 1f;
+        }
+
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
@@ -64,13 +75,15 @@ public abstract class BaseZombieAI : MonoBehaviour
         // Bắt đầu với trạng thái Idle
         currentState = ZombieState.Idle;
         stateStartTime = Time.time;
+
+        // Phát âm thanh idle khi bắt đầu
+        PlayIdleSound();
     }
 
     private void Update()
     {
         if (currentState == ZombieState.Dead)
             return;
-
 
         HandleState();
     }
@@ -82,7 +95,7 @@ public abstract class BaseZombieAI : MonoBehaviour
             case ZombieState.Idle:
                 IdleBehavior();
                 break;
-            case ZombieState.Walk: // Thêm case Walk
+            case ZombieState.Walk:
                 WalkBehavior();
                 break;
             case ZombieState.Chase:
@@ -98,24 +111,28 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsAttacking", false);
-       
+
         if (!(this is TankZombieAI))
         {
             animator.SetBool("IsPatrolling", false);
         }
+
         // Chuyển sang Chase nếu thấy người chơi
         if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
         {
             currentState = ZombieState.Chase;
             stateStartTime = Time.time;
+            StopIdleSound(); // Dừng âm thanh idle khi chuyển trạng thái
         }
         // Chuyển sang Walk nếu hết thời gian Idle
         else if (Time.time - stateStartTime >= idleDuration)
         {
             currentState = ZombieState.Walk;
             stateStartTime = Time.time;
+            StopIdleSound(); // Dừng âm thanh idle khi chuyển trạng thái
         }
     }
+
     protected virtual void WalkBehavior()
     {
         if (!(this is TankZombieAI))
@@ -139,6 +156,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         {
             currentState = ZombieState.Chase;
             stateStartTime = Time.time;
+            navAgent.ResetPath();
         }
         // Chuyển sang Idle nếu hết thời gian Walk
         else if (Time.time - stateStartTime >= walkDuration)
@@ -172,16 +190,14 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
     }
 
-
     protected virtual void AttackBehavior()
     {
-
         animator.SetBool("IsAttacking", true);
         animator.SetBool("IsWalking", false);
         if (!(this is TankZombieAI))
         {
             animator.SetBool("IsPatrolling", false);
-        }   
+        }
 
         // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)
@@ -196,7 +212,6 @@ public abstract class BaseZombieAI : MonoBehaviour
         {
             navAgent.stoppingDistance = 0f; // Reset khoảng cách dừng
             currentState = ZombieState.Chase;
-
         }
     }
 
@@ -223,10 +238,12 @@ public abstract class BaseZombieAI : MonoBehaviour
         return randomPointInTriangle;
     }
 
-
     private IEnumerator AttackWithDelay()
     {
         isAttacking = true;
+
+        // Phát âm thanh tấn công
+        PlayRandomSound(attackSounds);
 
         // Chờ thời gian delay trước khi gây sát thương
         yield return new WaitForSeconds(attackDelay);
@@ -256,11 +273,10 @@ public abstract class BaseZombieAI : MonoBehaviour
         GameManager.instance.currentScore += 1;
 
         TryDropItem();
-        
+
         OnZombieDeath?.Invoke();
         StartCoroutine(ReleaseWithDelay(5f));
     }
-
 
     private IEnumerator ReleaseWithDelay(float delay)
     {
@@ -273,8 +289,6 @@ public abstract class BaseZombieAI : MonoBehaviour
             PoolingManager.Instance.ReleaseObject(poolableObject);
         }
     }
-
- 
 
     private void OnDrawGizmosSelected()
     {
@@ -303,8 +317,10 @@ public abstract class BaseZombieAI : MonoBehaviour
             animator.SetBool("IsPatrolling", false);
             animator.SetBool("IsDead", false);
         }
-    }
 
+        // Phát âm thanh idle khi reset về trạng thái Idle
+        PlayIdleSound();
+    }
 
     public virtual void HearSound(Vector3 soundPosition, float loudness)
     {
@@ -326,41 +342,55 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
     }
 
-
     private void TryDropItem()
     {
-        if (Random.value <= dropChance)
+        // Tạo một số ngẫu nhiên từ 0.0 đến 100.0
+        float randomValue = Random.Range(0f, 100f);
+
+        if (randomValue <= dropChance)
         {
-            // Lọc danh sách itemPrefabs chỉ lấy các item chưa rơi (nếu là súng)
-            List<GameObject> availableItems = new List<GameObject>();
-            foreach (GameObject itemPrefab in itemPrefabs)
+            // Tính tổng trọng số
+            float totalWeight = 0;
+            foreach (ItemDropRates.DropRate dropRate in itemDropRates.dropRates)
             {
-                if (itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(itemPrefab.name))
-                {
-                    availableItems.Add(itemPrefab);
-                }
+                if (dropRate.itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(dropRate.itemPrefab.name))
+                    totalWeight += dropRate.dropWeight;
             }
 
-            if (availableItems.Count > 0)
+            // Chọn ngẫu nhiên một item dựa trên trọng số
+            float randomWeightValue = Random.Range(0f, totalWeight);
+            float currentWeight = 0;
+            foreach (ItemDropRates.DropRate dropRate in itemDropRates.dropRates)
             {
-                // Chọn ngẫu nhiên một item từ danh sách các item có thể rơi
-                GameObject itemPrefab = availableItems[Random.Range(0, availableItems.Count)];
-
-                if (itemPrefab != null)
+                if (dropRate.itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(dropRate.itemPrefab.name))
                 {
-                    // Lấy item từ pool
-                    PoolableObject item = PoolingManager.Instance.GetObject(itemPrefab.GetInstanceID().ToString(), transform.position, Quaternion.identity);
-
-                    // Nếu là súng, đánh dấu đã rơi
-                    if (itemPrefab.GetComponent<Gun>() != null)
+                    currentWeight += dropRate.dropWeight;
+                    if (randomWeightValue <= currentWeight)
                     {
-                        droppedGunPrefabs.Add(itemPrefab.name);
+                        GameObject itemPrefab = dropRate.itemPrefab;
+
+                        if (itemPrefab != null)
+                        {
+                            // Lấy item từ pool
+                            Debug.Log("Trying to drop: " + itemPrefab.name);
+                            PoolableObject item = PoolingManager.Instance.GetObject(itemPrefab.GetInstanceID().ToString(), transform.position, Quaternion.identity);
+                            if (item == null)
+                            {
+                                Debug.LogError("Failed to get item from pool: " + itemPrefab.name);
+                            }
+
+                            // Nếu là súng, đánh dấu đã rơi
+                            if (itemPrefab.GetComponent<Gun>() != null)
+                            {
+                                droppedGunPrefabs.Add(itemPrefab.name);
+                            }
+                        }
+                        break; // Đã tìm thấy item để rơi, thoát vòng lặp
                     }
                 }
             }
         }
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -372,8 +402,6 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
     }
 
-
-   
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -384,11 +412,50 @@ public abstract class BaseZombieAI : MonoBehaviour
         droppedGunPrefabs.Clear();
     }
 
-
     public event System.Action OnZombieDeath;
 
-   
+    public void PlayHurtSound()
+    {
+        PlayRandomSound(hurtSound);
+    }
+
+    public void PlayDieSound()
+    {
+        PlayRandomSound(dieSound);
+    }
+
+    public void PlayIdleSound()
+    {
+        if (audioSource != null && idleSounds.Length > 0)
+        {
+            audioSource.clip = idleSounds[Random.Range(0, idleSounds.Length)];
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+    }
+
+    // Dừng phát âm thanh idle
+    private void StopIdleSound()
+    {
+        if (audioSource != null && audioSource.isPlaying && audioSource.clip != null && idleSounds.Contains(audioSource.clip))
+        {
+            audioSource.Stop();
+        }
+    }
+
+    private void PlayRandomSound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayRandomSound(AudioClip[] clips)
+    {
+        if (audioSource != null && clips.Length > 0)
+        {
+            audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+        }
+    }
 }
-
-
-

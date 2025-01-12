@@ -19,17 +19,20 @@ namespace HQFPSWeapons
         [SerializeField]
         private Vector3 ragdollForceOffset = Vector3.zero;
 
-        [Header("Blood Effect Settings")] // Thêm header cho máu
+        [Header("Blood Effect Settings")]
         [SerializeField]
-        private ParticleSystem bloodEffectPrefab; // Prefab Particle System máu
+        private ParticleSystem bloodEffectPrefab;
 
         private float currentHealth;
 
-        public event Action OnZombieDeath; // Sự kiện khi zombie chết
+        public event Action OnZombieDeath;
+
+        private BaseZombieAI baseZombieAI; // Tham chiếu đến BaseZombieAI
 
         private void Start()
         {
             currentHealth = initialHealth;
+            baseZombieAI = GetComponent<BaseZombieAI>(); // Lấy component BaseZombieAI
         }
 
         public void TakeDamage(HealthEventData damageData)
@@ -45,6 +48,12 @@ namespace HQFPSWeapons
             // Tạo hiệu ứng máu tại vị trí trúng đạn
             SpawnBloodEffect(damageData.HitPoint, damageData.HitNormal);
 
+            // Phát âm thanh "hurt"
+            if (baseZombieAI != null)
+            {
+                baseZombieAI.PlayHurtSound();
+            }
+
             if (currentHealth <= 0)
                 Die(damageData);
         }
@@ -53,6 +62,12 @@ namespace HQFPSWeapons
         {
             // Gọi sự kiện OnZombieDeath
             OnZombieDeath?.Invoke();
+
+            // Phát âm thanh "die"
+            if (baseZombieAI != null)
+            {
+                baseZombieAI.PlayDieSound();
+            }
 
             // Nếu cần, thực hiện các logic khác như thêm hiệu ứng ragdoll.
             if (ragdollPrefab != null)
@@ -86,11 +101,10 @@ namespace HQFPSWeapons
             initialHealth = Mathf.Max(1f, health); // Đảm bảo giá trị >= 1
             currentHealth = initialHealth; // Reset lại máu hiện tại
         }
+
         public void ResetHealth()
         {
             currentHealth = initialHealth;
         }
     }
-
-    
 }
