@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ZombieWave : MonoBehaviour
 {
-    public Transform[] spawnPoints;
+    public string spawnAreaTag = "SpawnArea";
     public GameObject[] zombiePrefabs;
     public GameObject[] itemPickupPrefabs;
     private float timeBetweenWaves = 15f;
@@ -14,7 +14,8 @@ public class ZombieWave : MonoBehaviour
     private int waveNumber = 0;
     public int initialZombiePerWave = 4; // Số lượng zombie khởi đầu
     public int maxZombies = 100; // Giới hạn số lượng zombie tối đa
-    private float spawnRadius = 0.1f; // Bán kính spawn
+    
+    public float maxSpawnDistance = 10f;
 
     public Text WaveNumberText;
     public Text WaveTimerText;
@@ -27,6 +28,7 @@ public class ZombieWave : MonoBehaviour
     private int zombiePerWave;
 
     private bool isFirstWave = true;
+    private Collider[] spawnAreaColliders;
 
     private void Start()
     {
@@ -60,6 +62,15 @@ public class ZombieWave : MonoBehaviour
 
         WaveTimerText.gameObject.SetActive(true);
         waveTimer = 0f;
+
+
+        // Lấy tất cả các collider có tag "SpawnArea"
+        GameObject[] spawnAreaObjects = GameObject.FindGameObjectsWithTag(spawnAreaTag);
+        spawnAreaColliders = new Collider[spawnAreaObjects.Length];
+        for (int i = 0; i < spawnAreaObjects.Length; i++)
+        {
+            spawnAreaColliders[i] = spawnAreaObjects[i].GetComponent<Collider>();
+        }
     }
 
     private void Update()
@@ -133,15 +144,10 @@ public class ZombieWave : MonoBehaviour
     {
         for (int i = 0; i < zombiePerWave; i++)
         {
-            // Chọn ngẫu nhiên một spawn point
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Vector3 spawnPosition = GetValidSpawnPosition();
 
             // Lấy ngẫu nhiên một prefab zombie từ mảng
             GameObject randomZombiePrefab = zombiePrefabs[Random.Range(0, zombiePrefabs.Length)];
-
-            // Tạo vị trí spawn ngẫu nhiên trong bán kính spawnRadius
-            Vector3 spawnPosition = spawnPoint.position + Random.insideUnitSphere * spawnRadius;
-            spawnPosition.y = spawnPoint.position.y; // Giữ nguyên độ cao
 
             // Lấy zombie từ pool
             PoolableObject zombie = PoolingManager.Instance.GetObject(randomZombiePrefab.GetInstanceID().ToString(), spawnPosition, Quaternion.identity);
@@ -156,7 +162,7 @@ public class ZombieWave : MonoBehaviour
                 if (zombieAI != null)
                 {
                     zombieAI.ResetState();
-                    zombieAI.OnZombieDeath += OnZombieDied; // Đăng ký sự kiện zombie chết
+                    zombieAI.OnZombieDeath += OnZombieDied;
                 }
 
                 ZombieHealth zombieHealth = zombie.GetComponent<ZombieHealth>();
@@ -166,6 +172,55 @@ public class ZombieWave : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    private Vector3 GetValidSpawnPosition()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        bool validPositionFound = false;
+
+        while (!validPositionFound)
+        {
+            // Chọn ngẫu nhiên một collider từ mảng spawnAreaColliders
+            Collider spawnAreaCollider = spawnAreaColliders[Random.Range(0, spawnAreaColliders.Length)];
+
+            // Lấy một điểm ngẫu nhiên trong collider đó
+            spawnPosition = GetRandomPointInsideCollider(spawnAreaCollider);
+
+            // Kiểm tra xem vị trí spawn có hợp lệ không (nếu cần)
+            // Ở đây, bạn có thể thêm các điều kiện kiểm tra khác nếu cần
+            // Ví dụ: kiểm tra khoảng cách tối thiểu từ người chơi, kiểm tra NavMesh, v.v.
+
+            validPositionFound = true; // Tạm thời coi vị trí là hợp lệ, bạn có thể thay đổi điều kiện này
+        }
+
+        return spawnPosition;
+    }
+
+    private Vector3 GetRandomPointInsideCollider(Collider collider)
+    {
+        Vector3 extents = collider.bounds.extents;
+        Vector3 point = new Vector3(
+            Random.Range(-extents.x, extents.x),
+            Random.Range(-extents.y, extents.y),
+            Random.Range(-extents.z, extents.z)
+        );
+
+        point = collider.transform.TransformPoint(point);
+
+        // Đảm bảo điểm spawn không quá xa so với tâm của collider
+        Vector3 center = collider.bounds.center;
+        Vector3 direction = point - center;
+        if (direction.magnitude > maxSpawnDistance)
+        {
+            direction = direction.normalized * maxSpawnDistance;
+            point = center + direction;
+        }
+
+        point.y = collider.transform.position.y; // Giữ nguyên độ cao
+
+        return point;
     }
 
     private void OnZombieDied()

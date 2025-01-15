@@ -372,7 +372,8 @@ public abstract class BaseZombieAI : MonoBehaviour
                         if (itemPrefab != null)
                         {
                             // Lấy item từ pool
-                            Debug.Log("Trying to drop: " + itemPrefab.name);
+                          
+                          
                             PoolableObject item = PoolingManager.Instance.GetObject(itemPrefab.GetInstanceID().ToString(), transform.position, Quaternion.identity);
                             if (item == null)
                             {
