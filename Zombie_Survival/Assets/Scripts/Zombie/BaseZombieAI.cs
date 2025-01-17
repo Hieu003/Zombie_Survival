@@ -1,8 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using HQFPSWeapons;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
@@ -14,6 +14,8 @@ public abstract class BaseZombieAI : MonoBehaviour
     public NavMeshAgent navAgent;
     protected Animator animator;
     public Transform player;
+    public float damage = 10f;
+    public float attackForce = 100f;
 
     [Header("Audio")]
     public AudioClip[] idleSounds;
@@ -23,11 +25,10 @@ public abstract class BaseZombieAI : MonoBehaviour
     private AudioSource audioSource;
 
     [Header("Item Drop")]
-    [SerializeField] private ItemDropRates itemDropRates; // Tham chiếu đến scriptable object ItemDropRates
+    [SerializeField] private ItemDropRates itemDropRates;
     [SerializeField][Range(0f, 100f)] private float dropChance = 100f;
     private static HashSet<string> droppedGunPrefabs = new HashSet<string>();
 
-    // Các thông số chung
     protected float speed;
     protected float chaseDistance;
     protected float attackDistance;
@@ -45,8 +46,20 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     protected virtual void Start()
     {
+        CacheComponents();
+        InitializeZombie();
+    }
+
+    private void CacheComponents()
+    {
         audioSource = GetComponent<AudioSource>();
-        // Đảm bảo Audio Source có Spatial Blend = 3D
+        navAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        zombieHealth = GetComponent<ZombieHealth>();
+    }
+
+    private void InitializeZombie()
+    {
         if (audioSource != null)
         {
             audioSource.spatialBlend = 1f;
@@ -59,24 +72,24 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("Khong thay nguoi choi");
+            Debug.Log("Player not found");
         }
-        navAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        zombieHealth = GetComponent<ZombieHealth>();
 
-        zombieHealth.OnZombieDeath += HandleZombieDeath;
+        if (zombieHealth != null)
+        {
+            zombieHealth.OnZombieDeath += HandleZombieDeath;
+        }
 
         lastAttackTime = -attackCooldown;
 
         if (navAgent != null)
+        {
             navAgent.speed = speed;
+        }
 
-        // Bắt đầu với trạng thái Idle
         currentState = ZombieState.Idle;
         stateStartTime = Time.time;
 
-        // Phát âm thanh idle khi bắt đầu
         PlayIdleSound();
     }
 
@@ -109,72 +122,45 @@ public abstract class BaseZombieAI : MonoBehaviour
 
     protected virtual void IdleBehavior()
     {
-        animator.SetBool("IsWalking", false);
-        animator.SetBool("IsAttacking", false);
+        SetAnimatorBools(false, false, false);
 
-        if (!(this is TankZombieAI))
+        if (Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
         {
-            animator.SetBool("IsPatrolling", false);
+            TransitionToState(ZombieState.Chase);
         }
-
-        // Chuyển sang Chase nếu thấy người chơi
-        if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
-        {
-            currentState = ZombieState.Chase;
-            stateStartTime = Time.time;
-            StopIdleSound(); // Dừng âm thanh idle khi chuyển trạng thái
-        }
-        // Chuyển sang Walk nếu hết thời gian Idle
         else if (Time.time - stateStartTime >= idleDuration)
         {
-            currentState = ZombieState.Walk;
-            stateStartTime = Time.time;
-            StopIdleSound(); // Dừng âm thanh idle khi chuyển trạng thái
+            TransitionToState(ZombieState.Walk);
         }
     }
 
     protected virtual void WalkBehavior()
     {
-        if (!(this is TankZombieAI))
-        {
-            animator.SetBool("IsPatrolling", true);
-        }
-        animator.SetBool("IsAttacking", false);
-        animator.SetBool("IsWalking", false);
+        SetAnimatorBools(false, false, true);
 
-        // Thiết lập tốc độ Walk
         if (navAgent != null)
+        {
             navAgent.speed = speed * walkSpeedMultiplier;
 
-        if (!navAgent.hasPath)
-        {
-            navAgent.SetDestination(GetRandomNavMeshLocation());
+            if (!navAgent.hasPath)
+            {
+                navAgent.SetDestination(GetRandomNavMeshLocation());
+            }
         }
 
-        // Chuyển sang Chase nếu thấy người chơi
-        if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
+        if (Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
         {
-            currentState = ZombieState.Chase;
-            stateStartTime = Time.time;
-            navAgent.ResetPath();
+            TransitionToState(ZombieState.Chase);
         }
-        // Chuyển sang Idle nếu hết thời gian Walk
         else if (Time.time - stateStartTime >= walkDuration)
         {
-            currentState = ZombieState.Idle;
-            stateStartTime = Time.time;
-            navAgent.ResetPath();
+            TransitionToState(ZombieState.Idle);
         }
     }
 
     protected virtual void ChaseBehavior()
     {
-        animator.SetBool("IsAttacking", false);
-        animator.SetBool("IsWalking", true);
-        if (!(this is TankZombieAI))
-        {
-            animator.SetBool("IsPatrolling", false);
-        }
+        SetAnimatorBools(true, false, false);
 
         if (navAgent != null)
         {
@@ -183,56 +169,64 @@ public abstract class BaseZombieAI : MonoBehaviour
             navAgent.stoppingDistance = attackDistance;
         }
 
-        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        if (Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
         {
-            currentState = ZombieState.Attack;
-            stateStartTime = Time.time;
+            TransitionToState(ZombieState.Attack);
         }
     }
 
     protected virtual void AttackBehavior()
     {
-        animator.SetBool("IsAttacking", true);
-        animator.SetBool("IsWalking", false);
-        if (!(this is TankZombieAI))
-        {
-            animator.SetBool("IsPatrolling", false);
-        }
+        SetAnimatorBools(false, true, false);
 
-        // Dừng zombie tại vị trí hiện tại để tấn công
         if (navAgent != null)
-            navAgent.SetDestination(player.position);
-
-        // Chỉ gây sát thương nếu không đang tấn công
-        if (!isAttacking && Time.time - lastAttackTime >= attackCooldown)
-            StartCoroutine(AttackWithDelay());
-
-        // Quay lại Chase nếu người chơi thoát khỏi attackDistance
-        if (Vector3.Distance(transform.position, player.position) > attackDistance + 0.1)
         {
-            navAgent.stoppingDistance = 0f; // Reset khoảng cách dừng
-            currentState = ZombieState.Chase;
+            navAgent.SetDestination(player.position);
         }
+
+        if (!isAttacking && Time.time - lastAttackTime >= attackCooldown)
+        {
+            StartCoroutine(AttackWithDelay());
+        }
+
+        if (Vector3.SqrMagnitude(transform.position - player.position) > attackDistance * attackDistance)
+        {
+            navAgent.stoppingDistance = 0f;
+            TransitionToState(ZombieState.Chase);
+        }
+    }
+
+    private void SetAnimatorBools(bool isWalking, bool isAttacking, bool isPatrolling)
+    {
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", isWalking);
+            animator.SetBool("IsAttacking", isAttacking);
+            if (!(this is TankZombieAI))
+            {
+                animator.SetBool("IsPatrolling", isPatrolling);
+            }
+        }
+    }
+
+    private void TransitionToState(ZombieState newState)
+    {
+        currentState = newState;
+        stateStartTime = Time.time;
+        StopIdleSound();
     }
 
     public Vector3 GetRandomNavMeshLocation()
     {
-        // Lấy NavMesh triangulation
         NavMeshTriangulation navMeshData = NavMesh.CalculateTriangulation();
-
-        // Chọn một tam giác ngẫu nhiên từ NavMesh
         int randomIndex = Random.Range(0, navMeshData.indices.Length / 3);
 
-        // Lấy ba đỉnh của tam giác được chọn
         Vector3 vertex1 = navMeshData.vertices[navMeshData.indices[randomIndex * 3]];
         Vector3 vertex2 = navMeshData.vertices[navMeshData.indices[randomIndex * 3 + 1]];
         Vector3 vertex3 = navMeshData.vertices[navMeshData.indices[randomIndex * 3 + 2]];
 
-        // Tính toán điểm ngẫu nhiên trong tam giác
-        Vector3 randomPointInTriangle = (vertex1 + vertex2 + vertex3) / 3f; // Điểm trọng tâm
-        randomPointInTriangle += new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); // Thêm offset ngẫu nhiên
-
-        // Đặt lại vị trí y để phù hợp với mặt đất
+        Vector3 randomPointInTriangle = (vertex1 + vertex2 + vertex3) / 3f;
+        randomPointInTriangle += new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         randomPointInTriangle.y = transform.position.y;
 
         return randomPointInTriangle;
@@ -241,16 +235,12 @@ public abstract class BaseZombieAI : MonoBehaviour
     private IEnumerator AttackWithDelay()
     {
         isAttacking = true;
-
-        // Phát âm thanh tấn công
         PlayRandomSound(attackSounds);
-
-        // Chờ thời gian delay trước khi gây sát thương
         yield return new WaitForSeconds(attackDelay);
 
-        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        if (Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
         {
-            PerformAttack(); // Gây sát thương
+            PerformAttack();
         }
 
         isAttacking = false;
@@ -262,27 +252,34 @@ public abstract class BaseZombieAI : MonoBehaviour
         currentState = ZombieState.Dead;
 
         if (navAgent != null)
+        {
             navAgent.isStopped = true;
+        }
 
-        animator.SetBool("IsDead", true);
-
-        // Vô hiệu hóa collider ngay lập tức
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach (var col in colliders)
-            col.enabled = false;
+        if (animator != null)
+        {
+            animator.SetBool("IsDead", true);
+        }
+        DisableColliders();
         GameManager.instance.currentScore += 1;
-
         TryDropItem();
-
         OnZombieDeath?.Invoke();
         StartCoroutine(ReleaseWithDelay(5f));
+    }
+
+    private void DisableColliders()
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (var col in colliders)
+        {
+            col.enabled = false;
+        }
     }
 
     private IEnumerator ReleaseWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // Trả object về pool thay vì hủy
         PoolableObject poolableObject = GetComponent<PoolableObject>();
         if (poolableObject != null)
         {
@@ -293,7 +290,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackDistance); // Phạm vi tấn công
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 
     protected abstract void PerformAttack();
@@ -304,21 +301,15 @@ public abstract class BaseZombieAI : MonoBehaviour
         stateStartTime = Time.time;
         isAttacking = false;
         lastAttackTime = -attackCooldown;
+
         if (navAgent != null)
         {
             navAgent.isStopped = false;
             navAgent.speed = speed;
             navAgent.ResetPath();
         }
-        if (animator != null)
-        {
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsAttacking", false);
-            animator.SetBool("IsPatrolling", false);
-            animator.SetBool("IsDead", false);
-        }
 
-        // Phát âm thanh idle khi reset về trạng thái Idle
+        SetAnimatorBools(false, false, false);
         PlayIdleSound();
     }
 
@@ -330,36 +321,28 @@ public abstract class BaseZombieAI : MonoBehaviour
 
         if (distanceToSound <= hearingDistance * loudness)
         {
-            // Kích hoạt trạng thái Chase khi nghe thấy âm thanh
             if (currentState != ZombieState.Attack)
             {
-                currentState = ZombieState.Chase;
-                stateStartTime = Time.time;
+                TransitionToState(ZombieState.Chase);
             }
 
-            // Chạy ChaseBehavior() ngay lập tức để phản ứng nhanh hơn
             ChaseBehavior();
         }
     }
 
     private void TryDropItem()
     {
-        // Tạo một số ngẫu nhiên từ 0.0 đến 100.0
         float randomValue = Random.Range(0f, 100f);
 
         if (randomValue <= dropChance)
         {
-            // Tính tổng trọng số
-            float totalWeight = 0;
-            foreach (ItemDropRates.DropRate dropRate in itemDropRates.dropRates)
-            {
-                if (dropRate.itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(dropRate.itemPrefab.name))
-                    totalWeight += dropRate.dropWeight;
-            }
+            float totalWeight = itemDropRates.dropRates
+                .Where(dropRate => dropRate.itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(dropRate.itemPrefab.name))
+                .Sum(dropRate => dropRate.dropWeight);
 
-            // Chọn ngẫu nhiên một item dựa trên trọng số
             float randomWeightValue = Random.Range(0f, totalWeight);
             float currentWeight = 0;
+
             foreach (ItemDropRates.DropRate dropRate in itemDropRates.dropRates)
             {
                 if (dropRate.itemPrefab.GetComponent<Gun>() == null || !droppedGunPrefabs.Contains(dropRate.itemPrefab.name))
@@ -371,41 +354,42 @@ public abstract class BaseZombieAI : MonoBehaviour
 
                         if (itemPrefab != null)
                         {
-                            // Lấy item từ pool
-                          
-                          
                             PoolableObject item = PoolingManager.Instance.GetObject(itemPrefab.GetInstanceID().ToString(), transform.position, Quaternion.identity);
                             if (item == null)
                             {
                                 Debug.LogError("Failed to get item from pool: " + itemPrefab.name);
                             }
 
-                            // Nếu là súng, đánh dấu đã rơi
                             if (itemPrefab.GetComponent<Gun>() != null)
                             {
                                 droppedGunPrefabs.Add(itemPrefab.name);
                             }
                         }
-                        break; // Đã tìm thấy item để rơi, thoát vòng lặp
+                        break;
                     }
                 }
             }
         }
     }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach (var col in colliders)
-        {
-            col.enabled = true;
-        }
+        EnableColliders();
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void EnableColliders()
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (var col in colliders)
+        {
+            col.enabled = true;
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -435,7 +419,6 @@ public abstract class BaseZombieAI : MonoBehaviour
         }
     }
 
-    // Dừng phát âm thanh idle
     private void StopIdleSound()
     {
         if (audioSource != null && audioSource.isPlaying && audioSource.clip != null && idleSounds.Contains(audioSource.clip))
