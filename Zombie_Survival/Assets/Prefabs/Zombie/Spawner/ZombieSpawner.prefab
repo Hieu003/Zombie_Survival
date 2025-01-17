@@ -44,11 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e1991f92bae3f43a1498f8e0b72cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   zombiePrefabs:
   - {fileID: 3945216851821154599, guid: 57a3d0fc71c9f424c9d69f59a6f2b5d1, type: 3}
   - {fileID: 2454138244780928217, guid: 511797a52f58d5e4eb366d3efc327099, type: 3}
@@ -57,7 +52,6 @@ MonoBehaviour:
   - {fileID: 6814509631965861700, guid: 095d11cad79fad8438d0502745bb1cfa, type: 3}
   - {fileID: 8822268125159563480, guid: f002b6329b4558a40b3da477d5924046, type: 3}
   - {fileID: 2665115668252344620, guid: 8fed98c1528cee9418af65aeed40eb29, type: 3}
-  - {fileID: 8639635707324416274, guid: 7c39b9af35cf99b4c9f81f7dbebc95ed, type: 3}
   itemPickupPrefabs:
   - {fileID: 3328120415746168360, guid: 9a54f820d4d926a47ad07ce5a9d36905, type: 3}
   - {fileID: 36740786862257034, guid: f71b632ac7718904ba41a4661b931598, type: 3}
@@ -65,9 +59,24 @@ MonoBehaviour:
   - {fileID: 8187976217818320107, guid: d1e846af18bfd18499b441dd8d5c9788, type: 3}
   - {fileID: 2537516386621482725, guid: d6ddebf84561ecf438743fead283951a, type: 3}
   - {fileID: 7427319033866006036, guid: e359cb2d4842e124d8896a68e69d6cec, type: 3}
-  timeBetweenWaves: 20
-  initialZombiePerWave: 4
+  - {fileID: 9176248324725260122, guid: 7c7089ac428730546bc77d4bfccd9750, type: 3}
+  - {fileID: 4998741051283506877, guid: 7ad6534d4787c644bb65a7d4d63d9114, type: 3}
+  - {fileID: 8134371035563141481, guid: 7f5507165a5fc0c48a5ecb3f9a182c06, type: 3}
+  - {fileID: 3927075398073897018, guid: 1abb0c80afa0d8345852e21555b23db9, type: 3}
+  - {fileID: 3181137914584553151, guid: 004f2ca12433c3042ba609043d4472a8, type: 3}
+  - {fileID: 2526034126245810020, guid: 3c1a4714817b86e49b18627152fe2d9d, type: 3}
+  - {fileID: 8845945599785134977, guid: 2c3c8dfc85621644a9ae7e52c1dbfd6b, type: 3}
+  - {fileID: 565656415996384351, guid: 1becf66bceb90fb418d021567058414e, type: 3}
+  - {fileID: 1963718291082426385, guid: ffe7eba8c96821a48bf2e02fd6ab8327, type: 3}
+  - {fileID: 8586099996222182631, guid: d4e8c6c7d356b7c4a914ca5db3bbdd04, type: 3}
+  - {fileID: 4783110227008939968, guid: 944a0b0633c45d4458bbd6c6b02c84e1, type: 3}
+  - {fileID: 5507661243739369011, guid: 481d9f659a1dd804dab1dfc64df71851, type: 3}
+  - {fileID: 1017997944346929099, guid: 8b591ad14433851489193c50ea93d39e, type: 3}
+  - {fileID: 8505612844008397183, guid: b025cbf0a27c9d04dacfc66ffd47a9b0, type: 3}
+  timeBetweenWaves: 15
+  initialZombiePerWave: 8
   maxZombies: 1000
-  WaveNumberText: {fileID: 0}
-  WaveTimerText: {fileID: 0}
-  ZombieCountText: {fileID: 0}
+  maxSpawnDistance: 15
+  waveNumberText: {fileID: 0}
+  waveTimerText: {fileID: 0}
+  zombieCountText: {fileID: 0}
