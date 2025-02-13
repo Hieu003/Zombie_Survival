@@ -38,8 +38,6 @@ namespace HQFPSWeapons
         [SerializeField]
         private Material[] m_PreloadedMaterials = null;
 
-     
-
         public void Quit()
         {
             Application.Quit();
@@ -127,7 +125,21 @@ namespace HQFPSWeapons
             CurrentPlayer = FindFirstObjectByType<Player>();
             CurrentInterface = FindFirstObjectByType<UIManager>();
 
-            CurrentInterface.AttachToPlayer(CurrentPlayer);
+            if (CurrentPlayer != null && CurrentInterface != null)
+            {
+                CurrentInterface.AttachToPlayer(CurrentPlayer);
+            }
+
+            // Find the currentScoreText again after the scene is loaded
+            GameObject scoreObject = GameObject.Find("Score");
+            if (scoreObject != null)
+            {
+                currentScoreText = scoreObject.GetComponent<Text>();
+            }
+            else
+            {
+                currentScoreText = null;
+            }
         }
 
         private void Start()
@@ -145,10 +157,17 @@ namespace HQFPSWeapons
                 highScore = currentScore;
             }
 
-            currentScoreText.text = currentScore.ToString();
-
-           
+            if (currentScoreText != null)
+            {
+                currentScoreText.text = currentScore.ToString();
+            }
         }
 
+        public void RestartGame()
+        {
+            Time.timeScale = 1f; // Ensure the game is not paused
+            PoolingManager.Instance.ResetPools(); // Reset the object pools
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+        }
     }
 }

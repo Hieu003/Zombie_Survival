@@ -124,7 +124,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         SetAnimatorBools(false, false, false);
 
-        if (Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
+        if (player != null && Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
         {
             TransitionToState(ZombieState.Chase);
         }
@@ -148,7 +148,7 @@ public abstract class BaseZombieAI : MonoBehaviour
             }
         }
 
-        if (Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
+        if (player != null && Vector3.SqrMagnitude(transform.position - player.position) <= chaseDistance * chaseDistance)
         {
             TransitionToState(ZombieState.Chase);
         }
@@ -162,14 +162,14 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         SetAnimatorBools(true, false, false);
 
-        if (navAgent != null)
+        if (navAgent != null && player != null)
         {
             navAgent.speed = speed;
             navAgent.SetDestination(player.position);
             navAgent.stoppingDistance = attackDistance;
         }
 
-        if (Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
+        if (player != null && Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
         {
             TransitionToState(ZombieState.Attack);
         }
@@ -179,7 +179,7 @@ public abstract class BaseZombieAI : MonoBehaviour
     {
         SetAnimatorBools(false, true, false);
 
-        if (navAgent != null)
+        if (navAgent != null && player != null)
         {
             navAgent.SetDestination(player.position);
         }
@@ -189,7 +189,7 @@ public abstract class BaseZombieAI : MonoBehaviour
             StartCoroutine(AttackWithDelay());
         }
 
-        if (Vector3.SqrMagnitude(transform.position - player.position) > attackDistance * attackDistance)
+        if (player != null && Vector3.SqrMagnitude(transform.position - player.position) > attackDistance * attackDistance)
         {
             navAgent.stoppingDistance = 0f;
             TransitionToState(ZombieState.Chase);
@@ -219,6 +219,13 @@ public abstract class BaseZombieAI : MonoBehaviour
     public Vector3 GetRandomNavMeshLocation()
     {
         NavMeshTriangulation navMeshData = NavMesh.CalculateTriangulation();
+
+        if (navMeshData.indices.Length < 3)
+        {
+            Debug.LogWarning("NavMesh data does not have enough vertices.");
+            return transform.position; // Return current position or a default position
+        }
+
         int randomIndex = Random.Range(0, navMeshData.indices.Length / 3);
 
         Vector3 vertex1 = navMeshData.vertices[navMeshData.indices[randomIndex * 3]];
@@ -238,7 +245,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         PlayRandomSound(attackSounds);
         yield return new WaitForSeconds(attackDelay);
 
-        if (Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
+        if (player != null && Vector3.SqrMagnitude(transform.position - player.position) <= attackDistance * attackDistance)
         {
             PerformAttack();
         }
