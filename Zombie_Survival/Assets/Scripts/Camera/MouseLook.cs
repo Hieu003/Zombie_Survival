@@ -91,22 +91,27 @@ namespace HQFPSWeapons
 				m_LookAngles = new Vector2(transform.localEulerAngles.x, m_PlayerRoot.localEulerAngles.y);
 		}
 
-		private void LateUpdate()
-		{
-			Vector2 prevLookAngles = m_LookAngles;
+        private void LateUpdate()
+        {
+            // Thêm kiểm tra Time.timeScale
+            if (Time.timeScale == 0f)
+            {
+                return;
+            }
 
-			if (Player.ViewLocked.Is(false) && Player.Health.Get() > 0f)
-			{
-				LookAround();
-			}
+            Vector2 prevLookAngles = m_LookAngles;
 
-			LastMovement = m_LookAngles - prevLookAngles;
-		}
+            if (Player.ViewLocked.Is(false) && Player.Health.Get() > 0f)
+            {
+                LookAround();
+            }
 
-		/// <summary>
-		/// Rotates the camera and character and creates a sensation of looking around.
-		/// </summary>
-		private void LookAround()
+            LastMovement = m_LookAngles - prevLookAngles;
+        }
+        /// <summary>
+        /// Rotates the camera and character and creates a sensation of looking around.
+        /// </summary>
+        private void LookAround()
 		{
 			var sensitivity = Player.Aim.Active ? m_AimSensitivity : m_Sensitivity;
 			sensitivity *= SensitivityFactor;

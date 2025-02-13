@@ -7,178 +7,148 @@ using UnityEngine.UI;
 
 namespace HQFPSWeapons
 {
-	public class GameManager : Singleton<GameManager>
-	{
-		public static GameManager instance;
+    public class GameManager : Singleton<GameManager>
+    {
+        public static GameManager instance;
 
-		public int highScore;
+        public int highScore;
+        public int currentScore;
+        public Text currentScoreText;
 
-		public int currentScore;
+        public Material[] PreloadedMaterials { get { return m_PreloadedMaterials; } set { m_PreloadedMaterials = value; } }
+        public Player CurrentPlayer { get; private set; }
+        public UIManager CurrentInterface { get; private set; }
 
-		public Text currentScoreText;
+        [BHeader("General", true)]
 
-		public Material[] PreloadedMaterials { get { return m_PreloadedMaterials; } set { m_PreloadedMaterials = value; } }
-		public Player CurrentPlayer { get; private set; }
-		public UIManager CurrentInterface { get; private set; }
+        [SerializeField]
+        private SceneField[] m_GameScenes = null;
 
-		[BHeader("General", true)]
+        [Space]
 
-		[SerializeField]
-		private SceneField[] m_GameScenes = null;
+        [SerializeField]
+        private Texture2D m_CustomCursorTex = null;
 
-		[Space]
+        [Space]
 
-		[SerializeField]
-		private Texture2D m_CustomCursorTex = null;
+        [SerializeField]
+        [Tooltip("This will help with stuttering and lag when loading new objects for the first time, but will increase the memory usage right away.")]
+        private bool m_PreloadMaterialsInEditor = false;
 
-		[Space]
+        [SerializeField]
+        private Material[] m_PreloadedMaterials = null;
 
-		[SerializeField]
-		[Tooltip("This will help with stuttering and lag when loading new objects for the first time, but will increase the memory usage right away.")]
-		private bool m_PreloadMaterialsInEditor = false;
+     
 
-		[SerializeField]
-		private Material[] m_PreloadedMaterials = null;
+        public void Quit()
+        {
+            Application.Quit();
+        }
 
+        public void StartGame(int index = -1)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
 
-		public void Quit()
-		{
-			Application.Quit();
-		}
+            if (index == -1)
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            else
+                SceneManager.LoadSceneAsync(m_GameScenes[index].SceneName, LoadSceneMode.Single);
+            Time.timeScale = 1f;
+        }
 
-		/// <summary> Starting the game with an index of -1 is going to reload the current scene</summary>
-		public void StartGame(int index = -1)
-		{
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
+        public void SetPlayerPosition()
+        {
+            // Set the position and rotation with the random spawn point transform
+        }
 
-			// Load the game scene
-			if (index == -1)
-				SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-			else
-				SceneManager.LoadSceneAsync(m_GameScenes[index].SceneName, LoadSceneMode.Single);
-		}
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
 
-		public void SetPlayerPosition()
-		{
-			//Set the position and rotation with the random spawn point transform
-		//	CurrentPlayer.transform.position = GetSpawnPoint();
-		//	CurrentPlayer.transform.rotation = GetSpawnRotation();
-		}
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
 
-		 /*private Vector3 GetSpawnPoint()
-		{
-			//get a random spawn point
-		//	var spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
-			Vector3 spawnPoint = CurrentPlayer.transform.position;
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
-			if (spawnPoints != null)
-			{
-				var newSpawnPoint = spawnPoints.GetRandomSpawnPoint();
+            if (Application.isEditor && m_PreloadMaterialsInEditor)
+            {
+                List<GameObject> preloadObjects = new List<GameObject>();
 
-				if (newSpawnPoint != Vector3.zero)
-					spawnPoint = newSpawnPoint;
-			}
+                Camera camera = new GameObject("Material Preload Camera", typeof(Camera)).GetComponent<Camera>();
+                camera.orthographic = true;
+                camera.orthographicSize = 100f;
+                camera.farClipPlane = 100f;
+                camera.depth = 999;
+                camera.renderingPath = RenderingPath.Forward;
+                camera.useOcclusionCulling = camera.allowHDR = camera.allowMSAA = camera.allowDynamicResolution = false;
 
-			return spawnPoint;
-		} */
+                preloadObjects.Add(camera.gameObject);
 
-		/* private Quaternion GetSpawnRotation()
-		{
-			var spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
-			Quaternion spawnRotation = CurrentPlayer.transform.rotation;
+                foreach (var mat in m_PreloadedMaterials)
+                {
+                    if (mat == null)
+                        continue;
 
-			if (spawnPoints != null)
-				spawnRotation = spawnPoints.GetRandomRotation();
+                    var quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                    quad.transform.position = camera.transform.position + camera.transform.forward * 50f + camera.transform.right * UnityEngine.Random.Range(-100f, 100f) + camera.transform.up * UnityEngine.Random.Range(-100f, 100f);
+                    quad.transform.localScale = Vector3.one * 0.01f;
 
-			return spawnRotation;
-		} */
+                    quad.GetComponent<Renderer>().sharedMaterial = mat;
 
-		private void OnEnable()
-		{
-			SceneManager.sceneLoaded += OnSceneLoaded;
-		}
+                    preloadObjects.Add(quad);
+                }
 
-		private void OnDestroy()
-		{
-			SceneManager.sceneLoaded -= OnSceneLoaded;
-		}
+                camera.Render();
 
-		private void Awake()
-		{
-			if (Instance != null && Instance != this)
-			{
-				Destroy(gameObject);
-				return;
-			}
+                foreach (var obj in preloadObjects)
+                    Destroy(obj);
 
-			if(Application.isEditor && m_PreloadMaterialsInEditor)
-			{
-				List<GameObject> preloadObjects = new List<GameObject>();
+                preloadObjects.Clear();
+            }
 
-				Camera camera = new GameObject("Material Preload Camera", typeof(Camera)).GetComponent<Camera>();
-				camera.orthographic = true;
-				camera.orthographicSize = 100f;
-				camera.farClipPlane = 100f;
-				camera.depth = 999;
-				camera.renderingPath = RenderingPath.Forward;
-				camera.useOcclusionCulling = camera.allowHDR = camera.allowMSAA = camera.allowDynamicResolution = false;
+            if (m_CustomCursorTex != null)
+                Cursor.SetCursor(m_CustomCursorTex, Vector2.zero, CursorMode.Auto);
 
-				preloadObjects.Add(camera.gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
 
-				foreach(var mat in m_PreloadedMaterials)
-				{
-					if(mat == null)
-						continue;
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            CurrentPlayer = FindFirstObjectByType<Player>();
+            CurrentInterface = FindFirstObjectByType<UIManager>();
 
-					var quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-					quad.transform.position = camera.transform.position + camera.transform.forward * 50f + camera.transform.right * UnityEngine.Random.Range(-100f, 100f) + camera.transform.up * UnityEngine.Random.Range(-100f, 100f);
-					quad.transform.localScale = Vector3.one * 0.01f;
+            CurrentInterface.AttachToPlayer(CurrentPlayer);
+        }
 
-					quad.GetComponent<Renderer>().sharedMaterial = mat;
+        private void Start()
+        {
+            instance = this;
 
-					preloadObjects.Add(quad);
-				}
-
-				camera.Render();
-
-				foreach(var obj in preloadObjects)
-					Destroy(obj);
-
-				preloadObjects.Clear();
-			}
-
-			if(m_CustomCursorTex != null)
-				Cursor.SetCursor(m_CustomCursorTex, Vector2.zero, CursorMode.Auto);
-
-			DontDestroyOnLoad(gameObject);
-		}
-
-		private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-		{
-			CurrentPlayer = FindFirstObjectByType<Player>();
-			CurrentInterface = FindFirstObjectByType<UIManager>();
-
-			CurrentInterface.AttachToPlayer(CurrentPlayer);
-		}
-
-		private void Start()
-		{
-			instance = this;
-			Shader.WarmupAllShaders();
-			GC.Collect();
-		}
+            Shader.WarmupAllShaders();
+            GC.Collect();
+        }
 
         private void Update()
         {
-            if(currentScore > highScore)
-			{
-				highScore = currentScore;
-			}
+            if (currentScore > highScore)
+            {
+                highScore = currentScore;
+            }
 
-			currentScoreText.text = currentScore.ToString();
+            currentScoreText.text = currentScore.ToString();
+
+           
         }
-
 
     }
 }

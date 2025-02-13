@@ -660,6 +660,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11439320, guid: 7de781d30b120ca46810d7dea7ca2c4d, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439320, guid: 7de781d30b120ca46810d7dea7ca2c4d, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 2315130631570248352, guid: 647a54799bbda904ea44857ead8f8a7b,
+        type: 3}
+    - target: {fileID: 11439320, guid: 7de781d30b120ca46810d7dea7ca2c4d, type: 3}
+      propertyPath: resumeButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439320, guid: 7de781d30b120ca46810d7dea7ca2c4d, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439320, guid: 7de781d30b120ca46810d7dea7ca2c4d, type: 3}
       propertyPath: currentScoreText
       value: 
       objectReference: {fileID: 238830449}
@@ -723,7 +740,7 @@ PrefabInstance:
     - target: {fileID: 224278618387929204, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -58.00061
+      value: -58.00049
       objectReference: {fileID: 0}
     - target: {fileID: 224925160001347238, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
@@ -813,7 +830,7 @@ PrefabInstance:
     - target: {fileID: 5206685839297647287, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.000854
+      value: 26.000488
       objectReference: {fileID: 0}
     - target: {fileID: 6344663295651349444, guid: 46b2d3193ac373e49b24121a3e853cdb,
         type: 3}
