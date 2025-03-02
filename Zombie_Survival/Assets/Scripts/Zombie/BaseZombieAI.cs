@@ -202,10 +202,7 @@ public abstract class BaseZombieAI : MonoBehaviour
         {
             animator.SetBool("IsWalking", isWalking);
             animator.SetBool("IsAttacking", isAttacking);
-            if (!(this is TankZombieAI))
-            {
-                animator.SetBool("IsPatrolling", isPatrolling);
-            }
+            animator.SetBool("IsPatrolling", isPatrolling);
         }
     }
 

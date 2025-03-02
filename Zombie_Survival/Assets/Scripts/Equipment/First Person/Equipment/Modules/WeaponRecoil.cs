@@ -237,13 +237,16 @@ namespace HQFPSWeapons
             }
         }
 
-        private void StopRecoil() 
+        private void StopRecoil()
         {
             m_AdditiveRecoilActive = false;
             m_ChangedSpring = false;
 
-            //Start the recoil control after a certain amount of time
-            StartCoroutine(C_StartRecoilControl());
+            // Start the recoil control after a certain amount of time
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(C_StartRecoilControl());
+            }
         }
 
         private void RemoveRecoil(ref Vector2 recoil, Vector2 amount)

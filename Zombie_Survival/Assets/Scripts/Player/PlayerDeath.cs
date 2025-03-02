@@ -134,16 +134,23 @@ namespace HQFPSWeapons
 
         }
 
-		private void GameOver()
-		{
-			if(!m_GameOverTriggered)
-			{
+        private void GameOver()
+        {
+            if (!m_GameOverTriggered)
+            {
                 m_GameOverTriggered = true;
                 Debug.Log("Game over");
+                StartCoroutine(RestartGameAfterDelay(5f)); // Restart game after 3 seconds
             }
-		}
+        }
 
-       
+        private IEnumerator RestartGameAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            GameManager.Instance.RestartGame(); // Assuming GameManager has a method to restart the game
+        }
+
+
 
         /*private IEnumerator C_Respawn()
 		{

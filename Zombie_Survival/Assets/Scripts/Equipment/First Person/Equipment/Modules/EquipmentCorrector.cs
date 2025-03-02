@@ -84,20 +84,23 @@ namespace HQFPSWeapons
 		private bool m_WeaponIsEmpty;
 
 
-        protected virtual void OnAmmoChanged(EquipmentItem.AmmoInfo ammoInfo) 
-		{
-			if (m_CartridgeCorrector.ChangeCartridgeWhileFiring && 
-				(ammoInfo.CurrentInMagazine != m_EHandler.CurrentItem.CurrentAmmoInfo.PrevVal.CurrentInMagazine ||
-				ammoInfo.CurrentInMagazine != m_EHandler.CurrentItem.TryGetMagazineSize()))
-			{
-				StartCoroutine(C_ShootEmpty());
+        protected virtual void OnAmmoChanged(EquipmentItem.AmmoInfo ammoInfo)
+        {
+            if (m_CartridgeCorrector.ChangeCartridgeWhileFiring &&
+                (ammoInfo.CurrentInMagazine != m_EHandler.CurrentItem.CurrentAmmoInfo.PrevVal.CurrentInMagazine ||
+                ammoInfo.CurrentInMagazine != m_EHandler.CurrentItem.TryGetMagazineSize()))
+            {
+                if (gameObject.activeInHierarchy)
+                {
+                    StartCoroutine(C_ShootEmpty());
 
-				if (m_EHandler.CurrentItem.CurrentAmmoInfo.Val.CurrentInMagazine <= 0)
-					StartCoroutine(C_StartTheMovingParts());
-			}
-		}
+                    if (m_EHandler.CurrentItem.CurrentAmmoInfo.Val.CurrentInMagazine <= 0)
+                        StartCoroutine(C_StartTheMovingParts());
+                }
+            }
+        }
 
-		protected virtual void OnReloadStart()
+        protected virtual void OnReloadStart()
 		{
 			m_WeaponIsEmpty = false;
 
